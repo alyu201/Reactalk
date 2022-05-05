@@ -16,10 +16,17 @@ export function activate(context: vscode.ExtensionContext) {
 	let disposable = vscode.commands.registerCommand('reactalk.helloWorld', () => {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from !');
+		vscode.window.showInformationMessage('Hello World from Megan!');
+	});
+
+	let disposable2 = vscode.commands.registerCommand('reactalk.start', () => {
+		// The code you place here will be executed every time your command is executed
+		// Display a message box to the user
+		vscode.window.showInformationMessage('You can start to talk');
 	});
 
 	context.subscriptions.push(disposable);
+	context.subscriptions.push(disposable2);
 }
 
 // this method is called when your extension is deactivated
