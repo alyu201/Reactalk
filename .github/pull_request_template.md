@@ -6,7 +6,7 @@ Fixes/resolves # (issue)
 
 ## Screenshots
 
-Please include any screenshots or media that illustrates the changes made if application. Else, this may be left out.
+Please include any screenshots or media that illustrates the changes made if applicable. Else, this may be left out.
 
 ## Errors / risks
 
