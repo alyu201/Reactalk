@@ -1,0 +1,6 @@
+[
+  {
+    "cmd": "Add for loop",
+    "action": "for (let ${1:index} = 0; index < ${2:array}.length; ${1:index}++) {\n\t$4\n}\n"
+  }
+]
