@@ -27,12 +27,15 @@ export function activate(context: vscode.ExtensionContext) {
 		//startListening();
 	});
 
-	let disposable3 = vscode.commands.registerCommand('reactalk.startListening', startListening);
+	// registerCommand() will return a Disposable.
+	// A Disposable type can release resources (like event listening or a timer).
+	// When this disposable is disposed, it'll make the associated command become unregistered.
+	let disposableStartLis = vscode.commands.registerCommand('reactalk.startListening', startListening);
 
 
 	context.subscriptions.push(disposable);
 	context.subscriptions.push(disposable2);
-	context.subscriptions.push(disposable3);
+	context.subscriptions.push(disposableStartLis);
 }
 
 // this method is called when your extension is deactivated
