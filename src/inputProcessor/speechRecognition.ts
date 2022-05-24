@@ -1,3 +1,5 @@
+import startVP from './inputProcessor';
+import * as vscode from 'vscode';
 
 export function startListening() {
   const recorder = require('node-record-lpcm16');
@@ -29,11 +31,23 @@ export function startListening() {
     .streamingRecognize(request)
     .on('error', console.error)
     .on('data', (data: { results: { alternatives: { transcript: any; }[]; }[]; }) =>
-      process.stdout.write(
-        data.results[0] && data.results[0].alternatives[0]
-          ? `Transcription: ${data.results[0].alternatives[0].transcript}\n`
-          : '\n\nReached transcription time limit, press Ctrl+C\n'
-      )
+      {
+        if (data.results[0] && data.results[0].alternatives[0]) {
+
+          let transcript:string = data.results[0].alternatives[0].transcript;
+
+          // Initiate the voice programming process by first going to inputProcessor.ts
+          startVP(transcript);
+
+          // We can comment this out later, it just prints the transcript to the terminal
+          process.stdout.write(
+            data.results[0] && data.results[0].alternatives[0]
+              ? `Transcription: ${transcript}\n`
+              : '\n\nReached transcription time limit, press Ctrl+C\n'
+          )
+        } 
+
+      }
     );
 
   // Start recording and send the microphone input to the Speech API.
@@ -49,8 +63,9 @@ export function startListening() {
       silence: '10.0',
     })
     .stream()
-    .on('error', console.error)
+    .on('error', () => {
+      console.error;
+      console.log("It came from the recorder instead")
+    })
     .pipe(recognizeStream);
 }
-
-//console.log('Listening, press Ctrl+C to stop.');
