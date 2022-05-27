@@ -9,6 +9,8 @@ export const processNavigation = (prefix: string, cmd: string) => {
     case NavigationPrefixes.go:
       const keyword = cmd.split(" ").slice(1, -1).join(" ");
       const value = cmd.split(" ").slice(-1)[0];
+      console.log("keyword", keyword);
+      console.log("value", value);
 
       goToNavigation(keyword, value);
   }
@@ -20,9 +22,11 @@ const goToNavigation = (object: string, value: string) => {
   if (editor) {
     switch (object) {
       case NavigationKeyword.startOfLine:
-        let range = editor.document.lineAt(parseInt(value) - 1).range;
-        const newSelection = new vscode.Selection(range.start, range.start);
-        editor.selection = newSelection;
+        const start = editor.document.lineAt(parseInt(value) - 1).range.start;
+        editor.selection = new vscode.Selection(start, start);
+      case NavigationKeyword.endOfLine:
+        const end = editor.document.lineAt(parseInt(value) - 1).range.end;
+        editor.selection = new vscode.Selection(end, end);
     }
   }
 };

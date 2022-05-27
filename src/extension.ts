@@ -26,10 +26,9 @@ export function activate(context: vscode.ExtensionContext) {
     "reactalk.commandProcess",
     () => {
       // processCommand("add for loop");
-
       // processCommand("delete line 1");
-
-      processCommand("go to start of line 1");
+      // processCommand("go to start of line 1");
+      processCommand("go to end of line 2");
 
       vscode.window.showInformationMessage("Processed");
     }
