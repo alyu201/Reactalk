@@ -28,7 +28,9 @@ export function activate(context: vscode.ExtensionContext) {
       // processCommand("add for loop");
       // processCommand("delete line 1");
       // processCommand("go to start of line 1");
-      processCommand("go to end of line 2");
+      // processCommand("go to end of line 2");
+      // processCommand("undo");
+      processCommand("redo");
 
       vscode.window.showInformationMessage("Processed");
     }
