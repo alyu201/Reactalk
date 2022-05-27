@@ -1,22 +1,25 @@
-import { EditingPrefixes } from "./../definitions/commandPrefixes";
+import {
+  EditingKeyword,
+  EditingPrefixes,
+} from "./../../definitions/commandPrefixes";
 import * as vscode from "vscode";
 
 export const processEdit = (prefix: string, cmd: string) => {
   switch (prefix) {
     case EditingPrefixes.delete:
-      const object = cmd.split(" ")[0];
-      const name = cmd.split(" ")[1];
-      deleteEdit(object, name);
+      const keyword = cmd.split(" ")[0];
+      const value = cmd.split(" ")[1];
+      deleteEdit(keyword, value);
   }
 };
 
-const deleteEdit = (object: string, name: string) => {
+const deleteEdit = (keyword: string, value: string) => {
   let editor = vscode.window.activeTextEditor;
 
   if (editor) {
-    switch (object) {
-      case "line":
-        let range = editor.document.lineAt(parseInt(name) - 1).range;
+    switch (keyword) {
+      case EditingKeyword.line:
+        let range = editor.document.lineAt(parseInt(value) - 1).range;
         let selection = (editor.selection = new vscode.Selection(
           range.start,
           range.end

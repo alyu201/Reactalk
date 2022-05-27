@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
-import { mapCommand } from "./commandProcessor/commandMapper";
+import { processCommand } from "./commandProcessor/commandProcessor";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -25,19 +25,13 @@ export function activate(context: vscode.ExtensionContext) {
   const commandProcess = vscode.commands.registerCommand(
     "reactalk.commandProcess",
     () => {
-      mapCommand("add for loop");
+      // processCommand("add for loop");
 
-      mapCommand("delete line 1");
+      // processCommand("delete line 1");
 
-      // UI module to handle
-      // Get the active text editor
-      //   const editor = vscode.window.activeTextEditor;
+      processCommand("go to start of line 1");
 
-      //   if (editor) {
-      //     editor.insertSnippet(new vscode.SnippetString(action));
-      //   }
-
-      //   vscode.window.showInformationMessage("Processed");
+      vscode.window.showInformationMessage("Processed");
     }
   );
 

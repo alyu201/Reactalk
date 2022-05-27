@@ -10,7 +10,7 @@ export enum EditingPrefixes {
 }
 
 export enum NavigationPrefixes {
-  goTo = "go to",
+  go = "go",
   focus = "focus",
 }
 
@@ -32,4 +32,17 @@ export enum SystemPrefixes {
   createApp = "create app",
   install = "install",
   build = "build",
+}
+
+export enum CompositionKeyword {
+  for = "for",
+}
+
+export enum EditingKeyword {
+  line = "line",
+}
+
+export enum NavigationKeyword {
+  startOfLine = "start of line",
+  endOfLine = "end of line",
 }
