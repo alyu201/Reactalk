@@ -29,7 +29,12 @@ export function startListening() {
   // Create a recognize stream
   const recognizeStream = client
     .streamingRecognize(request)
-    .on('error', console.error)
+    .on('error', (error:any) => {
+      console.log(error);
+      console.log("It came here")
+      vscode.window.showInformationMessage("Timeout reached.");
+    }
+)
     .on('data', (data: { results: { alternatives: { transcript: any; }[]; }[]; }) =>
       {
         if (data.results[0] && data.results[0].alternatives[0]) {
@@ -68,4 +73,5 @@ export function startListening() {
       console.log("It came from the recorder instead")
     })
     .pipe(recognizeStream);
+
 }
