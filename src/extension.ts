@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
+import { startListening } from "./inputProcessor/speechRecognition";
 import { processCommand } from "./commandProcessor/commandProcessor";
 
 // this method is called when your extension is activated
@@ -18,25 +19,42 @@ export function activate(context: vscode.ExtensionContext) {
     () => {
       // The code you place here will be executed every time your command is executed
       // Display a message box to the user
-      vscode.window.showInformationMessage("Hello World!");
+      vscode.window.showInformationMessage("Hello World from Megan!");
     }
   );
 
-  const commandProcess = vscode.commands.registerCommand(
+  let disposable2 = vscode.commands.registerCommand("reactalk.start", () => {
+    // The code you place here will be executed every time your command is executed
+    // Display a message box to the user
+    vscode.window.showInformationMessage("You can start to talk");
+    //startListening();
+  });
+
+  // registerCommand() will return a Disposable.
+  // A Disposable type can release resources (like event listening or a timer).
+  // When this disposable is disposed, it'll make the associated command become unregistered.
+  let disposableStartLis = vscode.commands.registerCommand(
+    "reactalk.startListening",
+    startListening
+  );
+
+  let commandProcess = vscode.commands.registerCommand(
     "reactalk.commandProcess",
     () => {
-      // processCommand("add for loop");
+      processCommand("add for loop");
       // processCommand("delete line 1");
       // processCommand("go to start of line 1");
       // processCommand("go to end of line 2");
       // processCommand("undo");
-      processCommand("redo");
+      // processCommand("redo");
 
       vscode.window.showInformationMessage("Processed");
     }
   );
 
   context.subscriptions.push(disposable);
+  context.subscriptions.push(disposable2);
+  context.subscriptions.push(disposableStartLis);
   context.subscriptions.push(commandProcess);
 }
 
