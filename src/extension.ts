@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import {startListening} from './inputProcessor/speechRecognition';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -16,10 +17,25 @@ export function activate(context: vscode.ExtensionContext) {
 	let disposable = vscode.commands.registerCommand('reactalk.helloWorld', () => {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from !');
+		vscode.window.showInformationMessage('Hello World from Megan!');
 	});
 
+	let disposable2 = vscode.commands.registerCommand('reactalk.start', () => {
+		// The code you place here will be executed every time your command is executed
+		// Display a message box to the user
+		vscode.window.showInformationMessage('You can start to talk');
+		//startListening();
+	});
+
+	// registerCommand() will return a Disposable.
+	// A Disposable type can release resources (like event listening or a timer).
+	// When this disposable is disposed, it'll make the associated command become unregistered.
+	let disposableStartLis = vscode.commands.registerCommand('reactalk.startListening', startListening);
+
+
 	context.subscriptions.push(disposable);
+	context.subscriptions.push(disposable2);
+	context.subscriptions.push(disposableStartLis);
 }
 
 // this method is called when your extension is deactivated
