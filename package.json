@@ -8,12 +8,13 @@
     "vscode": "^1.66.0"
   },
   "categories": [
-    "Other"
+    "Snippets"
   ],
   "activationEvents": [
     "onCommand:reactalk.helloWorld",
     "onCommand:reactalk.start",
-    "onCommand:reactalk.startListening"
+    "onCommand:reactalk.startListening",
+    "onCommand:reactalk.commandProcess"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -29,6 +30,10 @@
       {
         "command": "reactalk.startListening",
         "title": "Reactalk start listening"
+      },
+      {
+        "command": "reactalk.commandProcess",
+        "title": "Process command"
       }
     ]
   },
