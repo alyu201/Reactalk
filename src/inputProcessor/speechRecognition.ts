@@ -41,8 +41,6 @@ export function startListening() {
 
           let transcript:string = data.results[0].alternatives[0].transcript;
 
-          console.log(transcript)
-
           // Initiate the voice programming process by first going to inputProcessor.ts
           startVP(transcript);
 
@@ -52,6 +50,8 @@ export function startListening() {
               ? `Transcription: ${transcript}\n`
               : '\n\nReached transcription time limit, press Ctrl+C\n'
           )
+
+          console.log("\n")
         } 
 
       }

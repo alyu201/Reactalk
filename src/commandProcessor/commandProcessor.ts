@@ -20,14 +20,19 @@ export const processCommand = (input: string) => {
   const cmd = inputCmd.split(" ").slice(1).join(" ");
 
   if (prefix in CompositionPrefixes) {
+    console.log("This is a compostion command");
     processAdd(inputCmd);
   } else if (prefix in EditingPrefixes) {
+    console.log("This is a editing command");
     processEdit(prefix, cmd);
   } else if (prefix in NavigationPrefixes) {
+    console.log("This is a navigation command");
     processNavigation(prefix, cmd);
   } else if (prefix in SystemPrefixes) {
+    console.log("This is a system command");
     processSystem(prefix, cmd);
   } else {
+    console.log("This command got error");
     throw new InvalidCommandException("Invalid or no command input found");
   }
 };
