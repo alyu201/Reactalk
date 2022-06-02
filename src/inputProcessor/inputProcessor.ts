@@ -1,9 +1,9 @@
-import processCmd from '../cmdProcessor/dummyCmdProcessor';
+import { processCommand } from "../commandProcessor/commandProcessor";
 
 function startVP(transcript:string) {
 
     // Ask command processor to process command
-    processCmd(transcript.trim());
+    processCommand(transcript.trim());
 }
 
 export default startVP;

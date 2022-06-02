@@ -2,7 +2,6 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import { startListening } from "./inputProcessor/speechRecognition";
-import { processCommand } from "./commandProcessor/commandProcessor";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -38,24 +37,9 @@ export function activate(context: vscode.ExtensionContext) {
     startListening
   );
 
-  let commandProcess = vscode.commands.registerCommand(
-    "reactalk.commandProcess",
-    () => {
-      processCommand("add for loop");
-      // processCommand("delete line 1");
-      // processCommand("go to start of line 1");
-      // processCommand("go to end of line 2");
-      // processCommand("undo");
-      // processCommand("redo");
-
-      vscode.window.showInformationMessage("Processed");
-    }
-  );
-
   context.subscriptions.push(disposable);
   context.subscriptions.push(disposable2);
   context.subscriptions.push(disposableStartLis);
-  context.subscriptions.push(commandProcess);
 }
 
 // this method is called when your extension is deactivated
