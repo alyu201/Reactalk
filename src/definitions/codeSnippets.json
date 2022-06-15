@@ -1,6 +1,10 @@
 [
   {
-    "cmd": "Add for loop",
+    "cmd": "add for loop",
     "action": "for (let ${1:index} = 0; index < ${2:array}.length; ${1:index}++) {\n\t$4\n}\n"
+  },
+  {
+    "cmd": "add element container",
+    "action": "<div>\n\t$4$1\n</div>\n"
   }
 ]

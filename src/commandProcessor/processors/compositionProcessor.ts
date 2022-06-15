@@ -15,20 +15,18 @@ const errorMsg = "Error processing composition command";
  * @throws An InvalidCommandException when an error occurs during processing
  */
 export const processAdd = (inputCmd: string) => {
-  const keyword = inputCmd.split(" ")[1];
+  const keyword = inputCmd.split(" ")[1]; // e.g. for, element
 
-  switch (keyword) {
-    case CompositionKeyword.for:
-      const action = commands.filter(({ cmd }: Command) => {
-        return cmd.toLowerCase() === inputCmd;
-      })[0].action;
+  if (keyword in CompositionKeyword) {
+    const action = commands.filter(({ cmd }: Command) => {
+      return cmd === inputCmd;
+    })[0].action;
 
-      const editor = vscode.window.activeTextEditor;
-      if (editor) {
-        editor.insertSnippet(new vscode.SnippetString(action));
-      }
-      break;
-    default:
-      throw new InvalidCommandException(errorMsg);
+    const editor = vscode.window.activeTextEditor;
+    if (editor) {
+      editor.insertSnippet(new vscode.SnippetString(action));
+    }
+  } else {
+    throw new InvalidCommandException(errorMsg);
   }
 };

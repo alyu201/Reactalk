@@ -36,6 +36,7 @@ export enum SystemPrefixes {
 
 export enum CompositionKeyword {
   for = "for",
+  element = "element",
 }
 
 export enum EditingKeyword {
