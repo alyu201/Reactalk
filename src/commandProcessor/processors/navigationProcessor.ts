@@ -18,26 +18,20 @@ export const processNavigation = (prefix: string, cmd: string) => {
 
       switch (cmd) {
         case NavigationKeyword.up:
-          console.log("We want to go up")
           vscode.commands.executeCommand("cursorMove", {to: 'up', by: 'line'});
           break;
         case NavigationKeyword.down:
-          console.log("We want to go down")
           vscode.commands.executeCommand("cursorMove", {to: 'down', by: 'line'});
           break;
         case NavigationKeyword.left:
-          console.log("We want to go left")
           vscode.commands.executeCommand("cursorMove", {to: 'left', by: 'character'});
           break;
         case NavigationKeyword.right:
-          console.log("We want to go right")
           vscode.commands.executeCommand("cursorMove", {to: 'right', by: 'character'});
           break;
         default:
           const keyword = cmd.split(" ").slice(1, -1).join(" ");
           const value = cmd.split(" ").slice(-1)[0];
-          console.log("keyword: |" + keyword + "|")
-          console.log("value: " + value)
           goToNavigation(keyword, value);
       }
 
@@ -45,7 +39,6 @@ export const processNavigation = (prefix: string, cmd: string) => {
       break;
 
     default:
-      console.log("it threw the InvalidCommandException here")
       throw new InvalidCommandException(errorMsg);
   }
 };
