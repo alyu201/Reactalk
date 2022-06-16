@@ -21,6 +21,10 @@ export const processNavigation = (prefix: string, cmd: string) => {
           console.log("We want to go up")
           vscode.commands.executeCommand("cursorMove", {to: 'up', by: 'line'});
           break;
+        case NavigationKeyword.down:
+          console.log("We want to go down")
+          vscode.commands.executeCommand("cursorMove", {to: 'down', by: 'line'});
+          break;
         default:
           const keyword = cmd.split(" ").slice(1, -1).join(" ");
           const value = cmd.split(" ").slice(-1)[0];
