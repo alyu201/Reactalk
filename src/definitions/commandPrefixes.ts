@@ -47,5 +47,6 @@ export enum NavigationKeyword {
   endOfLine = "end of line",
   up = "up",
   down = "down",
-  left = "left"
+  left = "left",
+  right = "right"
 }
