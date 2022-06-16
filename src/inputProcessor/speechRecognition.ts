@@ -41,8 +41,6 @@ export function startListening() {
 
           let transcript:string = data.results[0].alternatives[0].transcript;
 
-          transcript = "save file";
-
           // Initiate the voice programming process by first going to inputProcessor.ts
           startVP(transcript);
 

@@ -18,7 +18,6 @@ export const processSystem = (prefix: string, cmd?: string) => {
       redo();
       break;
     case SystemPrefixes.save:
-      console.log("We want to save the current file");
       saveCurrentFile();
       break;
     default:
@@ -39,7 +38,6 @@ const saveCurrentFile = () => {
 
   if (editor) {
     const document = editor.document;
-    console.log("This is the document: " + document);
     const saveFilePromise = document.save();
 
     saveFilePromise.then(
