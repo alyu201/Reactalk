@@ -41,7 +41,13 @@ const saveCurrentFile = () => {
     const document = editor.document;
     console.log("This is the document: " + document);
     const saveFilePromise = document.save();
-    saveFilePromise.then(() => console.log("file saved"), () => console.log("file NOT saved"));
+
+    saveFilePromise.then(
+      () => console.log("file saved"), 
+      () => {
+        console.log("file NOT saved")
+        vscode.window.showErrorMessage("There's a problem saving the file. Try again... ");
+    });
   }
   
 }
