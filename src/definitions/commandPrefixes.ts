@@ -46,3 +46,7 @@ export enum NavigationKeyword {
   startOfLine = "start of line",
   endOfLine = "end of line",
 }
+
+export enum SystemKeyword {
+  file = "file",
+}

@@ -1,4 +1,4 @@
-import { SystemPrefixes } from "./../../definitions/commandPrefixes";
+import { SystemPrefixes, SystemKeyword } from "./../../definitions/commandPrefixes";
 import { InvalidCommandException } from "./../invalidCommandException";
 import * as vscode from "vscode";
 
@@ -18,8 +18,17 @@ export const processSystem = (prefix: string, cmd?: string) => {
       redo();
       break;
     case SystemPrefixes.save:
-      saveCurrentFile();
+      switch (cmd) {
+        case SystemKeyword.file:
+          saveCurrentFile();
+          break;
+        default:
+          throw new InvalidCommandException(errorMsg);
+      }
+
+      // We NEED this break or else it will go to 'default'
       break;
+      
     default:
       throw new InvalidCommandException(errorMsg);
   }
