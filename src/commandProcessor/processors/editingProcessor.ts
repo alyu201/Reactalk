@@ -56,50 +56,53 @@ const deleteEdit = (keyword: string, value: string) => {
         deleteFromEditor(line);
         break;
       case EditingKeyword.element:
-        const documentText = editor.document.getText();
-        const endTag = "</p>";
-        // if (value in EditingValue) {
-        // Find indices of all occurences of the specified element
-        const openingMatches = [
-          ...documentText.matchAll(new RegExp("<p>", "gm")),
-        ];
-        const closingMatches = [
-          ...documentText.matchAll(new RegExp(endTag, "gm")),
-        ];
+        if (Object.keys(EditingValue).includes(value)) {
+          const documentText = editor.document.getText();
+          const elementTag = EditingValue[value as keyof typeof EditingValue];
+          const startTag = elementTag.split(" ")[0];
+          const endTag = elementTag.split(" ")[1];
 
-        let indices: any[] = [];
-        openingMatches.forEach((match, index) => {
-          if (match.index) {
+          // Find indices of all occurences of the specified element
+          const openingMatches = [
+            ...documentText.matchAll(new RegExp(startTag, "gm")),
+          ];
+          const closingMatches = [
+            ...documentText.matchAll(new RegExp(endTag, "gm")),
+          ];
+
+          let indices: any[] = [];
+          openingMatches.forEach((match, index) => {
             if (editor) {
-              indices[index] = [editor.document.positionAt(match.index)];
+              indices[index] = [editor.document.positionAt(match.index || 0)];
             }
-          }
-        });
-        closingMatches.forEach((match, index) => {
-          if (match.index) {
+          });
+          closingMatches.forEach((match, index) => {
             if (editor) {
               indices[index] = [
                 ...indices[index],
-                editor.document.positionAt(match.index + endTag.length),
+                editor.document.positionAt(
+                  (match.index || 0) + match[0].length
+                ),
               ];
             }
-          }
-        });
+          });
 
-        // Compute the closest occurence
-        const currentPos = editor.selection.active;
-        const idx = indices.reduce(function (prev, curr) {
-          return Math.abs(curr[0]._line - currentPos.line) <
-            Math.abs(prev[1]._line - currentPos.line)
-            ? curr
-            : prev;
-        });
-        const element = (editor.selection = new vscode.Selection(
-          idx[0],
-          idx[1]
-        ));
-        deleteFromEditor(element);
-        // }
+          // Compute the closest occurence
+          const currentPos = editor.selection.active;
+          const idx = indices.reduce(function (prev, curr) {
+            return Math.abs(curr[0]._line - currentPos.line) <
+              Math.abs(prev[1]._line - currentPos.line)
+              ? curr
+              : prev;
+          });
+          const element = (editor.selection = new vscode.Selection(
+            idx[0],
+            idx[1]
+          ));
+          deleteFromEditor(element);
+        } else {
+          throw new InvalidCommandException(errorMsg);
+        }
         break;
       default:
         throw new InvalidCommandException(errorMsg);
