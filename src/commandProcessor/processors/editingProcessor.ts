@@ -10,6 +10,10 @@ import { Selection } from "vscode";
 const errorMsg = "Error processing editing command";
 const editor = vscode.window.activeTextEditor;
 
+const throwError = () => {
+  throw new InvalidCommandException(errorMsg);
+};
+
 /**
  * @param prefix The prefix of the editing command to process
  * @param cmd The transcribed editing command without the prefix to process
@@ -23,7 +27,7 @@ export const processEdit = (prefix: string, cmd: string) => {
       deleteEdit(keyword, value);
       break;
     default:
-      throw new InvalidCommandException(errorMsg);
+      throwError();
   }
 };
 
@@ -70,6 +74,13 @@ const deleteEdit = (keyword: string, value: string) => {
             ...documentText.matchAll(new RegExp(endTag, "gm")),
           ];
 
+          if (openingMatches.length === 0) {
+            throwError();
+          }
+          if (closingMatches.length === 0) {
+            throwError();
+          }
+
           let indices: any[] = [];
           openingMatches.forEach((match, index) => {
             if (editor) {
@@ -101,11 +112,11 @@ const deleteEdit = (keyword: string, value: string) => {
           ));
           deleteFromEditor(element);
         } else {
-          throw new InvalidCommandException(errorMsg);
+          throwError();
         }
         break;
       default:
-        throw new InvalidCommandException(errorMsg);
+        throwError();
     }
   }
 };
