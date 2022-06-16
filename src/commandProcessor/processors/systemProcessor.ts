@@ -17,6 +17,10 @@ export const processSystem = (prefix: string, cmd?: string) => {
     case SystemPrefixes.redo:
       redo();
       break;
+    case SystemPrefixes.save:
+      console.log("We want to save the current file");
+      saveCurrentFile();
+      break;
     default:
       throw new InvalidCommandException(errorMsg);
   }
@@ -29,3 +33,15 @@ const undo = () => {
 const redo = () => {
   vscode.commands.executeCommand("redo");
 };
+
+const saveCurrentFile = () => {
+  let editor = vscode.window.activeTextEditor;
+
+  if (editor) {
+    const document = editor.document;
+    console.log("This is the document: " + document);
+    const saveFilePromise = document.save();
+    saveFilePromise.then(() => console.log("file saved"), () => console.log("file NOT saved"));
+  }
+  
+}
