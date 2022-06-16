@@ -15,11 +15,25 @@ const errorMsg = "Error processing navigation command";
 export const processNavigation = (prefix: string, cmd: string) => {
   switch (prefix) {
     case NavigationPrefixes.go:
-      const keyword = cmd.split(" ").slice(1, -1).join(" ");
-      const value = cmd.split(" ").slice(-1)[0];
-      goToNavigation(keyword, value);
+
+      switch (cmd) {
+        case NavigationKeyword.up:
+          console.log("We want to go up")
+          vscode.commands.executeCommand("cursorMove", {to: 'up', by: 'line'});
+          break;
+        default:
+          const keyword = cmd.split(" ").slice(1, -1).join(" ");
+          const value = cmd.split(" ").slice(-1)[0];
+          console.log("keyword: |" + keyword + "|")
+          console.log("value: " + value)
+          goToNavigation(keyword, value);
+      }
+
+      // We NEED this break or else it will go the the 'default'
       break;
+
     default:
+      console.log("it threw the InvalidCommandException here")
       throw new InvalidCommandException(errorMsg);
   }
 };

@@ -45,4 +45,5 @@ export enum EditingKeyword {
 export enum NavigationKeyword {
   startOfLine = "start of line",
   endOfLine = "end of line",
+  up = "up"
 }
