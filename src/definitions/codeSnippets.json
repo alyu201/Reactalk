@@ -18,5 +18,29 @@
   {
     "cmd": "add element ordered list",
     "action": "<ol>\n\t$4<li>\n\t$4\t$4$1\n\t$4</li>\n</ol>\n"
+  },
+  {
+    "cmd": "add element heading one",
+    "action": "<h1>$1</h1>\n"
+  },
+  {
+    "cmd": "add element heading two",
+    "action": "<h2>$1</h2>\n"
+  },
+  {
+    "cmd": "add element heading three",
+    "action": "<h3>$1</h3>\n"
+  },
+  {
+    "cmd": "add element heading four",
+    "action": "<h4>$1</h4>\n"
+  },
+  {
+    "cmd": "add element heading five",
+    "action": "<h5>$1</h5>\n"
+  },
+  {
+    "cmd": "add element heading six",
+    "action": "<h6>$1</h6>\n"
   }
 ]
