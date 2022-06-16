@@ -42,5 +42,13 @@
   {
     "cmd": "add element heading six",
     "action": "<h6>$1</h6>\n"
+  },
+  {
+    "cmd": "add element anchor",
+    "action": "<a href='$1'>$2</a>\n"
+  },
+  {
+    "cmd": "add element image",
+    "action": "<img src='$1'/>\n"
   }
 ]
