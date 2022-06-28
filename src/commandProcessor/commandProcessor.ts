@@ -9,6 +9,7 @@ import { processEdit } from "./processors/editingProcessor";
 import { processAdd } from "./processors/compositionProcessor";
 import { processNavigation } from "./processors/navigationProcessor";
 import { processSystem } from "./processors/systemProcessor";
+import { camelize } from "./utility";
 
 /**
  * @param input The transcribed input command to be processed.
@@ -42,9 +43,3 @@ export const processCommand = (input: string) => {
   }
 };
 
-
-function camelize(str:String) {
-  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
-    return index === 0 ? word.toLowerCase() : word.toUpperCase();
-  }).replace(/\s+/g, '');
-}
