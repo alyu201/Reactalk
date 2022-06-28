@@ -28,15 +28,9 @@ export const processCommand = (input: string) => {
   } else if (prefix in NavigationPrefixes) {
 
     console.log("This is a navigation command");
-
     const value = inputCmd.split(" ").splice(-1)[0];
-
-    console.log("inputCmd.length - value.length: " + (inputCmd.length - value.length))
-
     const prefixNotCamel = inputCmd.substring(0, inputCmd.length - value.length);
     const prefixCamel = camelize(prefixNotCamel);
-
-
     processNavigation(prefixCamel, value);
 
   } else if (prefix in SystemPrefixes) {
