@@ -4,7 +4,6 @@ import {
 } from "./../../definitions/commandPrefixes";
 import { InvalidCommandException } from "../invalidCommandException";
 import * as vscode from "vscode";
-
 const errorMsg = "Error processing navigation command";
 
 /**
@@ -49,20 +48,17 @@ export const processNavigation = (prefix: string, cmd: string) => {
  * @throws An InvalidCommandException when an error occurs during processing
  */
 const goToNavigation = (keyword: string, value: string) => {
-  let editor = vscode.window.activeTextEditor;
+  // keyword = "start of line"
+  const keywordCamelize = camelize(keyword);
+  console.log("keywordCamelize: " + keywordCamelize);
 
-  if (editor) {
-    switch (keyword) {
-      case NavigationKeyword.startOfLine:
-        const start = editor.document.lineAt(parseInt(value) - 1).range.start;
-        editor.selection = new vscode.Selection(start, start);
-        break;
-      case NavigationKeyword.endOfLine:
-        const end = editor.document.lineAt(parseInt(value) - 1).range.end;
-        editor.selection = new vscode.Selection(end, end);
-        break;
-      default:
-        throw new InvalidCommandException(errorMsg);
-    }
-  }
+  const navMod = require(`./navigation/${keywordCamelize}`);
+  let val = navMod.execute(value);
 };
+
+
+function camelize(str:String) {
+  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
+    return index === 0 ? word.toLowerCase() : word.toUpperCase();
+  }).replace(/\s+/g, '');
+}
