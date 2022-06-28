@@ -11,35 +11,49 @@ const errorMsg = "Error processing navigation command";
  * @param cmd The transcribed navigation command without the prefix to process
  * @throws An InvalidCommandException when an error occurs during processing
  */
-export const processNavigation = (prefix: string, cmd: string) => {
-  switch (prefix) {
-    case NavigationPrefixes.go:
+export const processNavigation = (prefix: string, value: string) => {
 
-      switch (cmd) {
-        case NavigationKeyword.up:
-          vscode.commands.executeCommand("cursorMove", {to: 'up', by: 'line'});
-          break;
-        case NavigationKeyword.down:
-          vscode.commands.executeCommand("cursorMove", {to: 'down', by: 'line'});
-          break;
-        case NavigationKeyword.left:
-          vscode.commands.executeCommand("cursorMove", {to: 'left', by: 'character'});
-          break;
-        case NavigationKeyword.right:
-          vscode.commands.executeCommand("cursorMove", {to: 'right', by: 'character'});
-          break;
-        default:
-          const keyword = cmd.split(" ").slice(1, -1).join(" ");
-          const value = cmd.split(" ").slice(-1)[0];
-          goToNavigation(keyword, value);
-      }
+  console.log("prefix: " + prefix + "|");
+  console.log("value: " + value);
 
-      // We NEED this break or else it will go the the 'default'
-      break;
+  const navMod = require(`./navigation/${prefix}`);
+  let val = navMod.execute(value);
 
-    default:
-      throw new InvalidCommandException(errorMsg);
-  }
+  // switch (prefix) {
+  //   case NavigationPrefixes.go:
+
+  //     // switch (cmd) {
+  //     //   case NavigationKeyword.up:
+  //     //     vscode.commands.executeCommand("cursorMove", {to: 'up', by: 'line'});
+  //     //     break;
+  //     //   case NavigationKeyword.down:
+  //     //     vscode.commands.executeCommand("cursorMove", {to: 'down', by: 'line'});
+  //     //     break;
+  //     //   case NavigationKeyword.left:
+  //     //     vscode.commands.executeCommand("cursorMove", {to: 'left', by: 'character'});
+  //     //     break;
+  //     //   case NavigationKeyword.right:
+  //     //     vscode.commands.executeCommand("cursorMove", {to: 'right', by: 'character'});
+  //     //     break;
+  //     //   default:
+  //     //     const keyword = cmd.split(" ").slice(1, -1).join(" ");
+  //     //     const value = cmd.split(" ").slice(-1)[0];
+  //     //     goToNavigation(keyword, value);
+
+  //     // }
+
+  //     // We NEED this break or else it will go the the 'default'
+  //     break;
+    
+  //   case NavigationPrefixes.goTo:
+  //     const keyword = cmd.split(" ").slice(1, -1).join(" ");
+  //     const value = cmd.split(" ").slice(-1)[0];
+  //     goToNavigation(keyword, value);
+  //     break;
+
+  //   default:
+  //     throw new InvalidCommandException(errorMsg);
+  // }
 };
 
 /**

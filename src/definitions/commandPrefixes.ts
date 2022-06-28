@@ -11,6 +11,7 @@ export enum EditingPrefixes {
 
 export enum NavigationPrefixes {
   go = "go",
+  goTo = "go to",
   focus = "focus",
 }
 
