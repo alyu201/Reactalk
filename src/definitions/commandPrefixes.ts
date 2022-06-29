@@ -38,11 +38,6 @@ export enum CompositionKeyword {
   for = 'for',
 }
 
-export enum EditingKeyword {
-  line = 'line',
-  element = 'element',
-}
-
 export enum NavigationKeyword {
   startOfLine = 'start of line',
   endOfLine = 'end of line',
