@@ -29,17 +29,16 @@ export function startListening() {
   // Create a recognize stream
   const recognizeStream = client
     .streamingRecognize(request)
-    .on('error', (error:any) => {
+    .on('error', (error: any) => {
       console.log(error);
-      console.log("It came here")
-      vscode.window.showInformationMessage("Timeout reached.");
-    }
-)
-    .on('data', (data: { results: { alternatives: { transcript: any; }[]; }[]; }) =>
-      {
+      console.log('It came here');
+      vscode.window.showInformationMessage('Timeout reached.');
+    })
+    .on(
+      'data',
+      (data: { results: { alternatives: { transcript: any }[] }[] }) => {
         if (data.results[0] && data.results[0].alternatives[0]) {
-
-          let transcript:string = data.results[0].alternatives[0].transcript;
+          let transcript: string = data.results[0].alternatives[0].transcript;
 
           // Initiate the voice programming process by first going to inputProcessor.ts
           startVP(transcript);
@@ -49,16 +48,17 @@ export function startListening() {
             data.results[0] && data.results[0].alternatives[0]
               ? `Transcription: ${transcript}\n`
               : '\n\nReached transcription time limit, press Ctrl+C\n'
-          )
-        } 
+          );
 
+          console.log('\n');
+        }
       }
     );
 
   // Start recording and send the microphone input to the Speech API.
   // Ensure SoX is installed, see https://www.npmjs.com/package/node-record-lpcm16#dependencies
-    console.log('Listening, press Ctrl+C to stop.');
-    recorder
+  console.log('Listening, press Ctrl+C to stop.');
+  recorder
     .record({
       sampleRateHertz: sampleRateHertz,
       threshold: 0,
@@ -70,8 +70,7 @@ export function startListening() {
     .stream()
     .on('error', () => {
       console.error;
-      console.log("It came from the recorder instead")
+      console.log('It came from the recorder instead');
     })
     .pipe(recognizeStream);
-
 }
