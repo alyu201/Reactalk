@@ -27,7 +27,7 @@ export const processCommand = (input: string) => {
   var sysCmdCategory = '';
 
   // If the command only contains more than 1 word, the 2nd word is the category.
-  if (inputCmdArray.length >= 1) {
+  if (inputCmdArray.length > 1) {
     sysCmdCategory = inputCmdArray[1];
   }
   /***********/
