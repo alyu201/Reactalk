@@ -29,8 +29,13 @@ export const processCommand = (input: string) => {
     const prefix = camelize(inputCmd.substring(0, inputCmd.length - value.length));
     processEdit(prefix, value);
   } else if (prefix in NavigationPrefixes) {
+
     console.log("This is a navigation command");
-    processNavigation(prefix, cmd);
+    const value = inputCmd.split(" ").splice(-1)[0];
+    const prefixNotCamel = inputCmd.substring(0, inputCmd.length - value.length);
+    const prefixCamel = camelize(prefixNotCamel);
+    processNavigation(prefixCamel, value);
+
   } else if (prefix in SystemPrefixes) {
     console.log("This is a system command");
     processSystem(prefix, cmd);
@@ -39,3 +44,4 @@ export const processCommand = (input: string) => {
     throw new InvalidCommandException("Invalid or no command input found");
   }
 };
+
