@@ -22,6 +22,18 @@ export const processCommand = (input: string) => {
   const prefix = inputCmdArray[0];
   const cmd = inputCmdArray.slice(1).join(" ");
 
+
+  /***** This is for the System commands only ******/
+  var sysCmdCategory = '';
+
+  // If the command only contains more than 1 word, the 2nd word is the category.
+  if (inputCmdArray.length >= 1) {
+    sysCmdCategory = inputCmdArray[1];
+  }
+  /***********/
+
+
+
   if (prefix in CompositionPrefixes) {
     console.log("This is a compostion command");
     processAdd(inputCmd);
@@ -32,23 +44,8 @@ export const processCommand = (input: string) => {
     console.log("This is a navigation command");
     processNavigation(prefix, cmd);
   } else if (prefix in SystemPrefixes) {
-    
-    // If the command only contains 1 word
-    if (inputCmdArray.length == 1) {
-
-      var sysCmdCategory = '';
-      console.log("This is a system command");
-      processSystem(prefix, sysCmdCategory, cmd);
-
-    } else {
-
-      // Take the 2nd word in the command.
-      var sysCmdCategory = inputCmdArray[1];
-      console.log("This is a system command");
-      processSystem(prefix, sysCmdCategory, cmd);
-
-    }
-
+    console.log("This is a system command");
+    processSystem(prefix, sysCmdCategory, cmd);
   } else {
     console.log("This command got error");
     throw new InvalidCommandException("Invalid or no command input found");
