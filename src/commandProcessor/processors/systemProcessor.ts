@@ -20,8 +20,8 @@ export const processSystem = (prefix: string, sysCmdCategory?: string, cmd?: str
       break;
     default:
       try {
-        const navMod = require(`./system/${sysCmdCategory}/${prefix}`);
-        navMod.execute();
+        const sysMod = require(`./system/${sysCmdCategory}/${prefix}`);
+        sysMod.execute();
       } catch (error) {
         throw new InvalidCommandException("Error processing system command");
       }
