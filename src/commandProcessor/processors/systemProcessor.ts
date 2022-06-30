@@ -9,7 +9,7 @@ const errorMsg = "Error processing system command";
  * @param cmd The transcribed system command without the prefix to process
  * @throws An InvalidCommandException when an error occurs during processing
  */
-export const processSystem = (prefix: string, cmd?: string) => {
+export const processSystem = (prefix: string, sysCmdCategory?: string, cmd?: string) => {
   switch (prefix) {
     case SystemPrefixes.undo:
       undo();

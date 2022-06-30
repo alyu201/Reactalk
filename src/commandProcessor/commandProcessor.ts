@@ -15,9 +15,12 @@ import { processSystem } from "./processors/systemProcessor";
  * @throws An InvalidCommandException when an invalid command is found
  */
 export const processCommand = (input: string) => {
+
   const inputCmd = input.toLowerCase();
-  const prefix = inputCmd.split(" ")[0];
-  const cmd = inputCmd.split(" ").slice(1).join(" ");
+  const inputCmdArray = inputCmd.split(" ");
+
+  const prefix = inputCmdArray[0];
+  const cmd = inputCmdArray.slice(1).join(" ");
 
   if (prefix in CompositionPrefixes) {
     console.log("This is a compostion command");
@@ -29,8 +32,23 @@ export const processCommand = (input: string) => {
     console.log("This is a navigation command");
     processNavigation(prefix, cmd);
   } else if (prefix in SystemPrefixes) {
-    console.log("This is a system command");
-    processSystem(prefix, cmd);
+    
+    // If the command only contains 1 word
+    if (inputCmdArray.length == 1) {
+
+      var sysCmdCategory = '';
+      console.log("This is a system command");
+      processSystem(prefix, sysCmdCategory, cmd);
+
+    } else {
+
+      // Take the 2nd word in the command.
+      var sysCmdCategory = inputCmdArray[1];
+      console.log("This is a system command");
+      processSystem(prefix, sysCmdCategory, cmd);
+
+    }
+
   } else {
     console.log("This command got error");
     throw new InvalidCommandException("Invalid or no command input found");
