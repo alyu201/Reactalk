@@ -16,9 +16,24 @@ import { camelize } from "./utility";
  * @throws An InvalidCommandException when an invalid command is found
  */
 export const processCommand = (input: string) => {
+
   const inputCmd = input.toLowerCase();
-  const prefix = inputCmd.split(" ")[0];
-  const cmd = inputCmd.split(" ").slice(1).join(" ");
+  const inputCmdArray = inputCmd.split(" ");
+
+  const prefix = inputCmdArray[0];
+  const cmd = inputCmdArray.slice(1).join(" ");
+
+
+  /***** This is for the System commands only ******/
+  var sysCmdCategory = '';
+
+  // If the command only contains more than 1 word, the 2nd word is the category.
+  if (inputCmdArray.length > 1) {
+    sysCmdCategory = inputCmdArray[1];
+  }
+  /***********/
+
+
 
   if (prefix in CompositionPrefixes) {
     console.log("This is a compostion command");
@@ -38,7 +53,7 @@ export const processCommand = (input: string) => {
 
   } else if (prefix in SystemPrefixes) {
     console.log("This is a system command");
-    processSystem(prefix, cmd);
+    processSystem(prefix, sysCmdCategory, cmd);
   } else {
     console.log("This command got error");
     throw new InvalidCommandException("Invalid or no command input found");
