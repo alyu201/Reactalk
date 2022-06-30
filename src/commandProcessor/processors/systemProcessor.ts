@@ -18,17 +18,8 @@ export const processSystem = (prefix: string, sysCmdCategory?: string, cmd?: str
       redo();
       break;
     case SystemPrefixes.save:
-      switch (cmd) {
-        case SystemKeyword.file:
-          saveCurrentFile();
-          break;
-        default:
-          throw new InvalidCommandException(errorMsg);
-      }
-
-      // We NEED this break or else it will go to 'default'
+      saveCurrentFile();
       break;
-      
     default:
       throw new InvalidCommandException(errorMsg);
   }
