@@ -59,10 +59,6 @@ export enum SystemKeyword {
   file = "file",
 }
 
-export enum SystemKeyword {
-  file = "file",
-}
-
 export enum EditingValue {
   container = "<div> </div>",
   paragraph = "<p> </p>",
