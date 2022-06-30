@@ -19,7 +19,12 @@ export const processSystem = (prefix: string, sysCmdCategory?: string, cmd?: str
       vscode.commands.executeCommand("workbench.action.files.save");
       break;
     default:
-      throw new InvalidCommandException("Error processing system command");
+      try {
+        const navMod = require(`./system/${sysCmdCategory}/${prefix}`);
+        navMod.execute();
+      } catch (error) {
+        throw new InvalidCommandException("Error processing system command");
+      }
   }
 };
 
