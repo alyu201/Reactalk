@@ -2,30 +2,29 @@ import { SystemPrefixes } from "./../../definitions/commandPrefixes";
 import { InvalidCommandException } from "./../invalidCommandException";
 import * as vscode from "vscode";
 
-const errorMsg = "Error processing system command";
-
 /**
  * @param prefix The prefix of the system command to process
  * @param cmd The transcribed system command without the prefix to process
  * @throws An InvalidCommandException when an error occurs during processing
  */
-export const processSystem = (prefix: string, cmd?: string) => {
+export const processSystem = (prefix: string, sysCmdCategory?: string, cmd?: string) => {
   switch (prefix) {
     case SystemPrefixes.undo:
-      undo();
+      vscode.commands.executeCommand("undo");
       break;
     case SystemPrefixes.redo:
-      redo();
+      vscode.commands.executeCommand("redo");
+      break;
+    case SystemPrefixes.save:
+      vscode.commands.executeCommand("workbench.action.files.save");
       break;
     default:
-      throw new InvalidCommandException(errorMsg);
+      try {
+        const sysMod = require(`./system/${sysCmdCategory}/${prefix}`);
+        sysMod.execute();
+      } catch (error) {
+        throw new InvalidCommandException("Error processing system command");
+      }
   }
 };
 
-const undo = () => {
-  vscode.commands.executeCommand("undo");
-};
-
-const redo = () => {
-  vscode.commands.executeCommand("redo");
-};
