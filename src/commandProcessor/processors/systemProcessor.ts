@@ -1,4 +1,4 @@
-import { SystemPrefixes, SystemKeyword } from "./../../definitions/commandPrefixes";
+import { SystemPrefixes } from "./../../definitions/commandPrefixes";
 import { InvalidCommandException } from "./../invalidCommandException";
 import * as vscode from "vscode";
 
@@ -12,27 +12,16 @@ const errorMsg = "Error processing system command";
 export const processSystem = (prefix: string, sysCmdCategory?: string, cmd?: string) => {
   switch (prefix) {
     case SystemPrefixes.undo:
-      undo();
+      vscode.commands.executeCommand("undo");
       break;
     case SystemPrefixes.redo:
-      redo();
+      vscode.commands.executeCommand("redo");
       break;
     case SystemPrefixes.save:
-      saveCurrentFile();
+      vscode.commands.executeCommand("workbench.action.files.save");
       break;
     default:
       throw new InvalidCommandException(errorMsg);
   }
 };
 
-const undo = () => {
-  vscode.commands.executeCommand("undo");
-};
-
-const redo = () => {
-  vscode.commands.executeCommand("redo");
-};
-
-const saveCurrentFile = () => {
-  vscode.commands.executeCommand("workbench.action.files.save");
-}
