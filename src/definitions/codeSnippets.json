@@ -1,6 +1,54 @@
 [
   {
-    "cmd": "Add for loop",
-    "action": "for (let ${1:index} = 0; index < ${2:array}.length; ${1:index}++) {\n\t$4\n}\n"
+    "cmd": "add for loop",
+    "snippet": "for (let ${1:index} = 0; index < ${2:array}.length; ${1:index}++) {\n\t$3\n}\n"
+  },
+  {
+    "cmd": "add element container",
+    "snippet": "<div>\n\t$1\n</div>\n"
+  },
+  {
+    "cmd": "add element paragraph",
+    "snippet": "<p>\n\t$1\n</p>\n"
+  },
+  {
+    "cmd": "add element unordered list",
+    "snippet": "<ul>\n\t<li>\n\t\t$1\n\t</li>\n</ul>\n"
+  },
+  {
+    "cmd": "add element ordered list",
+    "snippet": "<ol>\n\t<li>\n\t\t$1\n\t</li>\n</ol>\n"
+  },
+  {
+    "cmd": "add element heading one",
+    "snippet": "<h1>$1</h1>\n"
+  },
+  {
+    "cmd": "add element heading two",
+    "snippet": "<h2>$1</h2>\n"
+  },
+  {
+    "cmd": "add element heading three",
+    "snippet": "<h3>$1</h3>\n"
+  },
+  {
+    "cmd": "add element heading four",
+    "snippet": "<h4>$1</h4>\n"
+  },
+  {
+    "cmd": "add element heading five",
+    "snippet": "<h5>$1</h5>\n"
+  },
+  {
+    "cmd": "add element heading six",
+    "snippet": "<h6>$1</h6>\n"
+  },
+  {
+    "cmd": "add element anchor",
+    "snippet": "<a href='$1'>$2</a>\n"
+  },
+  {
+    "cmd": "add element image",
+    "snippet": "<img src='$1'/>\n"
   }
 ]
