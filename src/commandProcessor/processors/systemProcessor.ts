@@ -2,8 +2,6 @@ import { SystemPrefixes } from "./../../definitions/commandPrefixes";
 import { InvalidCommandException } from "./../invalidCommandException";
 import * as vscode from "vscode";
 
-const errorMsg = "Error processing system command";
-
 /**
  * @param prefix The prefix of the system command to process
  * @param cmd The transcribed system command without the prefix to process
@@ -21,7 +19,7 @@ export const processSystem = (prefix: string, sysCmdCategory?: string, cmd?: str
       vscode.commands.executeCommand("workbench.action.files.save");
       break;
     default:
-      throw new InvalidCommandException(errorMsg);
+      throw new InvalidCommandException("Error processing system command");
   }
 };
 
