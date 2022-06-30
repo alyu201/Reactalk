@@ -6,3 +6,8 @@ export function camelize(str: String) {
     })
     .replace(/\s+/g, '');
 }
+<<<<<<< Updated upstream
+=======
+
+// TODO: add function here to parse commands with symbols and special characters
+>>>>>>> Stashed changes

@@ -50,5 +50,41 @@
   {
     "cmd": "add element image",
     "snippet": "<img src='$1'/>\n"
+  },
+  {
+    "cmd": "add if",
+    "snippet": "if ($1) {\n\t$2\n}\n"
+  },
+  {
+    "cmd": "add indent",
+    "snippet": "\t"
+  },
+  {
+    "cmd": "add newline",
+    "snippet": "\n"
+  },
+  {
+    "cmd": "add comment",
+    "snippet": "// $1\n"
+  },
+  {
+    "cmd": "add constant",
+    "snippet": "const $1 = ${2:null};\n"
+  },
+  {
+    "cmd": "add variable",
+    "snippet": "var $1 = ${2:null};\n"
+  },
+  {
+    "cmd": "add let",
+    "snippet": "let $1 = ${2:null};\n"
+  },
+  {
+    "cmd": "add conditional",
+    "snippet": "$1 ? ${2:true} : ${3:false};\n"
+  },
+  {
+    "cmd": "add function",
+    "snippet": "function $1(${2:args}) {\n\t$3\n}\n"
   }
 ]

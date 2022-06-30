@@ -45,7 +45,7 @@ export const processAdd = (inputCmd: string) => {
         ? insertCode
         : keyword in CompositionKeyword // commands not requiring user specified code
         ? findSnippet(inputCmd)
-        : findSnippet(command).replace('$1', insertCode); // commands requiring user specified code
+        : findSnippet(command).replace('$1', insertCode); // commands requiring user specified code with system defined
     insertSnippet(snippet);
   } catch (error) {
     throw new InvalidCommandException('Error processing composition command');
