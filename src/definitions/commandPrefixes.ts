@@ -37,6 +37,9 @@ export enum SystemPrefixes {
 
 export enum CompositionKeyword {
   for = "for",
+  element = "element",
+  text = "text",
+  else = "else",
 }
 
 export enum EditingKeyword {
@@ -50,4 +53,17 @@ export enum NavigationKeyword {
   down = "down",
   left = "left",
   right = "right"
+}
+
+export enum EditingValue {
+  container = "<div> </div>",
+  paragraph = "<p> </p>",
+  heading = "<h[1-6>] </h[1-6]>",
+  unordered = "<ul> </ul>",
+  ordered = "<ol> </ol>",
+  anchor = "<a </a>",
+  image = "<img />",
+  element = "element",
+  text = "text",
+  else = "else",
 }

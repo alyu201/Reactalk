@@ -25,7 +25,9 @@ export const processCommand = (input: string) => {
     processAdd(inputCmd);
   } else if (prefix in EditingPrefixes) {
     console.log("This is a editing command");
-    processEdit(prefix, cmd);
+    const value = inputCmd.split(" ").splice(-1)[0];
+    const prefix = camelize(inputCmd.substring(0, inputCmd.length - value.length));
+    processEdit(prefix, value);
   } else if (prefix in NavigationPrefixes) {
 
     console.log("This is a navigation command");
