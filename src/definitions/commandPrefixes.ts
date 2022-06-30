@@ -38,6 +38,7 @@ export enum CompositionKeyword {
   for = 'for',
   element = 'element',
   text = 'text',
+  else = 'else',
 }
 
 export enum EditingKeyword {
