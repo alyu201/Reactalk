@@ -55,6 +55,10 @@ export enum NavigationKeyword {
   right = "right"
 }
 
+export enum NavigationValue {
+  terminal = "terminal"
+}
+
 export enum SystemKeyword {
   file = "file",
 }
