@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { getClosestMatchingWord } from "./navigationUtility";
+import { getClosestMatchingWordPosStart } from "./navigationUtility";
 import { InvalidCommandException } from "../../invalidCommandException";
 
  export const execute = (value:string) => {
@@ -7,7 +7,7 @@ import { InvalidCommandException } from "../../invalidCommandException";
     const editor = vscode.window.activeTextEditor;
 
     if (editor) {
-        const closestWord = getClosestMatchingWord(value);
+        const closestWord = getClosestMatchingWordPosStart(value);
 
         // Move cursor to the closestWord
         editor.selection = new vscode.Selection(closestWord, closestWord);

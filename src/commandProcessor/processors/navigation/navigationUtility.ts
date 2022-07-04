@@ -3,7 +3,7 @@ import * as vscode from "vscode";
 import { InvalidCommandException } from "../../invalidCommandException";
 
 
-export function getClosestMatchingWord(word:string){
+export function getClosestMatchingWordPosStart(word:string){
     const editor = vscode.window.activeTextEditor;
 
     if (editor) {
