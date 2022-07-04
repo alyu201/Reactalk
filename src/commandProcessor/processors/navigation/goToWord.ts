@@ -47,5 +47,7 @@ import { InvalidCommandException } from "../../invalidCommandException";
         }
 
 
+    } else {
+        throw new InvalidCommandException('Error processing navigation command');
     }
  }
