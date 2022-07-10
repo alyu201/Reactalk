@@ -86,5 +86,21 @@
   {
     "cmd": "add function",
     "snippet": "function $1(${2:args}) {\n\t$3\n}\n"
+  },
+  {
+    "cmd": "add else",
+    "snippet": "else {\n\t$1\n}\n"
+  },
+  {
+    "cmd": "add while",
+    "snippet": "while ($1) {\n\t$2\n}\n"
+  },
+  {
+    "cmd": "add switch",
+    "snippet": "switch ($1) {\n\tcase $2:\n\t\t$3\n\t\tbreak;\n\t$5\n\tdefault:\n\t\t$4\n\t\tbreak;\n}\n"
+  },
+  {
+    "cmd": "add case",
+    "snippet": "case $1:\n\t$2\n\tbreak;\n$3"
   }
 ]
