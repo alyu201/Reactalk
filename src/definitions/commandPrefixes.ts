@@ -41,7 +41,7 @@ export enum CompositionKeyword {
   text = "text",
   else = "else",
   indent = "indent",
-  newline = "newline",
+  new = "new",
 }
 
 export enum EditingKeyword {
