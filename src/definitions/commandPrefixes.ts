@@ -11,7 +11,7 @@ export enum EditingPrefixes {
 
 export enum NavigationPrefixes {
   go = "go",
-  goTo = "go to",
+  // goTo = "go to",
   focus = "focus",
 }
 
@@ -52,7 +52,11 @@ export enum NavigationKeyword {
   up = "up",
   down = "down",
   left = "left",
-  right = "right"
+  right = "right",
+  terminal = "terminal",
+  word = "word",
+  line = "line",
+  function = "function"
 }
 
 export enum NavigationValue {
