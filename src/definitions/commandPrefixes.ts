@@ -40,6 +40,7 @@ export enum CompositionKeyword {
   element = "element",
   text = "text",
   else = "else",
+  elseIf = "else if",
   indent = "indent",
   new = "new",
   keyword = "keyword",

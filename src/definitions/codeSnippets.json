@@ -92,6 +92,10 @@
     "snippet": "else {\n\t$1\n}\n"
   },
   {
+    "cmd": "add else if",
+    "snippet": "else if ($1) {\n\t$2\n}\n"
+  },
+  {
     "cmd": "add while",
     "snippet": "while ($1) {\n\t$2\n}\n"
   },
