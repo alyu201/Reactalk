@@ -33,6 +33,8 @@ export enum SystemPrefixes {
   createApp = "create app",
   install = "install",
   build = "build",
+  down = "down",
+  enter = "enter"
 }
 
 export enum CompositionKeyword {
