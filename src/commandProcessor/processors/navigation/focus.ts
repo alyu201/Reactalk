@@ -1,12 +1,12 @@
 import * as vscode from "vscode";
 import {
-    NavigationValue
+    NavigationKeyword
   } from "../../../definitions/commandPrefixes";
 import { InvalidCommandException } from "../../invalidCommandException";
 
  export const execute = (value:string) => {
     switch (value) {
-        case NavigationValue.terminal:
+        case NavigationKeyword.terminal:
             vscode.commands.executeCommand("workbench.action.terminal.toggleTerminal");
             break;
         default:

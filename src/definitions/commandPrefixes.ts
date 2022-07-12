@@ -46,8 +46,6 @@ export enum EditingKeyword {
   line = "line",
 }
 
-// This is so far only for up/down/left/right
-// The remaining keywords will use files instead.
 export enum NavigationKeyword {
   up = "up",
   down = "down",
@@ -57,10 +55,6 @@ export enum NavigationKeyword {
   word = "word",
   line = "line",
   function = "function"
-}
-
-export enum NavigationValue {
-  terminal = "terminal"
 }
 
 export enum SystemKeyword {

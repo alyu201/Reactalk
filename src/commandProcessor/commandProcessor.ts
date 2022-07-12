@@ -48,37 +48,38 @@ export const processCommand = (input: string) => {
 
     console.log("This is a navigation command");
 
-    // const value = inputCmd.split(" ").splice(-1)[0];
-    // const prefixNotCamel = inputCmd.substring(0, inputCmd.length - value.length);
-    // const prefixCamel = camelize(prefixNotCamel);
-    // processNavigation(prefixCamel, value);
-
+    const secondWordIdx = 1;
+    const thirdWordIdx = 2;
+    const beyondThirdWordIdx = 3;
+    const fifthWordIdx = 4;
+    const beyondFifthWordIdx = 5;
 
     try {
-      if (inputCmdArray[1] in NavigationKeyword) {
+      if (inputCmdArray[secondWordIdx] in NavigationKeyword) {
 
-        const remaining = inputCmd.split(" ").splice(1)[0];
+        // Yes, this is meant to be splice(secondWordIdx)
+        const remaining = inputCmdArray.splice(secondWordIdx)[0];
         processNavigation(prefix, remaining);
 
-      } else if (inputCmdArray[2] in NavigationKeyword) {
-        const prefixNotCamel = inputCmd.split(" ").slice(0,3).join(" ");
+      } else if (inputCmdArray[thirdWordIdx] in NavigationKeyword) {
+
+        const prefixNotCamel = inputCmdArray.slice(0,beyondThirdWordIdx).join(" ");
         const prefixCamel = camelize(prefixNotCamel);
-
-        const remaining = inputCmd.split(" ").slice(3).join(" ");
-
+        const remaining = inputCmdArray.slice(beyondThirdWordIdx).join(" ");
         processNavigation(prefixCamel, remaining);
 
-      } else if (inputCmdArray[4] in NavigationKeyword) {
-        const prefixNotCamel = inputCmd.split(" ").slice(0,5).join(" ");
+
+      } else if (inputCmdArray[fifthWordIdx] in NavigationKeyword) {
+
+        const prefixNotCamel = inputCmdArray.slice(0,beyondFifthWordIdx).join(" ");
         const prefixCamel = camelize(prefixNotCamel);
-
-        const remaining = inputCmd.split(" ").slice(5).join(" ");
-
+        const remaining = inputCmdArray.slice(beyondFifthWordIdx).join(" ");
         processNavigation(prefixCamel, remaining);
         
       } else {
         throw new InvalidCommandException("Invalid or no command input found");
       }
+
     } catch (error) {
       throw new InvalidCommandException("Invalid or no command input found");
     }
