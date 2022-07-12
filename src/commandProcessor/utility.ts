@@ -1,3 +1,4 @@
+import { CompositionPrefixes, symbolsList } from "./../definitions/commandPrefixes";
 // https://stackoverflow.com/questions/2970525/converting-any-string-into-camel-case
 export function camelize(str: String) {
   return str
@@ -7,4 +8,11 @@ export function camelize(str: String) {
     .replace(/\s+/g, "");
 }
 
-// TODO: add function here to parse commands with symbols and special characters
+export function parseCommandSymbols(symbol: string) {
+  if (camelize(symbol) in symbolsList) {
+    const index = Object.keys(symbolsList).indexOf(camelize(symbol));
+    return Object.values(symbolsList)[index];
+  } else {
+    throw new Error("Invalid symbol provided");
+  }
+}
