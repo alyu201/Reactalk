@@ -55,6 +55,7 @@ export enum NavigationKeyword {
   word = "word",
   line = "line",
   function = "function",
+  element = "element",
 }
 
 export enum SystemKeyword {
