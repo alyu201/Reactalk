@@ -46,6 +46,7 @@ export enum CompositionKeyword {
   keyword = "keyword",
   symbol = "symbol",
   try = "try",
+  condition = "condition",
 }
 
 export enum EditingKeyword {
@@ -91,10 +92,12 @@ export const symbolsList = {
   greaterThan: ">",
   greaterThanOrEqualTo: ">=",
   notEqual: "!=",
+  notEqualTo: "!=",
   singleQuotes: "'",
   doubleEqual: "==",
   tripleEqual: "===",
   equal: "=",
+  equalTo: "=",
   roundBrackets: "(",
   leftShift: "<<",
   rightShift: ">>",

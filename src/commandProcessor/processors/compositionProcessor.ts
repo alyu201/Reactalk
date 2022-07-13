@@ -2,7 +2,7 @@ import { CompositionKeyword } from "./../../definitions/commandPrefixes";
 import { InvalidCommandException } from "../invalidCommandException";
 import * as commands from "../../definitions/codeSnippets.json";
 import * as vscode from "vscode";
-import { parseCommandSymbols } from "../utility";
+import { parseSymbols } from "../utility";
 
 interface Command {
   cmd: string;
@@ -43,16 +43,16 @@ export const processAdd = (inputCmd: string) => {
     const insertCode = inputCmd.split(" ").slice(2).join(" ");
     const command = inputCmd.substring(0, inputCmd.length - insertCode.length).trim();
 
-    // console.log("value", insertCode);
-    // console.log("command", command);
+    console.log("value", insertCode);
+    console.log("command", command);
 
     keyword === CompositionKeyword.text
       ? insertText(insertCode)
-      : keyword === CompositionKeyword.symbol
-      ? insertSnippet(parseCommandSymbols(insertCode))
+      : keyword === CompositionKeyword.symbol || keyword === CompositionKeyword.condition
+      ? insertSnippet(parseSymbols(insertCode))
       : keyword in CompositionKeyword // commands not requiring user specified code
       ? insertSnippet(findSnippet(inputCmd))
-      : insertSnippet(findSnippet(command).replace("$1", insertCode)); // commands requiring user specified code with system defined
+      : insertSnippet(findSnippet(command).replace("$1", parseSymbols(insertCode))); // commands requiring user specified code with system defined
   } catch (error) {
     console.log(error);
     throw new InvalidCommandException("Error processing composition command");
