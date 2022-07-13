@@ -20,27 +20,27 @@
     "snippet": "<ol>\n\t<li>\n\t\t$1\n\t</li>\n</ol>\n"
   },
   {
-    "cmd": "add element heading one",
+    "cmd": "add element heading 1",
     "snippet": "<h1>$1</h1>\n"
   },
   {
-    "cmd": "add element heading two",
+    "cmd": "add element heading 2",
     "snippet": "<h2>$1</h2>\n"
   },
   {
-    "cmd": "add element heading three",
+    "cmd": "add element heading 3",
     "snippet": "<h3>$1</h3>\n"
   },
   {
-    "cmd": "add element heading four",
+    "cmd": "add element heading 4",
     "snippet": "<h4>$1</h4>\n"
   },
   {
-    "cmd": "add element heading five",
+    "cmd": "add element heading 5",
     "snippet": "<h5>$1</h5>\n"
   },
   {
-    "cmd": "add element heading six",
+    "cmd": "add element heading 6",
     "snippet": "<h6>$1</h6>\n"
   },
   {

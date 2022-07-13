@@ -3,6 +3,7 @@ import { InvalidCommandException } from "../invalidCommandException";
 import * as commands from "../../definitions/codeSnippets.json";
 import * as vscode from "vscode";
 import { parseSymbols } from "../utility";
+import wordsToNumbers from "words-to-numbers";
 
 interface Command {
   cmd: string;
@@ -14,7 +15,7 @@ interface Command {
  */
 const findSnippet = (command: string) => {
   return commands.filter(({ cmd }: Command) => {
-    return cmd === command;
+    return cmd === wordsToNumbers(command);
   })[0].snippet;
 };
 
