@@ -17,8 +17,19 @@ import { camelize } from "./utility";
  */
 export const processCommand = (input: string) => {
   const inputCmd = input.toLowerCase();
-  const prefix = inputCmd.split(" ")[0];
-  const cmd = inputCmd.split(" ").slice(1).join(" ");
+  const inputCmdArray = inputCmd.split(" ");
+
+  const prefix = inputCmdArray[0];
+  const cmd = inputCmdArray.slice(1).join(" ");
+
+  /***** This is for the System commands only ******/
+  var sysCmdCategory = "";
+
+  // If the command only contains more than 1 word, the 2nd word is the category.
+  if (inputCmdArray.length > 1) {
+    sysCmdCategory = inputCmdArray[1];
+  }
+  /***********/
 
   if (prefix in CompositionPrefixes) {
     console.log("This is a compostion command");
@@ -30,10 +41,13 @@ export const processCommand = (input: string) => {
     processEdit(prefix, value);
   } else if (prefix in NavigationPrefixes) {
     console.log("This is a navigation command");
-    processNavigation(prefix, cmd);
+    const value = inputCmd.split(" ").splice(-1)[0];
+    const prefixNotCamel = inputCmd.substring(0, inputCmd.length - value.length);
+    const prefixCamel = camelize(prefixNotCamel);
+    processNavigation(prefixCamel, value);
   } else if (prefix in SystemPrefixes) {
     console.log("This is a system command");
-    processSystem(prefix, cmd);
+    processSystem(prefix, sysCmdCategory, cmd);
   } else {
     console.log("This command got error");
     throw new InvalidCommandException("Invalid or no command input found");
