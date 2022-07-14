@@ -1,7 +1,13 @@
-import { CompositionKeyword } from './../../definitions/commandPrefixes';
-import { InvalidCommandException } from '../invalidCommandException';
-import * as commands from '../../definitions/codeSnippets.json';
-import * as vscode from 'vscode';
+import {
+  CompositionKeyword,
+  CompositionSymbolKeyword,
+  CompositionTextKeyword,
+} from "./../../definitions/commandPrefixes";
+import { InvalidCommandException } from "../invalidCommandException";
+import * as commands from "../../definitions/codeSnippets.json";
+import * as vscode from "vscode";
+import { parseSymbols } from "../utility";
+import wordsToNumbers from "words-to-numbers";
 
 interface Command {
   cmd: string;
@@ -13,17 +19,27 @@ interface Command {
  */
 const findSnippet = (command: string) => {
   return commands.filter(({ cmd }: Command) => {
-    return cmd === command;
+    return cmd === wordsToNumbers(command);
   })[0].snippet;
 };
 
 /**
- * @param text The text string to insert into the editor of VSCode
+ * @param snippet The code snippet to insert into the editor of VSCode
  */
-const insertSnippet = (text: string) => {
+const insertSnippet = (snippet: string) => {
   const editor = vscode.window.activeTextEditor;
   if (editor) {
-    editor.insertSnippet(new vscode.SnippetString(text));
+    editor.insertSnippet(new vscode.SnippetString(snippet));
+  }
+};
+
+const insertText = (text: string, type: string) => {
+  insertSnippet(text);
+  vscode.commands.executeCommand("jumpToNextSnippetPlaceholder");
+
+  if (type === CompositionTextKeyword.comment) {
+    vscode.commands.executeCommand("editor.action.commentLine");
+    vscode.commands.executeCommand("editor.action.insertLineAfter");
   }
 };
 
@@ -33,33 +49,22 @@ const insertSnippet = (text: string) => {
  */
 export const processAdd = (inputCmd: string) => {
   try {
-    const keyword = inputCmd.split(' ')[1]; // e.g. for, element
-    const insertCode = inputCmd.split(' ').slice(2).join(' ');
+    const keyword = inputCmd.split(" ")[1]; // e.g. for, element
+    const insertCode = inputCmd.split(" ").slice(2).join(" ");
     const command = inputCmd.substring(0, inputCmd.length - insertCode.length).trim();
 
-    console.log('value', insertCode);
-    console.log('command', command);
+    console.log("value", insertCode);
+    console.log("command", command);
 
-    const snippet =
-      keyword === CompositionKeyword.text
-        ? insertCode
-        : keyword in CompositionKeyword // commands not requiring user specified code
-        ? findSnippet(inputCmd)
-        : findSnippet(command).replace('$1', insertCode); // commands requiring user specified code
-    insertSnippet(snippet);
+    keyword in CompositionTextKeyword
+      ? insertText(insertCode, keyword)
+      : keyword in CompositionSymbolKeyword
+      ? insertSnippet(parseSymbols(insertCode))
+      : keyword in CompositionKeyword // commands not requiring user specified code
+      ? insertSnippet(findSnippet(inputCmd))
+      : insertSnippet(findSnippet(command).replace("$1", parseSymbols(insertCode))); // commands requiring user specified code with system defined
   } catch (error) {
-    throw new InvalidCommandException('Error processing composition command');
+    console.log(error);
+    throw new InvalidCommandException("Error processing composition command");
   }
-
-  // if (keyword === CompositionKeyword.text) {
-  //   const text = inputCmd.split(' ').slice(2).join(' ');
-  //   insertSnippet(text);
-  // } else if (keyword in CompositionKeyword) {
-  //   const action = commands.filter(({ cmd }: Command) => {
-  //     return cmd === inputCmd;
-  //   })[0].action;
-  //   insertSnippet(action);
-  // } else {
-  //   throw new InvalidCommandException(errorMsg);
-  // }
 };

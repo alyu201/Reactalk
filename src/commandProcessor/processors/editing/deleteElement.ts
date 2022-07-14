@@ -1,24 +1,30 @@
-import * as vscode from 'vscode';
-import { EditingValue } from './../../../definitions/commandPrefixes';
-import { InvalidCommandException } from '../../invalidCommandException';
+import * as vscode from "vscode";
+import { EditingValue } from "./../../../definitions/commandPrefixes";
+import { InvalidCommandException } from "../../invalidCommandException";
 
 const throwError = () => {
-  throw new InvalidCommandException('Error processing editing command');
+  throw new InvalidCommandException("Error processing editing command");
 };
 
 export const execute = (value: string) => {
   const editor = vscode.window.activeTextEditor;
 
+  let num = "";
+  if (value.includes("heading")) {
+    num = value.split(" ")[1];
+    value = value.split(" ")[0];
+  }
+
   if (editor) {
     if (Object.keys(EditingValue).includes(value)) {
       const documentText = editor.document.getText();
       const elementTag = EditingValue[value as keyof typeof EditingValue];
-      const startTag = elementTag.split(' ')[0];
-      const endTag = elementTag.split(' ')[1];
+      const startTag = elementTag.split(" ")[0].replace("#", num);
+      const endTag = elementTag.split(" ")[1].replace("#", num);
 
       // Find indices of all occurences of the specified element
-      const openingMatches = [...documentText.matchAll(new RegExp(startTag, 'gm'))];
-      const closingMatches = [...documentText.matchAll(new RegExp(endTag, 'gm'))];
+      const openingMatches = [...documentText.matchAll(new RegExp(startTag, "gm"))];
+      const closingMatches = [...documentText.matchAll(new RegExp(endTag, "gm"))];
 
       if (openingMatches.length === 0 || closingMatches.length === 0) {
         throwError();
@@ -50,7 +56,7 @@ export const execute = (value: string) => {
       const element = (editor.selection = new vscode.Selection(idx[0], idx[1]));
 
       editor.edit((builder) => {
-        builder.replace(element, '');
+        builder.replace(element, "");
       });
     } else {
       throwError();
