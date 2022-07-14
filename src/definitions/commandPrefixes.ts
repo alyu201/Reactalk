@@ -38,8 +38,22 @@ export enum SystemPrefixes {
 export enum CompositionKeyword {
   for = "for",
   element = "element",
-  text = "text",
   else = "else",
+  elseIf = "else if",
+  indent = "indent",
+  new = "new",
+  keyword = "keyword",
+  try = "try",
+}
+
+export enum CompositionTextKeyword {
+  text = "text",
+  comment = "comment",
+}
+
+export enum CompositionSymbolKeyword {
+  symbol = "symbol",
+  condition = "condition",
 }
 
 export enum EditingKeyword {
@@ -65,12 +79,9 @@ export enum SystemKeyword {
 export enum EditingValue {
   container = "<div> </div>",
   paragraph = "<p> </p>",
-  heading = "<h[1-6]> </h[1-6]>",
+  heading = "<h#> </h#>",
   unordered = "<ul> </ul>",
   ordered = "<ol> </ol>",
   anchor = "<a </a>",
   image = "<img />",
-  element = "element",
-  text = "text",
-  else = "else",
 }
