@@ -11,8 +11,8 @@ export enum EditingPrefixes {
 
 export enum NavigationPrefixes {
   go = "go",
-  goTo = "go to",
   focus = "focus",
+  enter = "enter",
 }
 
 export enum SystemPrefixes {
@@ -38,21 +38,38 @@ export enum SystemPrefixes {
 export enum CompositionKeyword {
   for = "for",
   element = "element",
-  text = "text",
   else = "else",
+  elseIf = "else if",
+  indent = "indent",
+  new = "new",
+  keyword = "keyword",
+  try = "try",
+}
+
+export enum CompositionTextKeyword {
+  text = "text",
+  comment = "comment",
+}
+
+export enum CompositionSymbolKeyword {
+  symbol = "symbol",
+  condition = "condition",
 }
 
 export enum EditingKeyword {
   line = "line",
 }
 
-// This is so far only for up/down/left/right
-// The remaining keywords will use files instead.
 export enum NavigationKeyword {
   up = "up",
   down = "down",
   left = "left",
   right = "right",
+  terminal = "terminal",
+  word = "word",
+  line = "line",
+  function = "function",
+  element = "element",
 }
 
 export enum SystemKeyword {
@@ -67,7 +84,4 @@ export enum EditingValue {
   ordered = "<ol> </ol>",
   anchor = "<a </a>",
   image = "<img />",
-  element = "element",
-  text = "text",
-  else = "else",
 }
