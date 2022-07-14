@@ -9,12 +9,18 @@ const throwError = () => {
 export const execute = (value: string) => {
   const editor = vscode.window.activeTextEditor;
 
+  let num = "";
+  if (value.includes("heading")) {
+    num = value.split(" ")[1];
+    value = value.split(" ")[0];
+  }
+
   if (editor) {
     if (Object.keys(EditingValue).includes(value)) {
       const documentText = editor.document.getText();
       const elementTag = EditingValue[value as keyof typeof EditingValue];
-      const startTag = elementTag.split(" ")[0];
-      const endTag = elementTag.split(" ")[1];
+      const startTag = elementTag.split(" ")[0].replace("#", num);
+      const endTag = elementTag.split(" ")[1].replace("#", num);
 
       // Find indices of all occurences of the specified element
       const openingMatches = [...documentText.matchAll(new RegExp(startTag, "gm"))];

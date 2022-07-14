@@ -36,9 +36,10 @@ export const processCommand = (input: string) => {
     processAdd(inputCmd);
   } else if (prefix in EditingPrefixes) {
     console.log("This is a editing command");
-    const value = inputCmd.split(" ").splice(-1)[0];
-    const prefix = camelize(inputCmd.substring(0, inputCmd.length - value.length));
-    processEdit(prefix, value);
+    const prefixNotCamel = inputCmd.split(" ").splice(0, 2).join(" ");
+    const prefixCamel = camelize(prefixNotCamel);
+    const value = inputCmd.substring(prefixNotCamel.length, inputCmd.length).trim();
+    processEdit(prefixCamel, value);
   } else if (prefix in NavigationPrefixes) {
     console.log("This is a navigation command");
     const value = inputCmd.split(" ").splice(-1)[0];

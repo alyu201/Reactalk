@@ -76,7 +76,7 @@ export enum SystemKeyword {
 export enum EditingValue {
   container = "<div> </div>",
   paragraph = "<p> </p>",
-  heading = "<h[1-6>] </h[1-6]>",
+  heading = "<h#> </h#>",
   unordered = "<ul> </ul>",
   ordered = "<ol> </ol>",
   anchor = "<a </a>",
