@@ -11,8 +11,8 @@ export enum EditingPrefixes {
 
 export enum NavigationPrefixes {
   go = "go",
-  goTo = "go to",
   focus = "focus",
+  enter = "enter",
 }
 
 export enum SystemPrefixes {
@@ -60,13 +60,16 @@ export enum EditingKeyword {
   line = "line",
 }
 
-// This is so far only for up/down/left/right
-// The remaining keywords will use files instead.
 export enum NavigationKeyword {
   up = "up",
   down = "down",
   left = "left",
   right = "right",
+  terminal = "terminal",
+  word = "word",
+  line = "line",
+  function = "function",
+  element = "element",
 }
 
 export enum SystemKeyword {
