@@ -1,4 +1,8 @@
-import { CompositionKeyword } from "./../../definitions/commandPrefixes";
+import {
+  CompositionKeyword,
+  CompositionSymbolKeyword,
+  CompositionTextKeyword,
+} from "./../../definitions/commandPrefixes";
 import { InvalidCommandException } from "../invalidCommandException";
 import * as commands from "../../definitions/codeSnippets.json";
 import * as vscode from "vscode";
@@ -29,9 +33,14 @@ const insertSnippet = (snippet: string) => {
   }
 };
 
-const insertText = (text: string) => {
+const insertText = (text: string, type: string) => {
   insertSnippet(text);
   vscode.commands.executeCommand("jumpToNextSnippetPlaceholder");
+
+  if (type === CompositionTextKeyword.comment) {
+    vscode.commands.executeCommand("editor.action.commentLine");
+    vscode.commands.executeCommand("editor.action.insertLineAfter");
+  }
 };
 
 /**
@@ -47,9 +56,9 @@ export const processAdd = (inputCmd: string) => {
     console.log("value", insertCode);
     console.log("command", command);
 
-    keyword === CompositionKeyword.text
-      ? insertText(insertCode)
-      : keyword === CompositionKeyword.symbol || keyword === CompositionKeyword.condition
+    keyword in CompositionTextKeyword
+      ? insertText(insertCode, keyword)
+      : keyword in CompositionSymbolKeyword
       ? insertSnippet(parseSymbols(insertCode))
       : keyword in CompositionKeyword // commands not requiring user specified code
       ? insertSnippet(findSnippet(inputCmd))

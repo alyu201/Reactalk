@@ -1,4 +1,6 @@
-import { symbolsList } from "./../definitions/commandPrefixes";
+import { symbolsList } from "./../definitions/symbols";
+import wordsToNumbers from "words-to-numbers";
+
 // https://stackoverflow.com/questions/2970525/converting-any-string-into-camel-case
 export function camelize(str: String) {
   return str
@@ -9,6 +11,8 @@ export function camelize(str: String) {
 }
 
 export function parseSymbols(code: string) {
+  code = `${wordsToNumbers(code) ?? code}`;
+
   // Find all occurences of symbols as sentences and their start and end indicies
   const matchesList: { match: string; start: number; end: number }[] = [];
   Object.keys(symbolsList).map((sym) => {
