@@ -51,7 +51,7 @@ export const processCommand = (input: string) => {
     const beyondFifthWordIdx = 5;
 
     // This is for the 'enter' command
-    if (inputCmdArray.length == 1) {
+    if (inputCmdArray.length === 1) {
       processNavigation(prefix, "");
     }
 

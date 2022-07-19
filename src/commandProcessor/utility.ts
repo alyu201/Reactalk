@@ -22,7 +22,7 @@ export function parseSymbols(code: string) {
         matchesList.push({
           match: camelize(match[0]),
           start: match.index ?? 0,
-          end: match.index ? match.index + match[0].length : 0,
+          end: match.index ? match.index + match[0].length : 0 + match[0].length,
         });
       });
     }
