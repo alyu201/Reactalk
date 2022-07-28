@@ -77,11 +77,11 @@ export enum SystemKeyword {
 }
 
 export enum EditingValue {
-  container = "<div> </div>",
-  paragraph = "<p> </p>",
-  heading = "<h#> </h#>",
-  unordered = "<ul> </ul>",
-  ordered = "<ol> </ol>",
-  anchor = "<a </a>",
-  image = "<img />",
+  container = "<s*div[^>]*>|<s*/s*div>",
+  paragraph = "<s*p[^>]*>|<s*/s*p>",
+  heading = "<s*h$[^>]*>|<s*/s*h$>",
+  unordered = "<s*ul[^>]*>|<s*/s*ul>",
+  ordered = "<s*ol[^>]*>|<s*/s*ol>",
+  anchor = "<s*a[^>]*>|<s*/s*a>",
+  image = "<s*img[^>]*>",
 }

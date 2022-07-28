@@ -11,13 +11,15 @@ import { processAdd } from "./processors/compositionProcessor";
 import { processNavigation } from "./processors/navigationProcessor";
 import { processSystem } from "./processors/systemProcessor";
 import { camelize } from "./utility";
+import wordsToNumbers from "words-to-numbers";
 
 /**
  * @param input The transcribed input command to be processed.
  * @throws An InvalidCommandException when an invalid command is found
  */
 export const processCommand = (input: string) => {
-  const inputCmd = input.toLowerCase();
+  // TODO: refactor to parse transcription here instead of in individual processors
+  const inputCmd = `${wordsToNumbers(input) ?? input}`.toLowerCase();
   const inputCmdArray = inputCmd.split(" ");
 
   const prefix = inputCmdArray[0];
@@ -51,7 +53,7 @@ export const processCommand = (input: string) => {
     const beyondFifthWordIdx = 5;
 
     // This is for the 'enter' command
-    if (inputCmdArray.length == 1) {
+    if (inputCmdArray.length === 1) {
       processNavigation(prefix, "");
     }
 
