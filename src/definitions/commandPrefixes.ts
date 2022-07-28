@@ -70,6 +70,7 @@ export enum NavigationKeyword {
   line = "line",
   function = "function",
   element = "element",
+  definition = "definition",
 }
 
 export enum SystemKeyword {
