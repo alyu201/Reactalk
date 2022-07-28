@@ -56,7 +56,11 @@ export const symbolsList = {
   pipe: "|",
   spread: "...",
   leftBrace: "{",
+  leftCurlyBracket: "{",
+  leftCurlyBrace: "{",
   rightBrace: "}",
+  rightCurlyBracket: "}",
+  rightCurlyBrace: "}",
   leftBracket: "[",
   rightBracket: "]",
 };
