@@ -7,7 +7,11 @@ import * as vscode from "vscode";
  * @param cmd The transcribed system command without the prefix to process
  * @throws An InvalidCommandException when an error occurs during processing
  */
-export const processSystem = (prefix: string, sysCmdCategory?: string, cmd?: string) => {
+export const processSystem = (
+  prefix: string,
+  sysCmdCategory?: string,
+  sysCmdValue?: string
+) => {
   switch (prefix) {
     case SystemPrefixes.undo:
       vscode.commands.executeCommand("undo");
@@ -21,7 +25,7 @@ export const processSystem = (prefix: string, sysCmdCategory?: string, cmd?: str
     default:
       try {
         const sysMod = require(`./system/${sysCmdCategory}/${prefix}`);
-        sysMod.execute();
+        sysMod.execute(sysCmdValue);
       } catch (error) {
         try {
           const sysMod = require(`./system/${prefix}`);
@@ -33,4 +37,3 @@ export const processSystem = (prefix: string, sysCmdCategory?: string, cmd?: str
       }
   }
 };
-

@@ -37,7 +37,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // TODO: remove this command after completion - for testing purposes only
   let commandProcess = vscode.commands.registerCommand("reactalk.commandProcess", () => {
-    processCommand("delete element container");
+    processCommand("add constant function bob");
 
     vscode.window.showInformationMessage("Processed");
   });
