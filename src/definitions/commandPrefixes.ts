@@ -17,6 +17,7 @@ export enum NavigationPrefixes {
 
 export enum SystemPrefixes {
   save = "save",
+  browse = "browse",
   new = "new",
   duplicate = "duplicate",
   delete = "delete",
@@ -34,7 +35,7 @@ export enum SystemPrefixes {
   install = "install",
   build = "build",
   down = "down",
-  enter = "enter"
+  enter = "enter",
 }
 
 export enum CompositionKeyword {
@@ -54,11 +55,12 @@ export enum NavigationKeyword {
   up = "up",
   down = "down",
   left = "left",
-  right = "right"
+  right = "right",
 }
 
 export enum SystemKeyword {
   file = "file",
+  files = "files",
 }
 
 export enum EditingValue {
