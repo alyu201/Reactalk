@@ -10,7 +10,7 @@ const rename = async (elem: string) => {
   const name = elem.split(" to ")[0];
   const newName = camelize(elem.split(" to ")[1]);
 
-  await searchEditor(`const ${name}`);
+  await searchEditor(`let ${name}`);
 
   await vscode.commands.executeCommand("cursorRight");
   await vscode.commands.executeCommand("cursorWordLeftSelect");
