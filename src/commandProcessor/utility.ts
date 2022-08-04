@@ -1,5 +1,6 @@
 import { symbolsList } from "./../definitions/symbols";
 import wordsToNumbers from "words-to-numbers";
+import * as vscode from "vscode";
 
 // https://stackoverflow.com/questions/2970525/converting-any-string-into-camel-case
 export function camelize(str: String) {
@@ -72,4 +73,19 @@ export function parseSymbols(code: string) {
   });
 
   return code.replace(/\s+/g, " ").trim();
+}
+
+export async function searchEditor(phrase: string) {
+  await vscode.commands.executeCommand("cursorHome");
+  await vscode.commands.executeCommand("editor.actions.findWithArgs", {
+    isRegex: false,
+    searchString: phrase,
+  });
+  await vscode.commands.executeCommand("editor.action.nextMatchFindAction");
+  await vscode.commands.executeCommand("closeFindWidget");
+}
+
+export async function deleteFromEditor(phrase: string) {
+  searchEditor(phrase);
+  await vscode.commands.executeCommand("editor.action.deleteLines");
 }
