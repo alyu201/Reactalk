@@ -3,7 +3,7 @@ export enum CompositionPrefixes {
 }
 
 export enum EditingPrefixes {
-  change = "change",
+  rename = "rename",
   delete = "delete",
   copy = "copy",
   paste = "paste",
