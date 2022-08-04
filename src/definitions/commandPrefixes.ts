@@ -12,7 +12,6 @@ export enum EditingPrefixes {
 export enum NavigationPrefixes {
   go = "go",
   focus = "focus",
-  enter = "enter",
 }
 
 export enum SystemPrefixes {
@@ -35,7 +34,6 @@ export enum SystemPrefixes {
   install = "install",
   build = "build",
   down = "down",
-  enter = "enter",
 }
 
 export enum CompositionKeyword {
