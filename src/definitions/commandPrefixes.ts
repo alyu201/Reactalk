@@ -19,6 +19,7 @@ export enum SystemPrefixes {
   browse = "browse",
   new = "new",
   duplicate = "duplicate",
+  rename = "rename",
   delete = "delete",
   open = "open",
   close = "close",
