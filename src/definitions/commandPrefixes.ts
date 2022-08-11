@@ -30,7 +30,7 @@ export enum SystemPrefixes {
   click = "click",
   start = "start",
   stop = "stop",
-  createApp = "create app",
+  create = "create",
   install = "install",
   build = "build",
   browse = "browse",
