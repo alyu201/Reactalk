@@ -71,6 +71,7 @@ export enum NavigationKeyword {
   function = "function",
   element = "element",
   definition = "definition",
+  file = "file",
 }
 
 export enum SystemKeyword {
