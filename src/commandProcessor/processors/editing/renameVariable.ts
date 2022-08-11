@@ -6,9 +6,9 @@ const throwError = () => {
   throw new InvalidCommandException("Error processing editing command");
 };
 
-const rename = async (elem: string) => {
-  const name = elem.split(" to ")[0];
-  const newName = camelize(elem.split(" to ")[1]);
+const rename = async (input: string) => {
+  const name = camelize(input.split(" to ")[0]);
+  const newName = camelize(input.split(" to ")[1]);
 
   await searchEditor(`var ${name}`);
 
@@ -25,8 +25,8 @@ const rename = async (elem: string) => {
   await vscode.commands.executeCommand("cursorEnd");
 };
 
-export const execute = (elem: string, prefix: string) => {
-  rename(elem);
+export const execute = (name: string) => {
+  rename(name);
 
   // throwError();
 };

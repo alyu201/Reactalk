@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import { camelize } from "../../utility";
 
 const copy = async (name: string) => {
   await vscode.commands.executeCommand("workbench.action.quickOpen", `@${name}\r`);
@@ -13,5 +14,5 @@ const copy = async (name: string) => {
 };
 
 export const execute = (name: string) => {
-  copy(name);
+  copy(camelize(name));
 };
