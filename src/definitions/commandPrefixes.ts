@@ -33,6 +33,7 @@ export enum SystemPrefixes {
   createApp = "create app",
   install = "install",
   build = "build",
+  browse = "browse",
 }
 
 export enum CompositionKeyword {
@@ -74,6 +75,7 @@ export enum NavigationKeyword {
 
 export enum SystemKeyword {
   file = "file",
+  history = "history",
 }
 
 export enum EditingValue {
