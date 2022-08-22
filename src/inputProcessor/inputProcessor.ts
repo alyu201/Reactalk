@@ -1,5 +1,5 @@
-import { processCommand } from '../commandProcessor/commandProcessor';
-import { InvalidCommandException } from '../commandProcessor/invalidCommandException';
+import { processCommand } from "../commandProcessor/commandProcessor";
+import { InvalidCommandException } from "../commandProcessor/invalidCommandException";
 
 function startVP(transcript: string) {
   try {
@@ -7,7 +7,7 @@ function startVP(transcript: string) {
     processCommand(transcript.trim());
   } catch (error) {
     if (error instanceof InvalidCommandException) {
-      console.log('InvalidCommandException thrown');
+      console.log("InvalidCommandException thrown");
     }
   }
 }
