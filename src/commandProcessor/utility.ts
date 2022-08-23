@@ -1,6 +1,7 @@
 import { symbolsList } from "./../definitions/symbols";
 import wordsToNumbers from "words-to-numbers";
 import * as vscode from "vscode";
+import { InvalidCommandException } from "./invalidCommandException";
 
 // https://stackoverflow.com/questions/2970525/converting-any-string-into-camel-case
 export function camelize(str: String) {
@@ -75,7 +76,19 @@ export function parseSymbols(code: string) {
   return code.replace(/\s+/g, " ").trim();
 }
 
+/**
+ * @param phrase The string phrase to match with
+ * @throws An InvalidCommandException when no results are found for the given string
+ */
 export async function searchEditor(phrase: string) {
+  const editor = vscode.window.activeTextEditor;
+  if (editor) {
+    const text = editor.document.getText();
+    if (!text.includes(phrase)) {
+      throw new InvalidCommandException(`Unable to find string: ${phrase}`);
+    }
+  }
+
   await vscode.commands.executeCommand("cursorHome");
   await vscode.commands.executeCommand("editor.actions.findWithArgs", {
     isRegex: false,
