@@ -3,8 +3,11 @@ import { InvalidCommandException } from "../commandProcessor/invalidCommandExcep
 
 function startVP(transcript: string) {
   try {
+    // Preprocess transcript
+    const processedTranscript = transcript.trim().toLowerCase();
+
     // Ask command processor to process command
-    processCommand(transcript.trim());
+    processCommand(processedTranscript);
   } catch (error) {
     if (error instanceof InvalidCommandException) {
       console.log("InvalidCommandException thrown");

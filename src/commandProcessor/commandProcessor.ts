@@ -16,8 +16,7 @@ import { camelize } from "./utility";
  * @param input The transcribed input command to be processed.
  * @throws An InvalidCommandException when an invalid command is found
  */
-export const processCommand = (input: string) => {
-  const inputCmd = input.toLowerCase();
+export const processCommand = (inputCmd: string) => {
   const inputCmdArray = inputCmd.split(" ");
 
   const prefix = inputCmdArray[0];
