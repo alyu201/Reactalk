@@ -85,3 +85,13 @@ export enum EditingValue {
   anchor = "<s*a[^>]*>|<s*/s*a>",
   image = "<s*img[^>]*>",
 }
+
+export enum ElementTags {
+  container = "div",
+  paragraph = "p",
+  heading = "h$",
+  unordered = "ul",
+  ordered = "ol",
+  anchor = "a",
+  image = "img",
+}
