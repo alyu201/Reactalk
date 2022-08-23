@@ -1,16 +1,5 @@
-import { InvalidCommandException } from "../../invalidCommandException";
 import { deleteFromEditor } from "../../utility";
 
-const throwError = () => {
-  throw new InvalidCommandException("Error processing editing command");
-};
-
-const remove = async (elem: string) => {
-  deleteFromEditor(`let ${elem}`);
-};
-
 export const execute = (elem: string) => {
-  remove(elem);
-
-  // throwError();
+  deleteFromEditor(`let ${elem}`); // throws InvalidCommandException when not found
 };

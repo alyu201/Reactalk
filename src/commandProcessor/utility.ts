@@ -78,13 +78,16 @@ export function parseSymbols(code: string) {
 
 /**
  * @param phrase The string phrase to match with
- * @throws An InvalidCommandException when no results are found for the given string
+ * @throws An InvalidCommandException when no results are found for the given
  */
 export async function searchEditor(phrase: string) {
   const editor = vscode.window.activeTextEditor;
   if (editor) {
     const text = editor.document.getText();
     if (!text.includes(phrase)) {
+      await vscode.window.showInformationMessage(
+        "Cannot find any matches. Try another command?"
+      );
       throw new InvalidCommandException(`Unable to find string: ${phrase}`);
     }
   }
