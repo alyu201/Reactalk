@@ -16,7 +16,6 @@ export enum NavigationPrefixes {
 
 export enum SystemPrefixes {
   save = "save",
-  browse = "browse",
   new = "new",
   duplicate = "duplicate",
   remove = "remove",
