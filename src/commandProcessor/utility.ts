@@ -84,20 +84,23 @@ export async function searchEditor(phrase: string) {
   const editor = vscode.window.activeTextEditor;
   if (editor) {
     const text = editor.document.getText();
-    if (!text.includes(phrase)) {
+    // Match with regex as well
+    if (!text.match(phrase)) {
       await vscode.window.showInformationMessage(
         "Cannot find any matches. Try another command?"
       );
-      throw new InvalidCommandException(`Unable to find string: ${phrase}`);
+      throw new InvalidCommandException(`Unable to find search string: ${phrase}`);
     }
   }
 
   await vscode.commands.executeCommand("cursorHome");
+  await vscode.commands.executeCommand("toggleSearchEditorRegex");
   await vscode.commands.executeCommand("editor.actions.findWithArgs", {
-    isRegex: false,
+    isRegex: true,
     searchString: phrase,
   });
   await vscode.commands.executeCommand("editor.action.nextMatchFindAction");
+  await vscode.commands.executeCommand("editor.action.previousMatchFindAction");
   await vscode.commands.executeCommand("closeFindWidget");
 }
 
