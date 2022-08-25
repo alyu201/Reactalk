@@ -2,11 +2,7 @@ import * as vscode from "vscode";
 import { InvalidCommandException } from "../../invalidCommandException";
 import { camelize } from "../../utility";
 
-const throwError = () => {
-  throw new InvalidCommandException("Error processing editing command");
-};
-
-const rename = async (func: string) => {
+export const execute = async (func: string) => {
   const name = camelize(func.split(" to ")[0]);
   const newName = camelize(func.split(" to ")[1]);
 
@@ -15,18 +11,26 @@ const rename = async (func: string) => {
   await vscode.commands.executeCommand("workbench.action.acceptSelectedQuickOpenItem");
   await vscode.commands.executeCommand("cursorWordRightSelect");
 
+  // Check if selection is empty
   const editor = vscode.window.activeTextEditor;
   if (editor) {
+    const selection = editor.selection;
+    if (selection && selection.isEmpty) {
+      // No results found
+      await vscode.commands.executeCommand("workbench.action.closeQuickOpen");
+      await vscode.commands.executeCommand("cursorRight");
+      await vscode.commands.executeCommand("deleteLeft");
+
+      await vscode.window.showInformationMessage(
+        "Cannot find any matches. Try another command?"
+      );
+      throw new InvalidCommandException(`Unable to find function: ${name}`);
+    }
+
     editor.edit((builder) => {
       builder.replace(editor.selection, newName);
     });
   }
 
   await vscode.commands.executeCommand("cursorEnd");
-};
-
-export const execute = (func: string) => {
-  rename(func);
-
-  // throwError();
 };
