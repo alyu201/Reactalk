@@ -1,5 +1,6 @@
 import {
   CompositionKeyword,
+  CompositionListKeyword,
   CompositionSymbolKeyword,
   CompositionTextKeyword,
 } from "./../../definitions/commandPrefixes";
@@ -62,6 +63,10 @@ export const processAdd = (inputCmd: string) => {
       ? insertSnippet(parseSymbols(insertCode))
       : keyword in CompositionKeyword // commands not requiring user specified code
       ? insertSnippet(findSnippet(inputCmd))
+      : keyword in CompositionListKeyword // commands requiring comma-separated list of user-given inputs
+      ? insertSnippet(
+          findSnippet(command).replace("$1", insertCode.replace(new RegExp(/ /, "g"), ", "))
+        )
       : insertSnippet(findSnippet(command).replace("$1", parseSymbols(insertCode))); // commands requiring user specified code with system defined
   } catch (error) {
     console.log(error);
