@@ -2,8 +2,9 @@ import * as vscode from "vscode";
 
 export const execute = (sysCmdValue: string) => {
   console.log("sysCmdValue: " + sysCmdValue);
+  const terminal = vscode.window.activeTerminal;
 
-  if (sysCmdValue == "") {
-    vscode.commands.executeCommand("workbench.action.files.newUntitledFile");
+  if (terminal != undefined) {
+    terminal.sendText("npm install");
   }
 };

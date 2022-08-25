@@ -3,7 +3,7 @@ export enum CompositionPrefixes {
 }
 
 export enum EditingPrefixes {
-  change = "change",
+  rename = "rename",
   delete = "delete",
   copy = "copy",
   paste = "paste",
@@ -12,14 +12,15 @@ export enum EditingPrefixes {
 export enum NavigationPrefixes {
   go = "go",
   focus = "focus",
-  enter = "enter",
 }
 
 export enum SystemPrefixes {
   save = "save",
+  browse = "browse",
   new = "new",
   duplicate = "duplicate",
-  delete = "delete",
+  remove = "remove",
+  rename = "rename",
   open = "open",
   close = "close",
   move = "move",
@@ -30,9 +31,10 @@ export enum SystemPrefixes {
   click = "click",
   start = "start",
   stop = "stop",
-  createApp = "create app",
+  create = "create",
   install = "install",
   build = "build",
+  browse = "browse",
 }
 
 export enum CompositionKeyword {
@@ -70,18 +72,32 @@ export enum NavigationKeyword {
   line = "line",
   function = "function",
   element = "element",
+  definition = "definition",
+  file = "file",
 }
 
 export enum SystemKeyword {
   file = "file",
+  history = "history",
+  files = "files",
 }
 
 export enum EditingValue {
-  container = "<div> </div>",
-  paragraph = "<p> </p>",
-  heading = "<h#> </h#>",
-  unordered = "<ul> </ul>",
-  ordered = "<ol> </ol>",
-  anchor = "<a </a>",
-  image = "<img />",
+  container = "<s*div[^>]*>|<s*/s*div>",
+  paragraph = "<s*p[^>]*>|<s*/s*p>",
+  heading = "<s*h$[^>]*>|<s*/s*h$>",
+  unordered = "<s*ul[^>]*>|<s*/s*ul>",
+  ordered = "<s*ol[^>]*>|<s*/s*ol>",
+  anchor = "<s*a[^>]*>|<s*/s*a>",
+  image = "<s*img[^>]*>",
+}
+
+export enum ElementTags {
+  container = "div",
+  paragraph = "p",
+  heading = "h$",
+  unordered = "ul",
+  ordered = "ol",
+  anchor = "a",
+  image = "img",
 }
