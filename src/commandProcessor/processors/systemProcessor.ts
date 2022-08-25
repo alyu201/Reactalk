@@ -27,7 +27,13 @@ export const processSystem = (
         const sysMod = require(`./system/${sysCmdCategory}/${prefix}`);
         sysMod.execute(sysCmdValue);
       } catch (error) {
-        throw new InvalidCommandException("Error processing system command");
+        try {
+          const sysMod = require(`./system/${prefix}`);
+          sysMod.execute();
+        } catch (error) {
+          throw new InvalidCommandException("Error processing system command");
+        }
+        //throw new InvalidCommandException("Error processing system command");
       }
   }
 };

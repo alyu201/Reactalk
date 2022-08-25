@@ -12,14 +12,15 @@ export enum EditingPrefixes {
 export enum NavigationPrefixes {
   go = "go",
   focus = "focus",
-  enter = "enter",
 }
 
 export enum SystemPrefixes {
   save = "save",
+  browse = "browse",
   new = "new",
   duplicate = "duplicate",
   remove = "remove",
+  rename = "rename",
   open = "open",
   close = "close",
   move = "move",
@@ -76,6 +77,7 @@ export enum NavigationKeyword {
 export enum SystemKeyword {
   file = "file",
   history = "history",
+  files = "files",
 }
 
 export enum EditingValue {

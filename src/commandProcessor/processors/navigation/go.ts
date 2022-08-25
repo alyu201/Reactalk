@@ -6,13 +6,11 @@ export const execute = (direction: string) => {
   switch (direction) {
     case NavigationKeyword.up:
       vscode.commands.executeCommand("cursorMove", { to: "up", by: "line" });
-      vscode.commands.executeCommand(
-        "workbench.action.quickOpenSelectPrevious"
-      );
+      vscode.commands.executeCommand("list.focusUp");
       break;
     case NavigationKeyword.down:
       vscode.commands.executeCommand("cursorMove", { to: "down", by: "line" });
-      vscode.commands.executeCommand("workbench.action.quickOpenSelectNext");
+      vscode.commands.executeCommand("list.focusDown");
       break;
     case NavigationKeyword.left:
       vscode.commands.executeCommand("cursorMove", {
