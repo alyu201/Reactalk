@@ -70,6 +70,8 @@ export enum NavigationKeyword {
   line = "line",
   function = "function",
   element = "element",
+  definition = "definition",
+  file = "file",
 }
 
 export enum SystemKeyword {
