@@ -41,7 +41,6 @@ export const processCommand = (input: string) => {
     const prefixCamel = camelize(prefixNotCamel);
     const value = inputCmd.substring(prefixNotCamel.length, inputCmd.length).trim();
     processEdit(prefixCamel, value);
-    
   } else if (prefix in NavigationPrefixes) {
     console.log("This is a navigation command");
 
@@ -52,7 +51,7 @@ export const processCommand = (input: string) => {
     const beyondFifthWordIdx = 5;
 
     // This is for the 'enter' command
-    if (inputCmdArray.length == 1) {
+    if (inputCmdArray.length === 1) {
       processNavigation(prefix, "");
     }
 
@@ -62,16 +61,12 @@ export const processCommand = (input: string) => {
         const remaining = inputCmdArray.splice(secondWordIdx)[0];
         processNavigation(prefix, remaining);
       } else if (inputCmdArray[thirdWordIdx] in NavigationKeyword) {
-        const prefixNotCamel = inputCmdArray
-          .slice(0, beyondThirdWordIdx)
-          .join(" ");
+        const prefixNotCamel = inputCmdArray.slice(0, beyondThirdWordIdx).join(" ");
         const prefixCamel = camelize(prefixNotCamel);
         const remaining = inputCmdArray.slice(beyondThirdWordIdx).join(" ");
         processNavigation(prefixCamel, remaining);
       } else if (inputCmdArray[fifthWordIdx] in NavigationKeyword) {
-        const prefixNotCamel = inputCmdArray
-          .slice(0, beyondFifthWordIdx)
-          .join(" ");
+        const prefixNotCamel = inputCmdArray.slice(0, beyondFifthWordIdx).join(" ");
         const prefixCamel = camelize(prefixNotCamel);
         const remaining = inputCmdArray.slice(beyondFifthWordIdx).join(" ");
         processNavigation(prefixCamel, remaining);
@@ -81,7 +76,6 @@ export const processCommand = (input: string) => {
     } catch (error) {
       throw new InvalidCommandException("Invalid or no command input found");
     }
-    
   } else if (prefix in SystemPrefixes) {
     console.log("This is a system command");
     processSystem(prefix, sysCmdCategory, cmd);
