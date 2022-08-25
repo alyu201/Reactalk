@@ -77,14 +77,9 @@ export function startListening() {
               : "\n\nReached transcription time limit, press Ctrl+C\n"
           );
 
-          if (ReactalkStatus == STATUS.LISTEN) {
-            console.log("ReactalkStatus = LISTEN");
-          } else if (ReactalkStatus == STATUS.STOP) {
-            console.log("ReactalkStatus = STOP");
+          if (ReactalkStatus == STATUS.STOP) {
             vscode.window.showInformationMessage("Thanks for using Reactalk!");
             recognizeStream.destroy();
-          } else if (ReactalkStatus == STATUS.PAUSE) {
-            console.log("ReactalkStatus = PAUSE");
           }
 
           console.log("\n");

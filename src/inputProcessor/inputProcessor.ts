@@ -9,17 +9,14 @@ function startVP(transcript: string) {
     const processedTranscript = transcript.trim().toLowerCase();
 
     if (ReactalkStatus == STATUS.LISTEN) {
-      console.log(">>> We want to process command");
       // Ask command processor to process command
       processCommand(processedTranscript);
     } else if (ReactalkStatus == STATUS.PAUSE) {
       if (processedTranscript == ListeningCommands.startListening) {
-        console.log(">>> We want to start processing commands again!");
         ReactalkStatus = STATUS.LISTEN;
         // Ask command processor to process command
         processCommand(processedTranscript);
       } else if (processedTranscript == ListeningCommands.stopListening) {
-        console.log(">>> We want to stop listening");
         ReactalkStatus = STATUS.STOP;
       }
     }

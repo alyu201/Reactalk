@@ -4,6 +4,7 @@ export enum STATUS {
   PAUSE,
 }
 
+// This is a globabl variable to determine the state of whether we want to listen, pause or stop listening.
 declare global {
   var ReactalkStatus: STATUS;
 }
