@@ -1,5 +1,7 @@
 import { symbolsList } from "./../definitions/symbols";
 import wordsToNumbers from "words-to-numbers";
+import * as vscode from "vscode";
+import { InvalidCommandException } from "./invalidCommandException";
 
 // https://stackoverflow.com/questions/2970525/converting-any-string-into-camel-case
 export function camelize(str: String) {
@@ -72,4 +74,37 @@ export function parseSymbols(code: string) {
   });
 
   return code.replace(/\s+/g, " ").trim();
+}
+
+/**
+ * @param phrase The string phrase to match with
+ * @throws An InvalidCommandException when no results are found for the given
+ */
+export async function searchEditor(phrase: string) {
+  const editor = vscode.window.activeTextEditor;
+  if (editor) {
+    const text = editor.document.getText();
+    // Match with regex as well
+    if (!text.match(phrase)) {
+      await vscode.window.showInformationMessage(
+        "Cannot find any matches. Try another command?"
+      );
+      throw new InvalidCommandException(`Unable to find search string: ${phrase}`);
+    }
+  }
+
+  await vscode.commands.executeCommand("cursorHome");
+  await vscode.commands.executeCommand("toggleSearchEditorRegex");
+  await vscode.commands.executeCommand("editor.actions.findWithArgs", {
+    isRegex: true,
+    searchString: phrase,
+  });
+  await vscode.commands.executeCommand("editor.action.nextMatchFindAction");
+  await vscode.commands.executeCommand("editor.action.previousMatchFindAction");
+  await vscode.commands.executeCommand("closeFindWidget");
+}
+
+export async function deleteFromEditor(phrase: string) {
+  searchEditor(phrase);
+  await vscode.commands.executeCommand("editor.action.deleteLines");
 }
