@@ -14,7 +14,8 @@
     "onCommand:reactalk.helloWorld",
     "onCommand:reactalk.start",
     "onCommand:reactalk.startListening",
-    "onCommand:reactalk.commandProcess"
+    "onCommand:reactalk.commandProcess",
+    "onView:reactalk-commands"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -35,7 +36,28 @@
         "command": "reactalk.commandProcess",
         "title": "Process command"
       }
-    ]
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "reactalk",
+          "title": "Reactalk",
+          "icon": "resources/comment-code.svg"
+        }
+      ]
+    },
+    "views": {
+      "reactalk": [
+        {
+          "id": "reactalk-control",
+          "name": "Control panel"
+        },
+        {
+          "id": "reactalk-commands",
+          "name": "Commands"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
