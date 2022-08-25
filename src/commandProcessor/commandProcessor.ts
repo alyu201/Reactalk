@@ -11,12 +11,16 @@ import { processAdd } from "./processors/compositionProcessor";
 import { processNavigation } from "./processors/navigationProcessor";
 import { processSystem } from "./processors/systemProcessor";
 import { camelize } from "./utility";
+import wordsToNumbers from "words-to-numbers";
 
 /**
  * @param input The transcribed input command to be processed.
  * @throws An InvalidCommandException when an invalid command is found
  */
-export const processCommand = (inputCmd: string) => {
+
+export const processCommand = (input: string) => {
+  // TODO: refactor to parse transcription here instead of in individual processors
+  const inputCmd = `${wordsToNumbers(input) ?? input}`.toLowerCase();
   const inputCmdArray = inputCmd.split(" ");
 
   const prefix = inputCmdArray[0];
@@ -63,7 +67,7 @@ export const processCommand = (inputCmd: string) => {
     const beyondFifthWordIdx = 5;
 
     // This is for the 'enter' command
-    if (inputCmdArray.length == 1) {
+    if (inputCmdArray.length === 1) {
       processNavigation(prefix, "");
     }
 
@@ -73,16 +77,12 @@ export const processCommand = (inputCmd: string) => {
         const remaining = inputCmdArray.splice(secondWordIdx)[0];
         processNavigation(prefix, remaining);
       } else if (inputCmdArray[thirdWordIdx] in NavigationKeyword) {
-        const prefixNotCamel = inputCmdArray
-          .slice(0, beyondThirdWordIdx)
-          .join(" ");
+        const prefixNotCamel = inputCmdArray.slice(0, beyondThirdWordIdx).join(" ");
         const prefixCamel = camelize(prefixNotCamel);
         const remaining = inputCmdArray.slice(beyondThirdWordIdx).join(" ");
         processNavigation(prefixCamel, remaining);
       } else if (inputCmdArray[fifthWordIdx] in NavigationKeyword) {
-        const prefixNotCamel = inputCmdArray
-          .slice(0, beyondFifthWordIdx)
-          .join(" ");
+        const prefixNotCamel = inputCmdArray.slice(0, beyondFifthWordIdx).join(" ");
         const prefixCamel = camelize(prefixNotCamel);
         const remaining = inputCmdArray.slice(beyondFifthWordIdx).join(" ");
         processNavigation(prefixCamel, remaining);
