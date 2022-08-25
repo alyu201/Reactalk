@@ -104,4 +104,5 @@ export enum ElementTags {
 
 export enum ListeningCommands {
   startListening = "start listening",
+  stopListening = "stop listening",
 }

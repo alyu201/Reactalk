@@ -18,10 +18,9 @@ function startVP(transcript: string) {
         ReactalkStatus = STATUS.LISTEN;
         // Ask command processor to process command
         processCommand(processedTranscript);
-      } else {
-        console.log(
-          ">>> We want to process command only for start/stop listening"
-        );
+      } else if (processedTranscript == ListeningCommands.stopListening) {
+        console.log(">>> We want to stop listening");
+        ReactalkStatus = STATUS.STOP;
       }
     }
   } catch (error) {

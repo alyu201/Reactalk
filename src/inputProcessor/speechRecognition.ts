@@ -81,6 +81,8 @@ export function startListening() {
             console.log("ReactalkStatus = LISTEN");
           } else if (ReactalkStatus == STATUS.STOP) {
             console.log("ReactalkStatus = STOP");
+            vscode.window.showInformationMessage("Thanks for using Reactalk!");
+            recognizeStream.destroy();
           } else if (ReactalkStatus == STATUS.PAUSE) {
             console.log("ReactalkStatus = PAUSE");
           }
