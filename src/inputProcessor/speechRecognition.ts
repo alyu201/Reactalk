@@ -1,7 +1,30 @@
 import startVP from "./inputProcessor";
 import * as vscode from "vscode";
 
+// This will disable the remove file warning AND any files deleted will go to the computer's trash.
+async function disableRemoveFileWarning() {
+  /**
+   * Note, these commands are directly editing the settings.json of the user's interface.
+   * This is how the update function works: (<nameOfSection>, <valueToChangeTo>, true)
+   * The update function will still work even if the section didn't exist.
+   * So, in our case, if "files.enableTrash" wasn't there, it will make its own "files.enableTrash".
+   */
+
+  await vscode.workspace
+    .getConfiguration()
+    .update("files.enableTrash", true, true);
+
+  await vscode.workspace
+    .getConfiguration()
+    .update("explorer.confirmDelete", false, true);
+}
+
+// This sets up the Google Speech service
 export function startListening() {
+  // This will disable the warning that appears when trying to remove a file to trash
+  // AND any files deleted will go to the computer's trash.
+  disableRemoveFileWarning();
+
   const recorder = require("node-record-lpcm16");
 
   // Imports the Google Cloud client library
@@ -34,23 +57,26 @@ export function startListening() {
       console.log("It came here");
       vscode.window.showInformationMessage("Timeout reached.");
     })
-    .on("data", (data: { results: { alternatives: { transcript: any }[] }[] }) => {
-      if (data.results[0] && data.results[0].alternatives[0]) {
-        let transcript: string = data.results[0].alternatives[0].transcript;
+    .on(
+      "data",
+      (data: { results: { alternatives: { transcript: any }[] }[] }) => {
+        if (data.results[0] && data.results[0].alternatives[0]) {
+          let transcript: string = data.results[0].alternatives[0].transcript;
 
-        // Initiate the voice programming process by first going to inputProcessor.ts
-        startVP(transcript);
+          // Initiate the voice programming process by first going to inputProcessor.ts
+          startVP(transcript);
 
-        // We can comment this out later, it just prints the transcript to the terminal
-        process.stdout.write(
-          data.results[0] && data.results[0].alternatives[0]
-            ? `Transcription: ${transcript}\n`
-            : "\n\nReached transcription time limit, press Ctrl+C\n"
-        );
+          // We can comment this out later, it just prints the transcript to the terminal
+          process.stdout.write(
+            data.results[0] && data.results[0].alternatives[0]
+              ? `Transcription: ${transcript}\n`
+              : "\n\nReached transcription time limit, press Ctrl+C\n"
+          );
 
-        console.log("\n");
+          console.log("\n");
+        }
       }
-    });
+    );
 
   // Start recording and send the microphone input to the Speech API.
   // Ensure SoX is installed, see https://www.npmjs.com/package/node-record-lpcm16#dependencies

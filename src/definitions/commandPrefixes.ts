@@ -12,14 +12,15 @@ export enum EditingPrefixes {
 export enum NavigationPrefixes {
   go = "go",
   focus = "focus",
-  enter = "enter",
 }
 
 export enum SystemPrefixes {
   save = "save",
+  browse = "browse",
   new = "new",
   duplicate = "duplicate",
-  delete = "delete",
+  remove = "remove",
+  rename = "rename",
   open = "open",
   close = "close",
   move = "move",
@@ -30,9 +31,10 @@ export enum SystemPrefixes {
   click = "click",
   start = "start",
   stop = "stop",
-  createApp = "create app",
+  create = "create",
   install = "install",
   build = "build",
+  browse = "browse",
 }
 
 export enum CompositionKeyword {
@@ -76,6 +78,8 @@ export enum NavigationKeyword {
 
 export enum SystemKeyword {
   file = "file",
+  history = "history",
+  files = "files",
 }
 
 export enum EditingValue {
