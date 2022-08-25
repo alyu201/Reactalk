@@ -3,6 +3,7 @@
 import * as vscode from "vscode";
 import { startListening } from "./inputProcessor/speechRecognition";
 import { processCommand } from "./commandProcessor/commandProcessor";
+import { CommandProvider } from "./commandProcessor/commandProvider";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -46,6 +47,12 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(disposable2);
   context.subscriptions.push(disposableStartLis);
   context.subscriptions.push(commandProcess);
+
+  // Register asnd create the tree view
+  vscode.window.registerTreeDataProvider("reactalk-commands", new CommandProvider());
+  vscode.window.createTreeView("reactalk-commands", {
+    treeDataProvider: new CommandProvider(),
+  });
 }
 
 // this method is called when your extension is deactivated

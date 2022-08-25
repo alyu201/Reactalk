@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import * as inputCommands from "./definitions/commands.json";
+import * as inputCommands from "../definitions/commands.json";
 
 export class CommandProvider implements vscode.TreeDataProvider<InputCommand> {
   getTreeItem(element: InputCommand): vscode.TreeItem {
