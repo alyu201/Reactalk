@@ -1,4 +1,5 @@
 import startVP from "./inputProcessor";
+import { STATUS } from "../definitions/status";
 import * as vscode from "vscode";
 
 // This will disable the remove file warning AND any files deleted will go to the computer's trash.
@@ -24,6 +25,9 @@ export function startListening() {
   // This will disable the warning that appears when trying to remove a file to trash
   // AND any files deleted will go to the computer's trash.
   disableRemoveFileWarning();
+
+  // Initialise ReactalkStatus to LISTEN
+  global.ReactalkStatus = STATUS.LISTEN;
 
   const recorder = require("node-record-lpcm16");
 
@@ -72,6 +76,14 @@ export function startListening() {
               ? `Transcription: ${transcript}\n`
               : "\n\nReached transcription time limit, press Ctrl+C\n"
           );
+
+          if (ReactalkStatus == STATUS.LISTEN) {
+            console.log("ReactalkStatus = LISTEN");
+          } else if (ReactalkStatus == STATUS.STOP) {
+            console.log("ReactalkStatus = STOP");
+          } else if (ReactalkStatus == STATUS.PAUSE) {
+            console.log("ReactalkStatus = PAUSE");
+          }
 
           console.log("\n");
         }
