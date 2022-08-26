@@ -60,7 +60,6 @@ export enum CompositionSymbolKeyword {
 
 export enum CompositionListKeyword {
   array = "array",
-  object = "object",
 }
 
 export enum EditingKeyword {

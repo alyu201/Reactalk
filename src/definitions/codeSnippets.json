@@ -112,10 +112,6 @@
     "snippet": "[$1]"
   },
   {
-    "cmd": "add object",
-    "snippet": "{$1}"
-  },
-  {
     "cmd": "add string",
     "snippet": "'$1'"
   }
