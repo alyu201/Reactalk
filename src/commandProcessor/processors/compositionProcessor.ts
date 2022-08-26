@@ -44,6 +44,27 @@ const insertText = (text: string, type: string) => {
   }
 };
 
+const insertList = (command: string, list: string) => {
+  // Find whether the list items are variables defined in the current file
+  const editor = vscode.window.activeTextEditor;
+  if (editor) {
+    const documentText = editor.document.getText();
+    const items = list.split(" ");
+    let processedList: any = [];
+
+    // If the items are not defined variables, return them as list of strings
+    items.map((item) => {
+      const matches = documentText.match(new RegExp(`${item}[ \t\r\n\v\f]*=[^=]`, "g"));
+      !matches || (matches && matches.length === 0)
+        ? processedList.push(`'${item}'`)
+        : processedList.push(item);
+    });
+    return findSnippet(command).replace("$1", processedList.join(", "));
+  }
+
+  return "";
+};
+
 /**
  * @param inputCmd The complete, transcribed composition command to process
  * @throws An InvalidCommandException when an error occurs during processing
@@ -64,9 +85,7 @@ export const processAdd = (inputCmd: string) => {
       : keyword in CompositionKeyword // commands not requiring user specified code
       ? insertSnippet(findSnippet(inputCmd))
       : keyword in CompositionListKeyword // commands requiring comma-separated list of user-given inputs
-      ? insertSnippet(
-          findSnippet(command).replace("$1", insertCode.replace(new RegExp(/ /, "g"), ", "))
-        )
+      ? insertSnippet(insertList(command, insertCode))
       : insertSnippet(findSnippet(command).replace("$1", parseSymbols(insertCode))); // commands requiring user specified code with system defined
   } catch (error) {
     console.log(error);
