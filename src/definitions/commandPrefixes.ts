@@ -19,7 +19,7 @@ export enum SystemPrefixes {
   new = "new",
   duplicate = "duplicate",
   remove = "remove",
-  rename = "rename",
+  retitle = "retitle",
   open = "open",
   close = "close",
   move = "move",
