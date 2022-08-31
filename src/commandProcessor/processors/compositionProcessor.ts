@@ -27,7 +27,7 @@ const findSnippet = (command: string) => {
 /**
  * @param snippet The code snippet to insert into the editor of VSCode
  */
-const insertSnippet = (snippet: string) => {
+export const insertSnippet = (snippet: string) => {
   const editor = vscode.window.activeTextEditor;
   if (editor) {
     editor.insertSnippet(new vscode.SnippetString(snippet));

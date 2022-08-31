@@ -45,6 +45,7 @@ export enum CompositionKeyword {
   new = "new",
   keyword = "keyword",
   try = "try",
+  use = "use",
 }
 
 export enum CompositionTextKeyword {

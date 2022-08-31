@@ -114,5 +114,13 @@
   {
     "cmd": "add string",
     "snippet": "'$1'"
+  },
+  {
+    "cmd": "add use state",
+    "snippet": "const [$1, $2] = React.useState($3);\n"
+  },
+  {
+    "cmd": "add use effect",
+    "snippet": "React.useEffect(() => {\n\t$1\n}, [$2]);\n"
   }
 ]
