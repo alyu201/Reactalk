@@ -15,11 +15,14 @@ export function activate(context: vscode.ExtensionContext) {
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
-  let disposable = vscode.commands.registerCommand("reactalk.helloWorld", () => {
-    // The code you place here will be executed every time your command is executed
-    // Display a message box to the user
-    vscode.window.showInformationMessage("Hello World from Megan!");
-  });
+  let disposable = vscode.commands.registerCommand(
+    "reactalk.helloWorld",
+    () => {
+      // The code you place here will be executed every time your command is executed
+      // Display a message box to the user
+      vscode.window.showInformationMessage("Hello World from Megan!");
+    }
+  );
 
   let disposable2 = vscode.commands.registerCommand("reactalk.start", () => {
     // The code you place here will be executed every time your command is executed
@@ -37,11 +40,14 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   // TODO: remove this command after completion - for testing purposes only
-  let commandProcess = vscode.commands.registerCommand("reactalk.commandProcess", () => {
-    processCommand("add constant function bob");
+  let commandProcess = vscode.commands.registerCommand(
+    "reactalk.commandProcess",
+    () => {
+      processCommand("pause listening");
 
-    vscode.window.showInformationMessage("Processed");
-  });
+      vscode.window.showInformationMessage("Processed");
+    }
+  );
 
   context.subscriptions.push(disposable);
   context.subscriptions.push(disposable2);
