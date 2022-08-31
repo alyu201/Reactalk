@@ -33,7 +33,7 @@ export const processSystem = (
         } catch (error) {
           throw new InvalidCommandException("Error processing system command");
         }
-        //throw new InvalidCommandException("Error processing system command");
+        throw new InvalidCommandException("Error processing system command");
       }
   }
 };

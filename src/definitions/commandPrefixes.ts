@@ -19,7 +19,7 @@ export enum SystemPrefixes {
   new = "new",
   duplicate = "duplicate",
   remove = "remove",
-  rename = "rename",
+  retitle = "retitle",
   open = "open",
   close = "close",
   move = "move",
@@ -34,6 +34,7 @@ export enum SystemPrefixes {
   install = "install",
   build = "build",
   browse = "browse",
+  pause = "pause",
 }
 
 export enum CompositionKeyword {
@@ -104,4 +105,9 @@ export enum ElementTags {
   ordered = "ol",
   anchor = "a",
   image = "img",
+}
+
+export enum ListeningCommands {
+  startListening = "start listening",
+  stopListening = "stop listening",
 }
