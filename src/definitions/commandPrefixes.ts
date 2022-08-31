@@ -35,6 +35,7 @@ export enum SystemPrefixes {
   build = "build",
   browse = "browse",
   pause = "pause",
+  toggle = "toggle",
 }
 
 export enum CompositionKeyword {
