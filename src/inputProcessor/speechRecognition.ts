@@ -1,5 +1,5 @@
 import startVP from "./inputProcessor";
-import { STATUS } from "../definitions/status";
+import { STATUS, Status } from "../definitions/status";
 import * as vscode from "vscode";
 
 // This will disable the remove file warning AND any files deleted will go to the computer's trash.
@@ -11,13 +11,9 @@ async function disableRemoveFileWarning() {
    * So, in our case, if "files.enableTrash" wasn't there, it will make its own "files.enableTrash".
    */
 
-  await vscode.workspace
-    .getConfiguration()
-    .update("files.enableTrash", true, true);
+  await vscode.workspace.getConfiguration().update("files.enableTrash", true, true);
 
-  await vscode.workspace
-    .getConfiguration()
-    .update("explorer.confirmDelete", false, true);
+  await vscode.workspace.getConfiguration().update("explorer.confirmDelete", false, true);
 }
 
 // This sets up the Google Speech service
@@ -26,8 +22,10 @@ export function startListening() {
   // AND any files deleted will go to the computer's trash.
   disableRemoveFileWarning();
 
-  // Initialise ReactalkStatus to LISTEN
-  global.ReactalkStatus = STATUS.LISTEN;
+  // Initialise reactalkStatus to LISTEN
+  const statusConfigurator = Status.getStatusInstance();
+  const reactalkStatus = statusConfigurator.getStatus();
+  statusConfigurator.updateStatus(STATUS.LISTEN);
 
   const recorder = require("node-record-lpcm16");
 
@@ -61,31 +59,28 @@ export function startListening() {
       console.log("It came here");
       vscode.window.showInformationMessage("Timeout reached.");
     })
-    .on(
-      "data",
-      (data: { results: { alternatives: { transcript: any }[] }[] }) => {
-        if (data.results[0] && data.results[0].alternatives[0]) {
-          let transcript: string = data.results[0].alternatives[0].transcript;
+    .on("data", (data: { results: { alternatives: { transcript: any }[] }[] }) => {
+      if (data.results[0] && data.results[0].alternatives[0]) {
+        let transcript: string = data.results[0].alternatives[0].transcript;
 
-          // Initiate the voice programming process by first going to inputProcessor.ts
-          startVP(transcript);
+        // Initiate the voice programming process by first going to inputProcessor.ts
+        startVP(transcript);
 
-          // We can comment this out later, it just prints the transcript to the terminal
-          process.stdout.write(
-            data.results[0] && data.results[0].alternatives[0]
-              ? `Transcription: ${transcript}\n`
-              : "\n\nReached transcription time limit, press Ctrl+C\n"
-          );
+        // We can comment this out later, it just prints the transcript to the terminal
+        process.stdout.write(
+          data.results[0] && data.results[0].alternatives[0]
+            ? `Transcription: ${transcript}\n`
+            : "\n\nReached transcription time limit, press Ctrl+C\n"
+        );
 
-          if (ReactalkStatus == STATUS.STOP) {
-            vscode.window.showInformationMessage("Thanks for using Reactalk!");
-            recognizeStream.destroy();
-          }
-
-          console.log("\n");
+        if (reactalkStatus === STATUS.STOP) {
+          vscode.window.showInformationMessage("Thanks for using Reactalk!");
+          recognizeStream.destroy();
         }
+
+        console.log("\n");
       }
-    );
+    });
 
   // Start recording and send the microphone input to the Speech API.
   // Ensure SoX is installed, see https://www.npmjs.com/package/node-record-lpcm16#dependencies

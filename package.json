@@ -30,11 +30,19 @@
       },
       {
         "command": "reactalk.startListening",
-        "title": "Reactalk start listening"
+        "title": "Start Reactalk",
+        "icon": {
+          "light": "resources/light/microphone.svg",
+          "dark": "resources/dark/microphone.svg"
+        }
       },
       {
         "command": "reactalk.commandProcess",
         "title": "Process command"
+      },
+      {
+        "command": "reactalk.refreshStatus",
+        "title": "Refresh"
       }
     ],
     "viewsContainers": {
@@ -49,12 +57,17 @@
     "views": {
       "reactalk": [
         {
-          "id": "reactalk-control",
-          "name": "Control panel"
-        },
-        {
           "id": "reactalk-commands",
           "name": "Commands"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "reactalk.startListening",
+          "when": "view == reactalk-commands",
+          "group": "navigation"
         }
       ]
     }

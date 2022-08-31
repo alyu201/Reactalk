@@ -9,8 +9,7 @@ export const execute = (sysCmdValue: string) => {
 };
 
 async function sendCtrlC() {
-  await vscode.commands.executeCommand(
-    "workbench.action.terminal.sendSequence",
-    { text: "\x03" }
-  );
+  await vscode.commands.executeCommand("workbench.action.terminal.sendSequence", {
+    text: "\x03",
+  });
 }
