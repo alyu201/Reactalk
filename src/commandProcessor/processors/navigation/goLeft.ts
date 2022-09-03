@@ -1,13 +1,15 @@
 import * as vscode from "vscode";
 import { InvalidCommandException } from "../../invalidCommandException";
+import { takeCareOfToAndFor } from "./navigationUtility";
 import wordsToNumbers from "words-to-numbers";
 
 export const execute = (value: string) => {
   const editor = vscode.window.activeTextEditor;
 
   if (editor) {
+    // Yes the value will be "by <num>", so we need to remove the "by "
+    // It is prefered to have the by in the value rather than in the filename "goLeftBy.js" as "by" is not really a keyword.
     const valueNum = value.replace(/by /gi, "");
-    console.log("valueNum: " + valueNum);
     const amtToMove = takeCareOfToAndFor(valueNum);
     const amtToMoveNum = `${wordsToNumbers(amtToMove) ?? amtToMove}`;
     vscode.commands.executeCommand("cursorMove", {
@@ -19,13 +21,3 @@ export const execute = (value: string) => {
     throw new InvalidCommandException("Error processing navigation command");
   }
 };
-
-function takeCareOfToAndFor(value: string) {
-  if (value === "to") {
-    return "2";
-  } else if (value === "for") {
-    return "4";
-  } else {
-    return value;
-  }
-}

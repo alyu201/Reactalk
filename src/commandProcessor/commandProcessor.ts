@@ -75,7 +75,6 @@ export const processCommand = (input: string) => {
     try {
       if (inputCmdArray[secondWordIdx] in NavigationKeyword) {
         // Yes, this is meant to be splice(secondWordIdx)
-        console.log("it canme here");
         //const remaining = inputCmdArray.splice(secondWordIdx)[0];
         const prefixNotCamel = inputCmdArray
           .slice(0, beyondSecondWordIdx)
