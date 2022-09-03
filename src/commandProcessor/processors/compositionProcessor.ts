@@ -19,9 +19,20 @@ interface Command {
  * @param command The command string to search for the code snippet to be performed by VSCode
  */
 const findSnippet = (command: string) => {
-  return commands.filter(({ cmd }: Command) => {
-    return cmd === wordsToNumbers(command);
-  })[0].snippet;
+  // Preprocessing for 'add element button <name>' command
+  let name = "$1";
+  if (command.includes("button") && command.split(" ").length > 3) {
+    name = command.split(" ").pop() ?? "$1";
+    command = command.split(" ").slice(0, 3).join(" ");
+  }
+
+  const snippet = commands
+    .filter(({ cmd }: Command) => {
+      return cmd === wordsToNumbers(command);
+    })[0]
+    .snippet.replace("$1", name);
+
+  return snippet;
 };
 
 /**
@@ -86,7 +97,9 @@ export const processAdd = (inputCmd: string) => {
       ? insertSnippet(findSnippet(inputCmd))
       : keyword in CompositionListKeyword // commands requiring comma-separated list of user-given inputs
       ? insertSnippet(insertList(command, insertCode))
-      : insertSnippet(findSnippet(command).replace("$1", parseSymbols(insertCode))); // commands requiring user specified code with system defined
+      : insertSnippet(
+          findSnippet(command).replace(new RegExp("\\$1", "g"), parseSymbols(insertCode))
+        ); // commands requiring user specified code with system defined
   } catch (error) {
     console.log(error);
     throw new InvalidCommandException("Error processing composition command");

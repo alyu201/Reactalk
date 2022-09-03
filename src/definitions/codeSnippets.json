@@ -52,6 +52,10 @@
     "snippet": "<img src='$1'/>\n"
   },
   {
+    "cmd": "add element button",
+    "snippet": "<button onClick={() => {}}>$1</button>\n"
+  },
+  {
     "cmd": "add if",
     "snippet": "if ($1) {\n\t$2\n}\n"
   },
@@ -122,5 +126,17 @@
   {
     "cmd": "add use effect",
     "snippet": "React.useEffect(() => {\n\t$1\n}, [$2]);\n"
+  },
+  {
+    "cmd": "add arrow function",
+    "snippet": "($1) => {$2}"
+  },
+  {
+    "cmd": "add component",
+    "snippet": "export default function $1({$2}) {\n\t$3\n\treturn (\n\t\t$4\n\t)\n}\n"
+  },
+  {
+    "cmd": "add javascript expression",
+    "snippet": "{{$1}}"
   }
 ]

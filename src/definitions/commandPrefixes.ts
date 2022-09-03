@@ -7,6 +7,7 @@ export enum EditingPrefixes {
   delete = "delete",
   copy = "copy",
   paste = "paste",
+  import = "import",
 }
 
 export enum NavigationPrefixes {
@@ -46,6 +47,8 @@ export enum CompositionKeyword {
   keyword = "keyword",
   try = "try",
   use = "use",
+  arrow = "arrow",
+  javascript = "javascript",
 }
 
 export enum CompositionTextKeyword {
