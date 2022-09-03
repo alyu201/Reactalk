@@ -10,9 +10,11 @@ export enum STATUS {
 export class Status {
   private static instance: Status;
   private status: STATUS;
+  private command: string;
 
   constructor() {
     this.status = STATUS.STOP;
+    this.command = "";
   }
 
   public static getStatusInstance(): Status {
@@ -31,5 +33,15 @@ export class Status {
     this.status = newStatus;
     await vscode.commands.executeCommand("reactalk.refreshStatus");
     return this.status;
+  }
+
+  public getCommand() {
+    return this.command;
+  }
+
+  public async updateCommand(command: string) {
+    this.command = command;
+    await vscode.commands.executeCommand("reactalk.refreshStatus");
+    return this.command;
   }
 }

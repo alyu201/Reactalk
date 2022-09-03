@@ -22,9 +22,17 @@ export class CommandProvider implements vscode.TreeDataProvider<InputCommand> {
       ({ type, command }) =>
         new InputCommand(command, type, STATUS.NONE, vscode.TreeItemCollapsibleState.None)
     );
-    const status = Status.getStatusInstance().getStatus();
+    const clientStatus = Status.getStatusInstance();
+    const status = clientStatus.getStatus();
     const children = [
       new InputCommand(`Status: ${status}`, "", status, vscode.TreeItemCollapsibleState.None),
+      new InputCommand(
+        `Command: ${clientStatus.getCommand()}`,
+        "",
+        STATUS.NONE,
+        vscode.TreeItemCollapsibleState.None
+      ),
+      new InputCommand("", "", STATUS.NONE, vscode.TreeItemCollapsibleState.None),
       ...cmds,
     ];
 
