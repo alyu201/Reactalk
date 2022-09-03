@@ -53,11 +53,16 @@ export enum CompositionKeyword {
 export enum CompositionTextKeyword {
   text = "text",
   comment = "comment",
+  keyword = "keyword",
 }
 
 export enum CompositionSymbolKeyword {
   symbol = "symbol",
   condition = "condition",
+}
+
+export enum CompositionListKeyword {
+  array = "array",
 }
 
 export enum EditingKeyword {
