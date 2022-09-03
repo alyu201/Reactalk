@@ -19,7 +19,7 @@ export enum SystemPrefixes {
   new = "new",
   duplicate = "duplicate",
   remove = "remove",
-  rename = "rename",
+  retitle = "retitle",
   open = "open",
   close = "close",
   move = "move",
@@ -34,6 +34,7 @@ export enum SystemPrefixes {
   install = "install",
   build = "build",
   browse = "browse",
+  pause = "pause",
 }
 
 export enum CompositionKeyword {
@@ -50,11 +51,16 @@ export enum CompositionKeyword {
 export enum CompositionTextKeyword {
   text = "text",
   comment = "comment",
+  keyword = "keyword",
 }
 
 export enum CompositionSymbolKeyword {
   symbol = "symbol",
   condition = "condition",
+}
+
+export enum CompositionListKeyword {
+  array = "array",
 }
 
 export enum EditingKeyword {
@@ -100,4 +106,9 @@ export enum ElementTags {
   ordered = "ol",
   anchor = "a",
   image = "img",
+}
+
+export enum ListeningCommands {
+  startListening = "start listening",
+  stopListening = "stop listening",
 }

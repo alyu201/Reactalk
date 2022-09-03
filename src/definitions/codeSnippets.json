@@ -106,5 +106,13 @@
   {
     "cmd": "add try catch",
     "snippet": "try {\n\t$1\n} catch(error) {\n\t$2\n}\n"
+  },
+  {
+    "cmd": "add array",
+    "snippet": "[$1]"
+  },
+  {
+    "cmd": "add string",
+    "snippet": "'$1'"
   }
 ]
