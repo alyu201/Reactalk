@@ -15,14 +15,14 @@ export enum EditingPrefixes {
 export enum NavigationPrefixes {
   go = "go",
   focus = "focus",
-  enter = "enter",
 }
 
 export enum SystemPrefixes {
   save = "save",
   new = "new",
   duplicate = "duplicate",
-  delete = "delete",
+  remove = "remove",
+  retitle = "retitle",
   open = "open",
   close = "close",
   move = "move",
@@ -33,9 +33,11 @@ export enum SystemPrefixes {
   click = "click",
   start = "start",
   stop = "stop",
-  createApp = "create app",
+  create = "create",
   install = "install",
   build = "build",
+  browse = "browse",
+  pause = "pause",
 }
 
 export enum CompositionKeyword {
@@ -52,11 +54,16 @@ export enum CompositionKeyword {
 export enum CompositionTextKeyword {
   text = "text",
   comment = "comment",
+  keyword = "keyword",
 }
 
 export enum CompositionSymbolKeyword {
   symbol = "symbol",
   condition = "condition",
+}
+
+export enum CompositionListKeyword {
+  array = "array",
 }
 
 export enum EditingKeyword {
@@ -73,10 +80,14 @@ export enum NavigationKeyword {
   line = "line",
   function = "function",
   element = "element",
+  definition = "definition",
+  file = "file",
 }
 
 export enum SystemKeyword {
   file = "file",
+  history = "history",
+  files = "files",
 }
 
 export enum EditingValue {
@@ -97,4 +108,9 @@ export enum ElementTags {
   ordered = "ol",
   anchor = "a",
   image = "img",
+}
+
+export enum ListeningCommands {
+  startListening = "start listening",
+  stopListening = "stop listening",
 }

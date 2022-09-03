@@ -1,9 +1,9 @@
-import * as vscode from "vscode";
+import { STATUS } from "../../../../definitions/status";
 
 export const execute = (sysCmdValue: string) => {
   console.log("sysCmdValue: " + sysCmdValue);
 
   if (sysCmdValue == "") {
-    vscode.commands.executeCommand("workbench.action.files.newUntitledFile");
+    ReactalkStatus = STATUS.PAUSE;
   }
 };
