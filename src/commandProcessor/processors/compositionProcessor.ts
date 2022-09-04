@@ -1,4 +1,5 @@
 import {
+  CompositionCamelKeyword,
   CompositionKeyword,
   CompositionListKeyword,
   CompositionSymbolKeyword,
@@ -7,7 +8,7 @@ import {
 import { InvalidCommandException } from "../invalidCommandException";
 import * as commands from "../../definitions/codeSnippets.json";
 import * as vscode from "vscode";
-import { parseSymbols } from "../utility";
+import { camelize, parseSymbols } from "../utility";
 import wordsToNumbers from "words-to-numbers";
 
 interface Command {
@@ -97,6 +98,10 @@ export const processAdd = (inputCmd: string) => {
       ? insertSnippet(findSnippet(inputCmd))
       : keyword in CompositionListKeyword // commands requiring comma-separated list of user-given inputs
       ? insertSnippet(insertList(command, insertCode))
+      : keyword in CompositionCamelKeyword // commands requiring camel case
+      ? insertSnippet(
+          findSnippet(command).replace(new RegExp("\\$1", "g"), camelize(insertCode))
+        ) // commands requiring user specified code with system defined
       : insertSnippet(
           findSnippet(command).replace(new RegExp("\\$1", "g"), parseSymbols(insertCode))
         ); // commands requiring user specified code with system defined

@@ -1,5 +1,6 @@
 export enum CompositionPrefixes {
   add = "add",
+  use = "use",
 }
 
 export enum EditingPrefixes {
@@ -65,6 +66,13 @@ export enum CompositionSymbolKeyword {
 
 export enum CompositionListKeyword {
   array = "array",
+}
+
+export enum CompositionCamelKeyword {
+  constant = "constant",
+  function = "function",
+  switch = "switch",
+  component = "component",
 }
 
 export enum EditingKeyword {

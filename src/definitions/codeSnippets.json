@@ -138,5 +138,9 @@
   {
     "cmd": "add javascript expression",
     "snippet": "{{$1}}"
+  },
+  {
+    "cmd": "use function",
+    "snippet": "$1($2)"
   }
 ]
