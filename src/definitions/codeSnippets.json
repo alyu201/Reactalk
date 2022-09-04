@@ -125,7 +125,7 @@
   },
   {
     "cmd": "add use effect",
-    "snippet": "React.useEffect(() => {\n\t$1\n}, [$2]);\n"
+    "snippet": "React.useEffect(() => {\n\t$2\n}, [$1]);\n"
   },
   {
     "cmd": "add arrow function",
