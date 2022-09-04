@@ -142,5 +142,13 @@
   {
     "cmd": "use function",
     "snippet": "$1($2)"
+  },
+  {
+    "cmd": "use component",
+    "snippet": "<$1>$2</$1>"
+  },
+  {
+    "cmd": "use constant",
+    "snippet": "$1"
   }
 ]
