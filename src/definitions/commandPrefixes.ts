@@ -8,8 +8,7 @@ export enum EditingPrefixes {
   copy = "copy",
   paste = "paste",
   import = "import",
-  deleteLeft = "delete left",
-  deleteRight = "delete right",
+  backspace = "backspace",
 }
 
 export enum NavigationPrefixes {
