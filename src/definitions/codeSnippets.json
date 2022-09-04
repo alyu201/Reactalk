@@ -137,7 +137,7 @@
   },
   {
     "cmd": "add javascript expression",
-    "snippet": "{{$1}}"
+    "snippet": "{$1}"
   },
   {
     "cmd": "use function",
