@@ -61,6 +61,7 @@ export const processCommand = (input: string) => {
     console.log("This is a navigation command");
 
     const secondWordIdx = 1;
+    const beyondSecondWordIdx = 2;
     const thirdWordIdx = 2;
     const beyondThirdWordIdx = 3;
     const fifthWordIdx = 4;
@@ -74,19 +75,20 @@ export const processCommand = (input: string) => {
     try {
       if (inputCmdArray[secondWordIdx] in NavigationKeyword) {
         // Yes, this is meant to be splice(secondWordIdx)
-        const remaining = inputCmdArray.splice(secondWordIdx)[0];
-        processNavigation(prefix, remaining);
-      } else if (inputCmdArray[thirdWordIdx] in NavigationKeyword) {
+        //const remaining = inputCmdArray.splice(secondWordIdx)[0];
         const prefixNotCamel = inputCmdArray
-          .slice(0, beyondThirdWordIdx)
+          .slice(0, beyondSecondWordIdx)
           .join(" ");
+        const prefixCamel = camelize(prefixNotCamel);
+        const remaining = inputCmdArray.slice(beyondSecondWordIdx).join(" ");
+        processNavigation(prefixCamel, remaining);
+      } else if (inputCmdArray[thirdWordIdx] in NavigationKeyword) {
+        const prefixNotCamel = inputCmdArray.slice(0, beyondThirdWordIdx).join(" ");
         const prefixCamel = camelize(prefixNotCamel);
         const remaining = inputCmdArray.slice(beyondThirdWordIdx).join(" ");
         processNavigation(prefixCamel, remaining);
       } else if (inputCmdArray[fifthWordIdx] in NavigationKeyword) {
-        const prefixNotCamel = inputCmdArray
-          .slice(0, beyondFifthWordIdx)
-          .join(" ");
+        const prefixNotCamel = inputCmdArray.slice(0, beyondFifthWordIdx).join(" ");
         const prefixCamel = camelize(prefixNotCamel);
         const remaining = inputCmdArray.slice(beyondFifthWordIdx).join(" ");
         processNavigation(prefixCamel, remaining);
