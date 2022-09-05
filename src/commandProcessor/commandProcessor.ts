@@ -77,16 +77,12 @@ export const processCommand = (input: string) => {
         const remaining = inputCmdArray.splice(secondWordIdx)[0];
         processNavigation(prefix, remaining);
       } else if (inputCmdArray[thirdWordIdx] in NavigationKeyword) {
-        const prefixNotCamel = inputCmdArray
-          .slice(0, beyondThirdWordIdx)
-          .join(" ");
+        const prefixNotCamel = inputCmdArray.slice(0, beyondThirdWordIdx).join(" ");
         const prefixCamel = camelize(prefixNotCamel);
         const remaining = inputCmdArray.slice(beyondThirdWordIdx).join(" ");
         processNavigation(prefixCamel, remaining);
       } else if (inputCmdArray[fifthWordIdx] in NavigationKeyword) {
-        const prefixNotCamel = inputCmdArray
-          .slice(0, beyondFifthWordIdx)
-          .join(" ");
+        const prefixNotCamel = inputCmdArray.slice(0, beyondFifthWordIdx).join(" ");
         const prefixCamel = camelize(prefixNotCamel);
         const remaining = inputCmdArray.slice(beyondFifthWordIdx).join(" ");
         processNavigation(prefixCamel, remaining);
