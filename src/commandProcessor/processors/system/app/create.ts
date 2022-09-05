@@ -5,6 +5,12 @@ export const execute = (sysCmdValue: string) => {
   const terminal = vscode.window.activeTerminal;
 
   if (terminal != undefined) {
-    terminal.sendText(`npx create-react-app@latest ${sysCmdValue}`);
+    terminal.sendText(
+      `npx create-react-app@latest ${sysCmdValue}\rcd ${sysCmdValue}`
+    );
+
+    vscode.window.showInformationMessage(
+      "Terminal creating app now... After that you will be in the app folder."
+    );
   }
 };

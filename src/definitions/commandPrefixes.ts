@@ -35,6 +35,8 @@ export enum SystemPrefixes {
   build = "build",
   browse = "browse",
   pause = "pause",
+  toggle = "toggle",
+  editor = "editor",
 }
 
 export enum CompositionKeyword {
@@ -110,4 +112,22 @@ export enum ElementTags {
 export enum ListeningCommands {
   startListening = "start listening",
   stopListening = "stop listening",
+}
+
+export enum SystemFileTypeKeywords {
+  javascript = "javascript",
+  python = "python",
+  html = "html",
+  css = "css",
+  typescript = "typescript",
+  text = "text",
+}
+
+export enum SystemFileTypes {
+  javascript = ".js",
+  python = ".py",
+  html = ".html",
+  css = ".css",
+  typescript = ".ts",
+  text = ".txt",
 }
