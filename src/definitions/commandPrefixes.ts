@@ -1,5 +1,6 @@
 export enum CompositionPrefixes {
   add = "add",
+  use = "use",
 }
 
 export enum EditingPrefixes {
@@ -7,11 +8,15 @@ export enum EditingPrefixes {
   delete = "delete",
   copy = "copy",
   paste = "paste",
+  import = "import",
+  backspace = "backspace",
+  skip = "skip",
 }
 
 export enum NavigationPrefixes {
   go = "go",
   focus = "focus",
+  select = "select",
 }
 
 export enum SystemPrefixes {
@@ -48,6 +53,9 @@ export enum CompositionKeyword {
   new = "new",
   keyword = "keyword",
   try = "try",
+  use = "use",
+  arrow = "arrow",
+  javascript = "javascript",
 }
 
 export enum CompositionTextKeyword {
@@ -63,6 +71,13 @@ export enum CompositionSymbolKeyword {
 
 export enum CompositionListKeyword {
   array = "array",
+}
+
+export enum CompositionCamelKeyword {
+  constant = "constant",
+  function = "function",
+  switch = "switch",
+  component = "component",
 }
 
 export enum EditingKeyword {
@@ -81,6 +96,7 @@ export enum NavigationKeyword {
   element = "element",
   definition = "definition",
   file = "file",
+  editor = "editor",
 }
 
 export enum SystemKeyword {

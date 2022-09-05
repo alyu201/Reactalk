@@ -4,7 +4,7 @@ import {
   SystemFileTypes,
 } from "../../../../definitions/commandPrefixes";
 
-export const execute = (sysCmdValue: string) => {
+export const execute = async (sysCmdValue: string) => {
   console.log("sysCmdValue: " + sysCmdValue);
 
   const textEditor = vscode.window.activeTextEditor;
@@ -50,7 +50,7 @@ async function createNewFileWithFileType(
 
   const uri = vscode.Uri.file(dirPath + "/Untitled" + filetype);
 
-  await vscode.workspace.fs.writeFile(uri, new TextEncoder().encode(""));
+  await vscode.workspace.fs.writeFile(uri, new TextEncoder().encode("import React from 'react';"));
   vscode.window.showTextDocument(uri, { preview: false });
 }
 
@@ -59,6 +59,6 @@ async function createNewFileWithName(dirPath: string, sysCmdValue: string) {
 
   const uri = vscode.Uri.file(dirPath + "/" + sysCmdValue);
 
-  await vscode.workspace.fs.writeFile(uri, new TextEncoder().encode(""));
+  await vscode.workspace.fs.writeFile(uri, new TextEncoder().encode("import React from 'react';"));
   vscode.window.showTextDocument(uri, { preview: false });
 }
