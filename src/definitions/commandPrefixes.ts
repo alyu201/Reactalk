@@ -15,6 +15,7 @@ export enum EditingPrefixes {
 export enum NavigationPrefixes {
   go = "go",
   focus = "focus",
+  select = "select",
 }
 
 export enum SystemPrefixes {
@@ -84,6 +85,7 @@ export enum NavigationKeyword {
   element = "element",
   definition = "definition",
   file = "file",
+  editor = "editor",
 }
 
 export enum SystemKeyword {
