@@ -98,6 +98,7 @@ const speechCallback = (stream: any) => {
         ? `Transcription: ${transcript}\n`
         : "\n\nReached transcription time limit, press Ctrl+C\n"
     );
+    Status.getStatusInstance().updateCommand(transcript);
 
     if (reactalkStatus === STATUS.STOP) {
       vscode.window.showInformationMessage("Thanks for using Reactalk!");
