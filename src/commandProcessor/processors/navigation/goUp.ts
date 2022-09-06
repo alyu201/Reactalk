@@ -6,6 +6,8 @@ import wordsToNumbers from "words-to-numbers";
 export const execute = (value: string) => {
   const editor = vscode.window.activeTextEditor;
 
+  console.log("value: " + value);
+
   if (editor) {
     // Yes the value will be "by <num>", so we need to remove the "by "
     // It is prefered to have the by in the value rather than in the filename "goUpBy.js" as "by" is not really a keyword.
