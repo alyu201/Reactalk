@@ -12,6 +12,10 @@ export const processSystem = (
   sysCmdCategory?: string,
   sysCmdValue?: string
 ) => {
+  console.log("prefix: " + prefix);
+  console.log("sysCmdCategory: " + sysCmdCategory);
+  console.log("sysCmdValue: " + sysCmdValue);
+
   switch (prefix) {
     case SystemPrefixes.undo:
       vscode.commands.executeCommand("undo");
@@ -20,7 +24,12 @@ export const processSystem = (
       vscode.commands.executeCommand("redo");
       break;
     case SystemPrefixes.save:
-      vscode.commands.executeCommand("workbench.action.files.save");
+      if (sysCmdCategory === "") {
+        vscode.commands.executeCommand("workbench.action.files.save");
+      } else {
+        const sysMod = require(`./system/${sysCmdCategory}/${prefix}`);
+        sysMod.execute(sysCmdValue);
+      }
       break;
     default:
       try {

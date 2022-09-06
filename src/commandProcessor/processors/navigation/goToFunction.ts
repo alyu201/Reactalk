@@ -9,8 +9,14 @@ export const execute = (value: string) => {
     console.log("go to function: " + value);
     const functionName = value.replace(" ", "");
 
-    const prefix = `@${functionName}`;
-    vscode.commands.executeCommand("workbench.action.quickOpen", prefix);
+    const prefix = `@${functionName}\r`;
+    vscode.commands
+      .executeCommand("workbench.action.quickOpen", prefix)
+      .then(() => {
+        vscode.commands.executeCommand(
+          "workbench.action.acceptSelectedQuickOpenItem"
+        );
+      });
   } else {
     throw new InvalidCommandException("Error processing navigation command");
   }

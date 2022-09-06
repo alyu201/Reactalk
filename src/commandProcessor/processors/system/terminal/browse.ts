@@ -10,6 +10,6 @@ export const execute = (sysCmdValue: string) => {
       );
       break;
     default:
-      throw new InvalidCommandException("Error processing navigation command");
+      throw new InvalidCommandException("Error processing system command");
   }
 };
