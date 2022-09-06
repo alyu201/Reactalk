@@ -41,7 +41,6 @@ let lastTranscriptWasFinal = false;
 let timeout: any = null;
 
 const statusConfigurator = Status.getStatusInstance();
-const reactalkStatus = statusConfigurator.getStatus();
 
 // This will disable the remove file warning AND any files deleted will go to the computer's trash.
 async function disableRemoveFileWarning() {
@@ -52,9 +51,13 @@ async function disableRemoveFileWarning() {
    * So, in our case, if "files.enableTrash" wasn't there, it will make its own "files.enableTrash".
    */
 
-  await vscode.workspace.getConfiguration().update("files.enableTrash", true, true);
+  await vscode.workspace
+    .getConfiguration()
+    .update("files.enableTrash", true, true);
 
-  await vscode.workspace.getConfiguration().update("explorer.confirmDelete", false, true);
+  await vscode.workspace
+    .getConfiguration()
+    .update("explorer.confirmDelete", false, true);
 }
 
 function startStream() {
@@ -98,7 +101,11 @@ const speechCallback = (stream: any) => {
         ? `Transcription: ${transcript}\n`
         : "\n\nReached transcription time limit, press Ctrl+C\n"
     );
+
+    // This will update the transcript in Reactalk's side bar
     Status.getStatusInstance().updateCommand(transcript);
+
+    const reactalkStatus = statusConfigurator.getStatus();
 
     if (reactalkStatus === STATUS.STOP) {
       vscode.window.showInformationMessage("Thanks for using Reactalk!");
@@ -211,5 +218,6 @@ export function startListening() {
 
   // Initialise ReactalkStatus to LISTEN
   statusConfigurator.updateStatus(STATUS.LISTEN);
+
   startStream();
 }
