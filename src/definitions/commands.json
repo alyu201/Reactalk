@@ -13,19 +13,19 @@
   },
   {
     "type": "composition",
+    "command": "Add keyword <name>"
+  },
+  {
+    "type": "composition",
     "command": "Add function <name>"
   },
   {
     "type": "composition",
-    "command": "Add comment <text>"
+    "command": "Add arrow function"
   },
   {
     "type": "composition",
     "command": "Add for loop"
-  },
-  {
-    "type": "composition",
-    "command": "Add condition <condition>"
   },
   {
     "type": "composition",
@@ -49,19 +49,43 @@
   },
   {
     "type": "composition",
+    "command": "Add case <value>"
+  },
+  {
+    "type": "composition",
     "command": "Add try catch"
   },
+  {
+    "type": "composition",
+    "command": "Add conditional <condition>"
+  },
+
+
   {
     "type": "composition",
     "command": "Add element <name>"
   },
   {
     "type": "composition",
-    "command": "Add symbol <name>"
+    "command": "Add component <name>"
   },
   {
     "type": "composition",
-    "command": "Add indent"
+    "command": "Add javascript expression"
+  },
+  {
+    "type": "composition",
+    "command": "Add use state"
+  },
+  {
+    "type": "composition",
+    "command": "Add use effect"
+  },
+
+
+  {
+    "type": "composition",
+    "command": "Add tab"
   },
   {
     "type": "composition",
@@ -69,7 +93,53 @@
   },
   {
     "type": "composition",
+    "command": "Add space"
+  },
+  {
+    "type": "composition",
+    "command": "Add symbol <name>"
+  },
+  {
+    "type": "composition",
+    "command": "Add comment <text>"
+  },
+
+
+  {
+    "type": "composition",
+    "command": "Use constant <name>"
+  },
+  {
+    "type": "composition",
+    "command": "Use function <name>"
+  },
+  {
+    "type": "composition",
+    "command": "Use component <name>"
+  },
+
+
+  {
+    "type": "composition",
     "command": "Add text <text>"
+  },
+  {
+    "type": "composition",
+    "command": "Add condition <condition>"
+  },
+  {
+    "type": "composition",
+    "command": "Add string <text>"
+  },
+  {
+    "type": "composition",
+    "command": "Add array <items>"
+  },
+
+
+  {
+    "type": "",
+    "command": ""
   },
   {
     "type": "editing",
@@ -97,6 +167,10 @@
   },
   {
     "type": "editing",
+    "command": "Copy"
+  },
+  {
+    "type": "editing",
     "command": "Copy constant <name>"
   },
   {
@@ -119,6 +193,18 @@
     "type": "editing",
     "command": "Paste"
   },
+
+
+  {
+    "type": "editing",
+    "command": "Select from here to line <num>"
+  },
+  {
+    "type": "editing",
+    "command": "Select line <num>"
+  },
+
+
   {
     "type": "editing",
     "command": "Rename constant <name> to <newName>"
@@ -139,25 +225,49 @@
     "type": "editing",
     "command": "Rename element <name> to <newName>"
   },
+
+
   {
-    "type": "navigation",
-    "command": "Go up"
+    "type": "",
+    "command": ""
   },
   {
     "type": "navigation",
-    "command": "Go down"
+    "command": "Focus up"
   },
   {
     "type": "navigation",
-    "command": "Go right"
+    "command": "Focus down"
   },
   {
     "type": "navigation",
-    "command": "Go left"
+    "command": "Toggle terminal"
   },
   {
     "type": "navigation",
-    "command": "Focus <name>"
+    "command": "Next editor"
+  },
+  {
+    "type": "navigation",
+    "command": "Previous editor"
+  },
+
+
+  {
+    "type": "navigation",
+    "command": "Go up by <num>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go down by <num>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go right by <num>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go left by <num>"
   },
   {
     "type": "navigation",
@@ -227,6 +337,12 @@
     "type": "navigation",
     "command": "Go to end of definition <name>"
   },
+
+
+  {
+    "type": "",
+    "command": ""
+  },
   {
     "type": "system",
     "command": "Save file"
@@ -237,7 +353,15 @@
   },
   {
     "type": "system",
-    "command": "New file <name>"
+    "command": "New file"
+  },
+  {
+    "type": "system",
+    "command": "New file <filetype>"
+  },
+  {
+    "type": "system",
+    "command": "New file <filename>.<filetype>"
   },
   {
     "type": "system",
@@ -249,7 +373,7 @@
   },
   {
     "type": "system",
-    "command": "Rename file <name> to <newName>"
+    "command": "Retitle file <newName>"
   },
   {
     "type": "system",
