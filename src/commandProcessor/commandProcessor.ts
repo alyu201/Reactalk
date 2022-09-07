@@ -67,28 +67,31 @@ export const processCommand = (input: string) => {
     const fifthWordIdx = 4;
     const beyondFifthWordIdx = 5;
 
-    // This is for the 'enter' command
-    if (inputCmdArray.length === 1) {
-      processNavigation(prefix, "");
-    }
-
     try {
       if (inputCmdArray[secondWordIdx] in NavigationKeyword) {
-        // Yes, this is meant to be splice(secondWordIdx)
-        //const remaining = inputCmdArray.splice(secondWordIdx)[0];
-        const prefixNotCamel = inputCmdArray
-          .slice(0, beyondSecondWordIdx)
-          .join(" ");
-        const prefixCamel = camelize(prefixNotCamel);
-        const remaining = inputCmdArray.slice(beyondSecondWordIdx).join(" ");
-        processNavigation(prefixCamel, remaining);
+        if (inputCmdArray.length === 2) {
+          // Yes, this is meant to be splice(secondWordIdx)
+          const remaining = inputCmdArray.splice(secondWordIdx)[0];
+          processNavigation(prefix, remaining);
+        } else {
+          const prefixNotCamel = inputCmdArray
+            .slice(0, beyondSecondWordIdx)
+            .join(" ");
+          const prefixCamel = camelize(prefixNotCamel);
+          const remaining = inputCmdArray.slice(beyondSecondWordIdx).join(" ");
+          processNavigation(prefixCamel, remaining);
+        }
       } else if (inputCmdArray[thirdWordIdx] in NavigationKeyword) {
-        const prefixNotCamel = inputCmdArray.slice(0, beyondThirdWordIdx).join(" ");
+        const prefixNotCamel = inputCmdArray
+          .slice(0, beyondThirdWordIdx)
+          .join(" ");
         const prefixCamel = camelize(prefixNotCamel);
         const remaining = inputCmdArray.slice(beyondThirdWordIdx).join(" ");
         processNavigation(prefixCamel, remaining);
       } else if (inputCmdArray[fifthWordIdx] in NavigationKeyword) {
-        const prefixNotCamel = inputCmdArray.slice(0, beyondFifthWordIdx).join(" ");
+        const prefixNotCamel = inputCmdArray
+          .slice(0, beyondFifthWordIdx)
+          .join(" ");
         const prefixCamel = camelize(prefixNotCamel);
         const remaining = inputCmdArray.slice(beyondFifthWordIdx).join(" ");
         processNavigation(prefixCamel, remaining);
