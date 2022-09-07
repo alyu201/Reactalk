@@ -2,13 +2,14 @@ import {
   CompositionCamelKeyword,
   CompositionKeyword,
   CompositionListKeyword,
+  CompositionPascalKeyword,
   CompositionSymbolKeyword,
   CompositionTextKeyword,
 } from "./../../definitions/commandPrefixes";
 import { InvalidCommandException } from "../invalidCommandException";
 import * as commands from "../../definitions/codeSnippets.json";
 import * as vscode from "vscode";
-import { camelize, parseSymbols } from "../utility";
+import { camelize, parseSymbols, pascalize } from "../utility";
 import wordsToNumbers from "words-to-numbers";
 
 interface Command {
@@ -102,6 +103,10 @@ export const processAdd = (inputCmd: string) => {
       ? insertSnippet(
           findSnippet(command).replace(new RegExp("\\$1", "g"), camelize(insertCode))
         ) // commands requiring user specified code with system defined
+      : keyword in CompositionPascalKeyword // commands requiring pascal case
+      ? insertSnippet(
+        findSnippet(command).replace(new RegExp("\\$1", "g"), pascalize(insertCode))
+      ) // commands requiring user specified code with system defined
       : insertSnippet(
           findSnippet(command).replace(new RegExp("\\$1", "g"), parseSymbols(insertCode))
         ); // commands requiring user specified code with system defined

@@ -77,6 +77,9 @@ export enum CompositionCamelKeyword {
   constant = "constant",
   function = "function",
   switch = "switch",
+}
+
+export enum CompositionPascalKeyword {
   component = "component",
 }
 
