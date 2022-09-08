@@ -4,6 +4,7 @@ import * as vscode from "vscode";
 import { startListening } from "./inputProcessor/speechRecognition";
 import { processCommand } from "./commandProcessor/commandProcessor";
 import { CommandProvider } from "./commandProcessor/commandProvider";
+import { SymbolsProvider } from './commandProcessor/symbolsProvider';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -50,7 +51,9 @@ export function activate(context: vscode.ExtensionContext) {
 
   // Register asnd create the tree view
   const commandProvider = new CommandProvider();
+  const symbolProvider = new SymbolsProvider();
   vscode.window.registerTreeDataProvider("reactalk-commands", commandProvider);
+  vscode.window.registerTreeDataProvider("reactalk-symbols", symbolProvider);
   vscode.commands.registerCommand("reactalk.refreshStatus", () => commandProvider.refresh());
 }
 

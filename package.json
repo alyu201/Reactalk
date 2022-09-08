@@ -59,6 +59,10 @@
         {
           "id": "reactalk-commands",
           "name": "Commands"
+        },
+        {
+          "id": "reactalk-symbols",
+          "name": "Symbols"
         }
       ]
     },
