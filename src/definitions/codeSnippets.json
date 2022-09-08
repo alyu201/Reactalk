@@ -125,7 +125,7 @@
   },
   {
     "cmd": "add use state",
-    "snippet": "const [$1, $2] = React.useState($3);\n"
+    "snippet": "const [$1, set${1/(.)/${1:/upcase}/}] = React.useState($3);\n"
   },
   {
     "cmd": "add use effect",
