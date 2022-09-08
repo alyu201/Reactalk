@@ -1,4 +1,4 @@
-import { symbolsList } from '../definitions/symbols';
+import { symbolsList } from '../../definitions/symbols';
 import * as vscode from "vscode";
 
 export class SymbolsProvider implements vscode.TreeDataProvider<SymbolItem> {

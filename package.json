@@ -57,6 +57,10 @@
     "views": {
       "reactalk": [
         {
+          "id": "reactalk-controls",
+          "name": "Controls"
+        },
+        {
           "id": "reactalk-commands",
           "name": "Commands"
         },
@@ -70,7 +74,7 @@
       "view/title": [
         {
           "command": "reactalk.startListening",
-          "when": "view == reactalk-commands",
+          "when": "view == reactalk-controls",
           "group": "navigation"
         }
       ]

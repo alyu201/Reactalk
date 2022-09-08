@@ -3,8 +3,9 @@
 import * as vscode from "vscode";
 import { startListening } from "./inputProcessor/speechRecognition";
 import { processCommand } from "./commandProcessor/commandProcessor";
-import { CommandProvider } from "./commandProcessor/commandProvider";
-import { SymbolsProvider } from './commandProcessor/symbolsProvider';
+import { CommandProvider } from "./commandProcessor/providers/commandProvider";
+import { SymbolsProvider } from './commandProcessor/providers/symbolsProvider';
+import { ControlProvider } from './commandProcessor/providers/controlProvider';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -50,12 +51,14 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(commandProcess);
 
   // Register asnd create the tree view
+  const controlProvider = new ControlProvider();
   const commandProvider = new CommandProvider();
   const symbolProvider = new SymbolsProvider();
+  vscode.window.registerTreeDataProvider("reactalk-controls", controlProvider);
   vscode.window.registerTreeDataProvider("reactalk-commands", commandProvider);
   vscode.window.registerTreeDataProvider("reactalk-symbols", symbolProvider);
-  vscode.commands.registerCommand("reactalk.refreshStatus", () => commandProvider.refresh());
+  vscode.commands.registerCommand("reactalk.refreshStatus", () => controlProvider.refresh());
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }

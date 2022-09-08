@@ -59,8 +59,6 @@
     "type": "composition",
     "command": "Add conditional <condition>"
   },
-
-
   {
     "type": "composition",
     "command": "Add element <name>"
@@ -81,8 +79,6 @@
     "type": "composition",
     "command": "Add use effect"
   },
-
-
   {
     "type": "composition",
     "command": "Add tab"
@@ -103,8 +99,6 @@
     "type": "composition",
     "command": "Add comment <text>"
   },
-
-
   {
     "type": "composition",
     "command": "Use constant <name>"
@@ -117,8 +111,6 @@
     "type": "composition",
     "command": "Use component <name>"
   },
-
-
   {
     "type": "composition",
     "command": "Add text <text>"
@@ -135,8 +127,6 @@
     "type": "composition",
     "command": "Add array <items>"
   },
-
-
   {
     "type": "",
     "command": ""
@@ -193,18 +183,6 @@
     "type": "editing",
     "command": "Paste"
   },
-
-
-  {
-    "type": "editing",
-    "command": "Select from here to line <num>"
-  },
-  {
-    "type": "editing",
-    "command": "Select line <num>"
-  },
-
-
   {
     "type": "editing",
     "command": "Rename constant <name> to <newName>"
@@ -225,8 +203,6 @@
     "type": "editing",
     "command": "Rename element <name> to <newName>"
   },
-
-
   {
     "type": "",
     "command": ""
@@ -251,8 +227,14 @@
     "type": "navigation",
     "command": "Previous editor"
   },
-
-
+  {
+    "type": "navigation",
+    "command": "Select from here to line <num>"
+  },
+  {
+    "type": "navigation",
+    "command": "Select line <num>"
+  },
   {
     "type": "navigation",
     "command": "Go up by <num>"
@@ -337,8 +319,6 @@
     "type": "navigation",
     "command": "Go to end of definition <name>"
   },
-
-
   {
     "type": "",
     "command": ""
