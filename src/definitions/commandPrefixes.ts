@@ -10,7 +10,7 @@ export enum EditingPrefixes {
   paste = "paste",
   import = "import",
   backspace = "backspace",
-  skip = "skip",
+  confirm = "confirm",
 }
 
 export enum NavigationPrefixes {
