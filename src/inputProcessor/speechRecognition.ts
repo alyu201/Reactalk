@@ -109,8 +109,19 @@ const speechCallback = (stream: any) => {
 
     if (reactalkStatus === STATUS.STOP) {
       vscode.window.showInformationMessage("Thanks for using Reactalk!");
+
       clearTimeout(timeout);
-      stream.destroy();
+
+      recognizeStream.end();
+      recognizeStream.removeListener("data", speechCallback);
+      recognizeStream = null;
+
+      if (resultEndTime > 0) {
+        finalRequestEndTime = isFinalEndTime;
+      }
+      resultEndTime = 0;
+
+      lastAudioInput = [];
     }
 
     console.log("\n");
