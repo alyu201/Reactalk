@@ -121,39 +121,39 @@ const speechCallback = (stream: any) => {
 
 const audioInputStreamTransform = new Writable({
   write(chunk: any, encoding: any, next: any) {
-    if (statusConfigurator.getStatus() !== STATUS.STOP) {
-      if (newStream && lastAudioInput.length !== 0) {
-        // Approximate math to calculate time of chunks
-        const chunkTime = streamingLimit / lastAudioInput.length;
-        if (chunkTime !== 0) {
-          if (bridgingOffset < 0) {
-            bridgingOffset = 0;
-          }
-          if (bridgingOffset > finalRequestEndTime) {
-            bridgingOffset = finalRequestEndTime;
-          }
-          const chunksFromMS = Math.floor(
-            (finalRequestEndTime - bridgingOffset) / chunkTime
-          );
-          bridgingOffset = Math.floor(
-            (lastAudioInput.length - chunksFromMS) * chunkTime
-          );
+    if (newStream && lastAudioInput.length !== 0) {
+      // Approximate math to calculate time of chunks
+      const chunkTime = streamingLimit / lastAudioInput.length;
+      if (chunkTime !== 0) {
+        if (bridgingOffset < 0) {
+          bridgingOffset = 0;
+        }
+        if (bridgingOffset > finalRequestEndTime) {
+          bridgingOffset = finalRequestEndTime;
+        }
+        const chunksFromMS = Math.floor(
+          (finalRequestEndTime - bridgingOffset) / chunkTime
+        );
+        bridgingOffset = Math.floor(
+          (lastAudioInput.length - chunksFromMS) * chunkTime
+        );
 
-          for (let i = chunksFromMS; i < lastAudioInput.length; i++) {
+        for (let i = chunksFromMS; i < lastAudioInput.length; i++) {
+          if (statusConfigurator.getStatus() !== STATUS.STOP) {
             recognizeStream.write(lastAudioInput[i]);
           }
         }
-        newStream = false;
       }
-
-      audioInput.push(chunk);
-
-      if (recognizeStream) {
-        recognizeStream.write(chunk);
-      }
-
-      next();
+      newStream = false;
     }
+
+    audioInput.push(chunk);
+
+    if (recognizeStream) {
+      recognizeStream.write(chunk);
+    }
+
+    next();
   },
 
   final() {
