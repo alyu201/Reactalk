@@ -50,6 +50,12 @@ export const execute = (value: string) => {
     case NavigationKeyword.editor:
       vscode.commands.executeCommand("workbench.action.focusActiveEditorGroup");
       break;
+    case NavigationKeyword.commands:
+      vscode.commands.executeCommand("reactalk-commands.focus");
+      break;
+    case NavigationKeyword.symbols:
+      vscode.commands.executeCommand("reactalk-symbols.focus");
+      break;
     default:
       throw new InvalidCommandException("Error processing navigation command");
   }

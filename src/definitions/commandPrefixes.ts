@@ -99,6 +99,8 @@ export enum NavigationKeyword {
   file = "file",
   files = "files",
   editor = "editor",
+  commands = "commands",
+  symbols = "symbols",
 }
 
 export enum SystemKeyword {
