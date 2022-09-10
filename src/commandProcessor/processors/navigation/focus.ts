@@ -10,11 +10,6 @@ export const execute = (value: string) => {
     case NavigationKeyword.down:
       vscode.commands.executeCommand("list.focusDown");
       break;
-    case NavigationKeyword.terminal:
-      vscode.commands.executeCommand(
-        "workbench.action.terminal.toggleTerminal"
-      );
-      break;
     case NavigationKeyword.editor:
       vscode.commands.executeCommand("workbench.action.focusActiveEditorGroup");
       break;
