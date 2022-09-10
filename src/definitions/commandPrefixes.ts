@@ -17,6 +17,7 @@ export enum NavigationPrefixes {
   go = "go",
   focus = "focus",
   select = "select",
+  scroll = "scroll",
 }
 
 export enum SystemPrefixes {
@@ -100,7 +101,12 @@ export enum NavigationKeyword {
   element = "element",
   definition = "definition",
   file = "file",
+  files = "files",
   editor = "editor",
+  commands = "commands",
+  symbols = "symbols",
+  status = "status",
+  list = "list",
 }
 
 export enum SystemKeyword {

@@ -6,7 +6,11 @@ export const execute = (value: string) => {
   const editor = vscode.window.activeTextEditor;
 
   if (editor) {
-    const endingLine = value;
+    const targetLineVal = value;
+
+    // Get cursor's current position (whether currently selecting or not)
+    const cursorPos = editor.selection.active;
+    const cursorPosLineNum = cursorPos.line;
 
     // Set where the current cursor as the selection anchor
     vscode.commands.executeCommand("editor.action.setSelectionAnchor");
@@ -16,9 +20,18 @@ export const execute = (value: string) => {
     // So for example:
     // "eight" (string) = 8 (number)
     // "8" (string) = 8 (number)
-    const endingLineNum = `${wordsToNumbers(endingLine) ?? endingLine}`;
-    const end = editor.document.lineAt(parseInt(endingLineNum) - 1).range.end;
-    editor.selection = new vscode.Selection(end, end);
+    const targetLine = `${wordsToNumbers(targetLineVal) ?? targetLineVal}`;
+    const targetLineNum = parseInt(targetLine) - 1;
+
+    if (targetLineNum < cursorPosLineNum) {
+      // We want to select to the beginning of targetLineNum
+      const target = editor.document.lineAt(targetLineNum).range.start;
+      editor.selection = new vscode.Selection(target, target);
+    } else {
+      // By default, select to the end of the targetLineNum
+      const target = editor.document.lineAt(targetLineNum).range.end;
+      editor.selection = new vscode.Selection(target, target);
+    }
 
     // Select from anchor to cursor
     vscode.commands.executeCommand("editor.action.selectFromAnchorToCursor");
