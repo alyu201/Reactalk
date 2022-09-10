@@ -209,6 +209,10 @@
   },
   {
     "type": "navigation",
+    "command": "Focus status"
+  },
+  {
+    "type": "navigation",
     "command": "Focus commands"
   },
   {
