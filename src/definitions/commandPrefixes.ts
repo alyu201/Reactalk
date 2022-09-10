@@ -17,6 +17,7 @@ export enum NavigationPrefixes {
   go = "go",
   focus = "focus",
   select = "select",
+  scroll = "scroll",
 }
 
 export enum SystemPrefixes {
