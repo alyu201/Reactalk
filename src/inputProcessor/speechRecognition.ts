@@ -1,5 +1,5 @@
 import startVP from "./inputProcessor";
-import { STATUS } from "../definitions/status";
+import { STATUS, Status } from "../definitions/status";
 import * as vscode from "vscode";
 
 const encoding = "LINEAR16";
@@ -39,6 +39,8 @@ let newStream = true;
 let bridgingOffset = 0;
 let lastTranscriptWasFinal = false;
 let timeout: any = null;
+
+const statusConfigurator = Status.getStatusInstance();
 
 // This will disable the remove file warning AND any files deleted will go to the computer's trash.
 async function disableRemoveFileWarning() {
@@ -100,10 +102,26 @@ const speechCallback = (stream: any) => {
         : "\n\nReached transcription time limit, press Ctrl+C\n"
     );
 
-    if (ReactalkStatus == STATUS.STOP) {
+    // This will update the transcript in Reactalk's side bar
+    Status.getStatusInstance().updateCommand(transcript);
+
+    const reactalkStatus = statusConfigurator.getStatus();
+
+    if (reactalkStatus === STATUS.STOP) {
       vscode.window.showInformationMessage("Thanks for using Reactalk!");
+
       clearTimeout(timeout);
-      stream.destroy();
+
+      recognizeStream.end();
+      recognizeStream.removeListener("data", speechCallback);
+      recognizeStream = null;
+
+      if (resultEndTime > 0) {
+        finalRequestEndTime = isFinalEndTime;
+      }
+      resultEndTime = 0;
+
+      lastAudioInput = [];
     }
 
     console.log("\n");
@@ -132,7 +150,9 @@ const audioInputStreamTransform = new Writable({
         );
 
         for (let i = chunksFromMS; i < lastAudioInput.length; i++) {
-          recognizeStream.write(lastAudioInput[i]);
+          if (statusConfigurator.getStatus() !== STATUS.STOP) {
+            recognizeStream.write(lastAudioInput[i]);
+          }
         }
       }
       newStream = false;
@@ -210,7 +230,7 @@ export function startListening() {
   disableRemoveFileWarning();
 
   // Initialise ReactalkStatus to LISTEN
-  global.ReactalkStatus = STATUS.LISTEN;
+  statusConfigurator.updateStatus(STATUS.LISTEN);
 
   startStream();
 }

@@ -3,6 +3,9 @@
 import * as vscode from "vscode";
 import { startListening } from "./inputProcessor/speechRecognition";
 import { processCommand } from "./commandProcessor/commandProcessor";
+import { CommandProvider } from "./commandProcessor/providers/commandProvider";
+import { SymbolsProvider } from './commandProcessor/providers/symbolsProvider';
+import { ControlProvider } from './commandProcessor/providers/controlProvider';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -14,14 +17,11 @@ export function activate(context: vscode.ExtensionContext) {
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
-  let disposable = vscode.commands.registerCommand(
-    "reactalk.helloWorld",
-    () => {
-      // The code you place here will be executed every time your command is executed
-      // Display a message box to the user
-      vscode.window.showInformationMessage("Hello World from Megan!");
-    }
-  );
+  let disposable = vscode.commands.registerCommand("reactalk.helloWorld", () => {
+    // The code you place here will be executed every time your command is executed
+    // Display a message box to the user
+    vscode.window.showInformationMessage("Hello World from Megan!");
+  });
 
   let disposable2 = vscode.commands.registerCommand("reactalk.start", () => {
     // The code you place here will be executed every time your command is executed
@@ -39,20 +39,26 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   // TODO: remove this command after completion - for testing purposes only
-  let commandProcess = vscode.commands.registerCommand(
-    "reactalk.commandProcess",
-    () => {
-      processCommand("pause listening");
+  let commandProcess = vscode.commands.registerCommand("reactalk.commandProcess", () => {
+    processCommand("add constant function bob");
 
-      vscode.window.showInformationMessage("Processed");
-    }
-  );
+    vscode.window.showInformationMessage("Processed");
+  });
 
   context.subscriptions.push(disposable);
   context.subscriptions.push(disposable2);
   context.subscriptions.push(disposableStartLis);
   context.subscriptions.push(commandProcess);
+
+  // Register asnd create the tree view
+  const controlProvider = new ControlProvider();
+  const commandProvider = new CommandProvider();
+  const symbolProvider = new SymbolsProvider();
+  vscode.window.registerTreeDataProvider("reactalk-controls", controlProvider);
+  vscode.window.registerTreeDataProvider("reactalk-commands", commandProvider);
+  vscode.window.registerTreeDataProvider("reactalk-symbols", symbolProvider);
+  vscode.commands.registerCommand("reactalk.refreshStatus", () => controlProvider.refresh());
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }

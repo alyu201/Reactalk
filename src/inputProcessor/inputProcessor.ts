@@ -1,6 +1,6 @@
 import { processCommand } from "../commandProcessor/commandProcessor";
 import { InvalidCommandException } from "../commandProcessor/invalidCommandException";
-import { STATUS } from "../definitions/status";
+import { Status, STATUS } from "../definitions/status";
 import { ListeningCommands } from "../definitions/commandPrefixes";
 
 function startVP(transcript: string) {
@@ -8,16 +8,18 @@ function startVP(transcript: string) {
     // Preprocess transcript
     const processedTranscript = transcript.trim().toLowerCase();
 
-    if (ReactalkStatus == STATUS.LISTEN) {
+    const statusConfigurator = Status.getStatusInstance();
+    const reactalkStatus = statusConfigurator.getStatus();
+    if (reactalkStatus === STATUS.LISTEN) {
       // Ask command processor to process command
       processCommand(processedTranscript);
-    } else if (ReactalkStatus == STATUS.PAUSE) {
-      if (processedTranscript == ListeningCommands.startListening) {
-        ReactalkStatus = STATUS.LISTEN;
+    } else if (reactalkStatus === STATUS.PAUSE) {
+      if (processedTranscript === ListeningCommands.startListening) {
+        statusConfigurator.updateStatus(STATUS.LISTEN);
         // Ask command processor to process command
         processCommand(processedTranscript);
-      } else if (processedTranscript == ListeningCommands.stopListening) {
-        ReactalkStatus = STATUS.STOP;
+      } else if (processedTranscript === ListeningCommands.stopListening) {
+        statusConfigurator.updateStatus(STATUS.STOP);
       }
     }
   } catch (error) {

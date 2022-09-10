@@ -1,0 +1,478 @@
+[
+  {
+    "type": "composition",
+    "command": "Add constant <name>"
+  },
+  {
+    "type": "composition",
+    "command": "Add variable <name>"
+  },
+  {
+    "type": "composition",
+    "command": "Add let <name>"
+  },
+  {
+    "type": "composition",
+    "command": "Add keyword <name>"
+  },
+  {
+    "type": "composition",
+    "command": "Add function <name>"
+  },
+  {
+    "type": "composition",
+    "command": "Add arrow function"
+  },
+  {
+    "type": "composition",
+    "command": "Add for loop"
+  },
+  {
+    "type": "composition",
+    "command": "Add while <condition>"
+  },
+  {
+    "type": "composition",
+    "command": "Add if <condition>"
+  },
+  {
+    "type": "composition",
+    "command": "Add else if"
+  },
+  {
+    "type": "composition",
+    "command": "Add else"
+  },
+  {
+    "type": "composition",
+    "command": "Add switch <var>"
+  },
+  {
+    "type": "composition",
+    "command": "Add case <value>"
+  },
+  {
+    "type": "composition",
+    "command": "Add try catch"
+  },
+  {
+    "type": "composition",
+    "command": "Add conditional <condition>"
+  },
+  {
+    "type": "composition",
+    "command": "Add element <name>"
+  },
+  {
+    "type": "composition",
+    "command": "Add component <name>"
+  },
+  {
+    "type": "composition",
+    "command": "Add javascript expression"
+  },
+  {
+    "type": "composition",
+    "command": "Add use state"
+  },
+  {
+    "type": "composition",
+    "command": "Add use effect"
+  },
+  {
+    "type": "composition",
+    "command": "Add tab"
+  },
+  {
+    "type": "composition",
+    "command": "Add newline"
+  },
+  {
+    "type": "composition",
+    "command": "Add space"
+  },
+  {
+    "type": "composition",
+    "command": "Add symbol <name>"
+  },
+  {
+    "type": "composition",
+    "command": "Add comment <text>"
+  },
+  {
+    "type": "composition",
+    "command": "Use constant <name>"
+  },
+  {
+    "type": "composition",
+    "command": "Use function <name>"
+  },
+  {
+    "type": "composition",
+    "command": "Use component <name>"
+  },
+  {
+    "type": "composition",
+    "command": "Add text <text>"
+  },
+  {
+    "type": "composition",
+    "command": "Add condition <condition>"
+  },
+  {
+    "type": "composition",
+    "command": "Add string <text>"
+  },
+  {
+    "type": "composition",
+    "command": "Add array <items>"
+  },
+  {
+    "type": "",
+    "command": ""
+  },
+  {
+    "type": "editing",
+    "command": "Delete constant <name>"
+  },
+  {
+    "type": "editing",
+    "command": "Delete variable <name>"
+  },
+  {
+    "type": "editing",
+    "command": "Delete let <name>"
+  },
+  {
+    "type": "editing",
+    "command": "Delete line <number>"
+  },
+  {
+    "type": "editing",
+    "command": "Delete function <name>"
+  },
+  {
+    "type": "editing",
+    "command": "Delete element <name>"
+  },
+  {
+    "type": "editing",
+    "command": "Copy"
+  },
+  {
+    "type": "editing",
+    "command": "Copy constant <name>"
+  },
+  {
+    "type": "editing",
+    "command": "Copy variable <name>"
+  },
+  {
+    "type": "editing",
+    "command": "Copy let <name>"
+  },
+  {
+    "type": "editing",
+    "command": "Copy function <name>"
+  },
+  {
+    "type": "editing",
+    "command": "Copy element <name>"
+  },
+  {
+    "type": "editing",
+    "command": "Paste"
+  },
+  {
+    "type": "editing",
+    "command": "Rename constant <name> to <newName>"
+  },
+  {
+    "type": "editing",
+    "command": "Rename variable <name> to <newName>"
+  },
+  {
+    "type": "editing",
+    "command": "Rename let <name> to <newName>"
+  },
+  {
+    "type": "editing",
+    "command": "Rename function <name> to <newName>"
+  },
+  {
+    "type": "editing",
+    "command": "Rename element <name> to <newName>"
+  },
+  {
+    "type": "",
+    "command": ""
+  },
+  {
+    "type": "navigation",
+    "command": "Focus status"
+  },
+  {
+    "type": "navigation",
+    "command": "Focus commands"
+  },
+  {
+    "type": "navigation",
+    "command": "Focus symbols"
+  },
+  {
+    "type": "navigation",
+    "command": "Focus up"
+  },
+  {
+    "type": "navigation",
+    "command": "Focus down"
+  },
+  {
+    "type": "navigation",
+    "command": "Focus up by <num>"
+  },
+  {
+    "type": "navigation",
+    "command": "Focus down <num>"
+  },
+  {
+    "type": "navigation",
+    "command": "Scroll up"
+  },
+  {
+    "type": "navigation",
+    "command": "Scroll down"
+  },
+  {
+    "type": "navigation",
+    "command": "Scroll files up"
+  },
+  {
+    "type": "navigation",
+    "command": "Scroll files down"
+  },
+  {
+    "type": "navigation",
+    "command": "Scroll list up"
+  },
+  {
+    "type": "navigation",
+    "command": "Scroll list down"
+  },
+  {
+    "type": "navigation",
+    "command": "Toggle terminal"
+  },
+  {
+    "type": "navigation",
+    "command": "Next editor"
+  },
+  {
+    "type": "navigation",
+    "command": "Previous editor"
+  },
+  {
+    "type": "navigation",
+    "command": "Select from here to line <num>"
+  },
+  {
+    "type": "navigation",
+    "command": "Select line <num>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go up"
+  },
+  {
+    "type": "navigation",
+    "command": "Go down"
+  },
+  {
+    "type": "navigation",
+    "command": "Go right"
+  },
+  {
+    "type": "navigation",
+    "command": "Go left"
+  },
+  {
+    "type": "navigation",
+    "command": "Go up by <num>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go down by <num>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go right by <num>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go left by <num>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go to word <name>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go to start of word <name>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go to end of word <name>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go to line <number>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go to start of line <number>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go to end of line <number>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go to start of file <name>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go to end of file <name>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go to function <name>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go to start of function <name>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go to end of function <name>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go to element <name>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go to start of element <name>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go to end of element <name>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go to definition <name>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go to start of definition <name>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go to end of definition <name>"
+  },
+  {
+    "type": "",
+    "command": ""
+  },
+  {
+    "type": "system",
+    "command": "Save file"
+  },
+  {
+    "type": "system",
+    "command": "Browse files"
+  },
+  {
+    "type": "system",
+    "command": "New file"
+  },
+  {
+    "type": "system",
+    "command": "New file <filetype>"
+  },
+  {
+    "type": "system",
+    "command": "New file <filename>.<filetype>"
+  },
+  {
+    "type": "system",
+    "command": "Duplicate file <name>"
+  },
+  {
+    "type": "system",
+    "command": "Remove file <name>"
+  },
+  {
+    "type": "system",
+    "command": "Retitle file <newName>"
+  },
+  {
+    "type": "system",
+    "command": "Open file"
+  },
+  {
+    "type": "system",
+    "command": "Close file"
+  },
+  {
+    "type": "system",
+    "command": "Undo"
+  },
+  {
+    "type": "system",
+    "command": "Redo"
+  },
+  {
+    "type": "system",
+    "command": "Previous command"
+  },
+  {
+    "type": "system",
+    "command": "Next command"
+  },
+  {
+    "type": "system",
+    "command": "Show options"
+  },
+  {
+    "type": "system",
+    "command": "Start listening"
+  },
+  {
+    "type": "system",
+    "command": "Stop listening"
+  },
+  {
+    "type": "system",
+    "command": "Pause listening"
+  },
+  {
+    "type": "system",
+    "command": "Create app <name>"
+  },
+  {
+    "type": "system",
+    "command": "Install dependencies"
+  },
+  {
+    "type": "system",
+    "command": "Start application"
+  },
+  {
+    "type": "system",
+    "command": "Build application"
+  },
+  {
+    "type": "system",
+    "command": "Stop application"
+  }
+]

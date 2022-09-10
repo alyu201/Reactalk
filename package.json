@@ -14,7 +14,8 @@
     "onCommand:reactalk.helloWorld",
     "onCommand:reactalk.start",
     "onCommand:reactalk.startListening",
-    "onCommand:reactalk.commandProcess"
+    "onCommand:reactalk.commandProcess",
+    "onView:reactalk-commands"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -29,13 +30,55 @@
       },
       {
         "command": "reactalk.startListening",
-        "title": "Reactalk start listening"
+        "title": "Start Reactalk",
+        "icon": {
+          "light": "resources/light/microphone.svg",
+          "dark": "resources/dark/microphone.svg"
+        }
       },
       {
         "command": "reactalk.commandProcess",
         "title": "Process command"
+      },
+      {
+        "command": "reactalk.refreshStatus",
+        "title": "Refresh"
       }
-    ]
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "reactalk",
+          "title": "Reactalk",
+          "icon": "resources/comment-code.svg"
+        }
+      ]
+    },
+    "views": {
+      "reactalk": [
+        {
+          "id": "reactalk-controls",
+          "name": "Controls"
+        },
+        {
+          "id": "reactalk-commands",
+          "name": "Commands"
+        },
+        {
+          "id": "reactalk-symbols",
+          "name": "Symbols"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "reactalk.startListening",
+          "when": "view == reactalk-controls",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",

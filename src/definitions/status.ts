@@ -1,13 +1,47 @@
+import * as vscode from "vscode";
+
 export enum STATUS {
-  LISTEN,
-  STOP,
-  PAUSE,
+  LISTEN = "started",
+  STOP = "stopped",
+  PAUSE = "paused",
+  NONE = "none",
 }
 
-// This is a globabl variable to determine the state of whether we want to listen, pause or stop listening.
-declare global {
-  var ReactalkStatus: STATUS;
-}
+export class Status {
+  private static instance: Status;
+  private status: STATUS;
+  private command: string;
 
-// This is needed, or else all variables will become of type 'any'
-export {};
+  constructor() {
+    this.status = STATUS.STOP;
+    this.command = "";
+  }
+
+  public static getStatusInstance(): Status {
+    if (!Status.instance) {
+      Status.instance = new Status();
+    }
+
+    return Status.instance;
+  }
+
+  public getStatus() {
+    return this.status;
+  }
+
+  public async updateStatus(newStatus: STATUS) {
+    this.status = newStatus;
+    await vscode.commands.executeCommand("reactalk.refreshStatus");
+    return this.status;
+  }
+
+  public getCommand() {
+    return this.command;
+  }
+
+  public async updateCommand(command: string) {
+    this.command = command;
+    await vscode.commands.executeCommand("reactalk.refreshStatus");
+    return this.command;
+  }
+}
