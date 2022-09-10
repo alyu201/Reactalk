@@ -209,11 +209,51 @@
   },
   {
     "type": "navigation",
+    "command": "Focus commands"
+  },
+  {
+    "type": "navigation",
+    "command": "Focus symbols"
+  },
+  {
+    "type": "navigation",
     "command": "Focus up"
   },
   {
     "type": "navigation",
     "command": "Focus down"
+  },
+  {
+    "type": "navigation",
+    "command": "Focus up by <num>"
+  },
+  {
+    "type": "navigation",
+    "command": "Focus down <num>"
+  },
+  {
+    "type": "navigation",
+    "command": "Scroll up"
+  },
+  {
+    "type": "navigation",
+    "command": "Scroll down"
+  },
+  {
+    "type": "navigation",
+    "command": "Scroll files up"
+  },
+  {
+    "type": "navigation",
+    "command": "Scroll files down"
+  },
+  {
+    "type": "navigation",
+    "command": "Scroll list up"
+  },
+  {
+    "type": "navigation",
+    "command": "Scroll list down"
   },
   {
     "type": "navigation",
@@ -234,6 +274,22 @@
   {
     "type": "navigation",
     "command": "Select line <num>"
+  },
+  {
+    "type": "navigation",
+    "command": "Go up"
+  },
+  {
+    "type": "navigation",
+    "command": "Go down"
+  },
+  {
+    "type": "navigation",
+    "command": "Go right"
+  },
+  {
+    "type": "navigation",
+    "command": "Go left"
   },
   {
     "type": "navigation",
@@ -357,7 +413,7 @@
   },
   {
     "type": "system",
-    "command": "Open"
+    "command": "Open file"
   },
   {
     "type": "system",
