@@ -101,6 +101,7 @@ export enum NavigationKeyword {
   editor = "editor",
   commands = "commands",
   symbols = "symbols",
+  list = "list",
 }
 
 export enum SystemKeyword {
