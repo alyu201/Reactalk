@@ -6,7 +6,6 @@ import { InvalidCommandException } from "./../invalidCommandException";
  * @throws An InvalidCommandException when an error occurs during processing
  */
 export const processNavigation = (prefix: string, value: string) => {
-
   console.log("prefix: " + prefix);
   console.log("value: " + value);
 
@@ -16,5 +15,4 @@ export const processNavigation = (prefix: string, value: string) => {
   } catch (error) {
     throw new InvalidCommandException("Error processing navigation command");
   }
-
 };
