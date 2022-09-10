@@ -1,14 +1,51 @@
 import * as vscode from "vscode";
 import { NavigationKeyword } from "../../../definitions/commandPrefixes";
 import { InvalidCommandException } from "../../invalidCommandException";
+import { takeCareOfToAndFor } from "./navigationUtility";
+import wordsToNumbers from "words-to-numbers";
 
 export const execute = (value: string) => {
-  switch (value) {
+  const valueArray = value.split(" ");
+
+  // The first word of the value is always the direction
+  const directionOrEditor = valueArray[0];
+
+  switch (directionOrEditor) {
     case NavigationKeyword.up:
-      vscode.commands.executeCommand("list.focusUp");
+      if (valueArray.length > 1) {
+        // The value will have the structure of "<direction> by <num>", so we need to remove the "by "
+        const valueNum = valueArray[2];
+        const amtToMove = takeCareOfToAndFor(valueNum);
+        const amtToMoveNum = parseInt(
+          `${wordsToNumbers(amtToMove) ?? amtToMove}`
+        );
+
+        for (let i = 1; i <= amtToMoveNum; i++) {
+          vscode.commands.executeCommand("list.focusUp");
+        }
+      } else {
+        // By default, focus up 1 time
+        vscode.commands.executeCommand("list.focusUp");
+      }
+
       break;
     case NavigationKeyword.down:
-      vscode.commands.executeCommand("list.focusDown");
+      if (valueArray.length > 1) {
+        // The value will have the structure of "<direction> by <num>", so we need to remove the "by "
+        const valueNum = valueArray[2];
+        const amtToMove = takeCareOfToAndFor(valueNum);
+        const amtToMoveNum = parseInt(
+          `${wordsToNumbers(amtToMove) ?? amtToMove}`
+        );
+
+        for (let i = 1; i <= amtToMoveNum; i++) {
+          vscode.commands.executeCommand("list.focusDown");
+        }
+      } else {
+        // By default, focus down 1 time
+        vscode.commands.executeCommand("list.focusDown");
+      }
+
       break;
     case NavigationKeyword.editor:
       vscode.commands.executeCommand("workbench.action.focusActiveEditorGroup");
