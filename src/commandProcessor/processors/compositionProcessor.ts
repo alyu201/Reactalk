@@ -84,6 +84,7 @@ const insertList = (command: string, list: string) => {
  */
 export const processAdd = (inputCmd: string) => {
   try {
+    inputCmd = inputCmd.replace(/,/g, ' ,'); // temporary fix for commas
     const keyword = inputCmd.split(" ")[1]; // e.g. for, element
     const insertCode = inputCmd.split(" ").slice(2).join(" ");
     const command = inputCmd.substring(0, inputCmd.length - insertCode.length).trim();
