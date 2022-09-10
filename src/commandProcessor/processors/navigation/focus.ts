@@ -56,6 +56,9 @@ export const execute = (value: string) => {
     case NavigationKeyword.symbols:
       vscode.commands.executeCommand("reactalk-symbols.focus");
       break;
+    case NavigationKeyword.status:
+      vscode.commands.executeCommand("reactalk-controls.focus");
+      break;
     default:
       throw new InvalidCommandException("Error processing navigation command");
   }
