@@ -97,6 +97,7 @@ export enum NavigationKeyword {
   element = "element",
   definition = "definition",
   file = "file",
+  files = "files",
   editor = "editor",
 }
 
