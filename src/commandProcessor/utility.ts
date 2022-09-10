@@ -12,6 +12,11 @@ export function camelize(str: String) {
     .replace(/\s+/g, "");
 }
 
+export function pascalize(str: String) {
+  const camelized = camelize(str);
+  return camelized.charAt(0).toUpperCase() + camelized.substring(1);;
+}
+
 export function parseSymbols(code: string) {
   code = `${wordsToNumbers(code) ?? code}`;
 

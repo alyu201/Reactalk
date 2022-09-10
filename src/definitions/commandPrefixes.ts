@@ -10,7 +10,7 @@ export enum EditingPrefixes {
   paste = "paste",
   import = "import",
   backspace = "backspace",
-  skip = "skip",
+  confirm = "confirm",
 }
 
 export enum NavigationPrefixes {
@@ -77,6 +77,9 @@ export enum CompositionCamelKeyword {
   constant = "constant",
   function = "function",
   switch = "switch",
+}
+
+export enum CompositionPascalKeyword {
   component = "component",
 }
 
