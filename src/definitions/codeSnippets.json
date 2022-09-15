@@ -60,8 +60,12 @@
     "snippet": "if ($1) {\n\t$2\n}\n"
   },
   {
-    "cmd": "add indent",
+    "cmd": "add tab",
     "snippet": "\t"
+  },
+  {
+    "cmd": "add space",
+    "snippet": " "
   },
   {
     "cmd": "add new line",
@@ -121,7 +125,7 @@
   },
   {
     "cmd": "add use state",
-    "snippet": "const [$1, $2] = React.useState($3);\n"
+    "snippet": "const [$1, set${1/(.)/${1:/upcase}/}] = React.useState($3);\n"
   },
   {
     "cmd": "add use effect",

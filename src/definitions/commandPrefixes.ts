@@ -10,13 +10,14 @@ export enum EditingPrefixes {
   paste = "paste",
   import = "import",
   backspace = "backspace",
-  skip = "skip",
+  confirm = "confirm",
 }
 
 export enum NavigationPrefixes {
   go = "go",
   focus = "focus",
   select = "select",
+  scroll = "scroll",
 }
 
 export enum SystemPrefixes {
@@ -42,6 +43,7 @@ export enum SystemPrefixes {
   pause = "pause",
   toggle = "toggle",
   editor = "editor",
+  collapse = "collapse",
 }
 
 export enum CompositionKeyword {
@@ -77,6 +79,9 @@ export enum CompositionCamelKeyword {
   constant = "constant",
   function = "function",
   switch = "switch",
+}
+
+export enum CompositionPascalKeyword {
   component = "component",
 }
 
@@ -96,7 +101,12 @@ export enum NavigationKeyword {
   element = "element",
   definition = "definition",
   file = "file",
+  files = "files",
   editor = "editor",
+  commands = "commands",
+  symbols = "symbols",
+  status = "status",
+  list = "list",
 }
 
 export enum SystemKeyword {
