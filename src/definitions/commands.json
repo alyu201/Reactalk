@@ -233,7 +233,7 @@
   },
   {
     "type": "navigation",
-    "command": "Focus down <num>"
+    "command": "Focus down by <num>"
   },
   {
     "type": "navigation",
@@ -422,6 +422,10 @@
   {
     "type": "system",
     "command": "Close file"
+  },
+  {
+    "type": "system",
+    "command": "open folder"
   },
   {
     "type": "system",
