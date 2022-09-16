@@ -1,4 +1,11 @@
 export const symbolsList = {
+  container: "<div></div>",
+  paragraph: "<p></p>",
+  headings: "<h1-6></h1-6>",
+  unorderedList: "<ul></ul>",
+  orderedList: "<ol></ol>",
+  anchor: "<a href></a>",
+  image: "<img src />",
   plus: "+",
   minus: "-",
   dash: "-",
