@@ -133,6 +133,14 @@
   },
   {
     "type": "editing",
+    "command": "Backspace"
+  },
+  {
+    "type": "editing",
+    "command": "Delete"
+  },
+  {
+    "type": "editing",
     "command": "Delete constant <name>"
   },
   {
@@ -206,6 +214,10 @@
   {
     "type": "",
     "command": ""
+  },
+  {
+    "type": "navigation",
+    "command": "Focus editor"
   },
   {
     "type": "navigation",
@@ -385,7 +397,7 @@
   },
   {
     "type": "system",
-    "command": "Save file"
+    "command": "Save"
   },
   {
     "type": "system",
@@ -425,7 +437,11 @@
   },
   {
     "type": "system",
-    "command": "open folder"
+    "command": "Open folder"
+  },
+  {
+    "type": "system",
+    "command": "Collapse folder"
   },
   {
     "type": "system",
