@@ -1,70 +1,180 @@
-# reactalk README
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 
-This is the README for your extension "reactalk". After writing up a brief description, we recommend including the following sections.
+<a name="readme-top"></a>
 
-## Features
+<!--
+*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** that would make this better, please fork the repo and create a pull request
+*** or simply open an issue with the tag "enhancement".
+*** Don't forget to give the project a star!
+*** Thanks again! Now go create something AMAZING! :D
+-->
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+<hr />
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <h3 align="center" >Reactalk</h3>
+  <a href="#-getting-started"><strong>Getting started</strong></a>
+  .
+  <a href="#how-to-use-reactalk"><strong>How to use Reactalk</strong></a>
+  <br /><br />
 
-For example if there is an image subfolder under your extension project workspace:
+  <h4>Welcome to Reactalk!</h4>
 
-\!\[feature X\]\(images/feature-x.png\)
+  <p align="justify">
+    Reactalk is a VSCode extension that serves as a voice programming tool, aka. You can code using your voice. 
+    We have a wide selection of commands available and they come under 4 categories: 
+Composition, Editing, Navigation and System.
+  </p>
+</div>
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+<br />
 
-## Requirements
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#-getting-started">Getting Started</a>
+      <ul>
+        <li>
+          <a href="#prerequisites">Prerequisites</a>
+          <ul>
+            <li><a href="#software">Software</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#hardware">Hardware</a></li>
+          </ul>
+        </li>
+        <li><a href="#setup-and-run-reactalk-for-development">Setup and run Reactalk for development</a></li>
+        <li><a href="#package-reactalk-as-a-vsix-extension-file">Package Reactalk as a .vsix extension file</a></li>
+        <li><a href="#install-and-run-reactalk-as-an-extension-locally">Install and run Reactalk as an extension locally</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-use-reactalk">How to use Reactalk</a></li>
+  </ol>
+</details>
+<hr />
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+<!-- GETTING STARTED -->
 
-## Extension Settings
+## 📋 Getting Started
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+To get a local copy up and running, follow these steps:
 
-For example:
+### Prerequisites
 
-This extension contributes the following settings:
+#### Software
+1. [Node v14.0](https://nodejs.org/en/) or above
+```sh
+npm install npm@latest -g
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+# check for node version >14
+node --version
+```
+2. [VSCode](https://code.visualstudio.com/)
+3. [SoX v14.4.1](https://www.npmjs.com/package/sox) (for Windows users)
 
-## Known Issues
+#### Services
+1. Setup a Google Cloud project by following the steps outlined [here](https://cloud.google.com/speech-to-text/docs/before-you-begin) (Note: this will require a billing account for the Google Cloud service). Store the google credentials file for the Google Cloud project somewhere safely
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+#### Hardware
+1. Desktop USB microphone (recommended)
+2. Laptop/PC
 
-## Release Notes
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Users appreciate release notes as you update your extension.
 
-### 1.0.0
+### Setup and run Reactalk for development
 
-Initial release of ...
+1. Clone the repository to your local machine
 
-### 1.0.1
+```sh
+ git clone https://github.com/alyu201/Reactalk.git
+```
+2. Set the Google Cloud project credentials as an environment variable
+  - Windows:
+    - Add the `GOOGLE_APPLICATION_CREDENTIALS` env variable with the path to the credential keys json file as the value using the `env` field in the `launch.json` file in the `.vscode` folder.
+    ![image](https://user-images.githubusercontent.com/68038316/196586241-30f4c775-594c-4a34-9101-6cc586e3675f.png)
+  - Mac:
+    - When setting up the environment variables for Mac, it is better to set the environment varaible in the shell startup file (for example in the `~/.bashrc` or `~/.profile` file) so that the variable can be applied in future shell sessions.
+    ![image](https://user-images.githubusercontent.com/68038316/196586410-17bd49b6-97ce-4858-a462-267bb18bcfd9.png)
+3. Ensure you are at the root directory
+4. Run `npm install` on your terminal to install the required node dependencies.
+```sh
+npm install
+```
+5. Due to issues with `node-record-lpcm16` package, the `index.js` file of the package needs updating. Go to `node_modules/node-record-lpcm16/recorders/index.js` and on line 5, change the `return require(...)` to return `require(`./${recorderName}`)` instead
 
-Fixed issue #.
+6. Build and start the extension in an Extension Development Host window by pressing the `F5 key`
 
-### 1.1.0
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Added features X, Y, and Z.
 
------------------------------------------------------------------------------------------------------------
-## Following extension guidelines
+### Package Reactalk as a .vsix extension file
+1.	Follow the steps specified in [Setup and run Reactalk for development](#setup-and-run-reactalk-for-development) to clone and setup the project.
+2.	Install the `vsce` command-line tool to package Reactalk by executing the following in the terminal. More information can be found [here](https://code.visualstudio.com/api/working-with-extensions/publishing-extension).
+```sh
+npm install -g vsce
+```
+3. Package Reactalk as an extension by executing the following in the terminal. This should produce a Reactalk extension `.vsix` file named `reactalk-0.0.1.vsix` in the root directory.
+```sh
+$ cd myExtension
+$ vsce package
+# myExtension.vsix generated
+```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+### Install and run Reactalk as an extension locally
+1.	Follow the instructions in the [Package Reactalk as a .vsix extension file](#package-reactalk-as-a-vsix-extension-file) section to produce a `.vsix` file.
+2.	To install and run Reactalk as an extension, navigate to the ‘Extensions’ tab of the sidebar in VSCode.
 
-## Working with Markdown
+  ![image](https://user-images.githubusercontent.com/68038316/196588503-b14b9cde-17a3-4a46-bd4c-3147afd69c45.png)
+  
+3.	Click on the three dots located at the top right side and click on 'Install from VSIX'.
 
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
+  ![image](https://user-images.githubusercontent.com/68038316/196588538-88cefc92-e947-476e-893b-987d0b5a8666.png)
+  
+4.	A file explorer dialogue will appear for choosing the `.vsix` file to install. Locate the `reactalk-0.0.1.vsix` file and press ‘install’.
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
+  ![image](https://user-images.githubusercontent.com/68038316/196588633-4a53eb65-a00f-4809-9d88-cf7c9aa7e653.png)
+  
+5.	Reactalk is now installed as an extension locally and a new extension will appear in the sidebar of VSCode. If the displayed extension does not show up, have a look at the secondary sidebar or the toggle panel.
+ 
+  ![image](https://user-images.githubusercontent.com/68038316/196588780-c5cd2ae5-008f-4429-996d-90d1051bd0d7.png)
 
-### For more information
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
-**Enjoy!**
+<!-- HOW TO USE REACTALK -->
+
+## How to use Reactalk
+1.	Ensure that you have a microphone available. This can be the system’s existing microphone or a USB plugin microphone.
+2.	Open up Reactalk. Ensure that the extension is installed and enabled. To install and setup Reactalk as an extension on your machine locally, follow the steps in the [Install and run Reactalk as an extension locally](#install-and-run-reactalk-as-an-extension-locally) section of the Compendium/Documentation/Setup and run Reactalk.docx file
+
+![image](https://user-images.githubusercontent.com/68038316/196589888-e3bef8dd-18c8-4b14-8f00-e0d7b4d27ba4.png)
+
+3.	You should see the setup from the Recommended setup section above. If not, refer to this section above to adjust.
+4.	Click the start button (represented by the microphone icon) to begin speaking.
+
+  ![image](https://user-images.githubusercontent.com/68038316/196589905-7db32e8c-9dc9-4452-bd93-d3d64be7f7ba.png)
+
+  - This should change the status to ‘started’:
+  
+  ![image](https://user-images.githubusercontent.com/68038316/196589934-7876528b-f8df-46e6-bf42-6a0e68f07533.png)
+
+5.	Begin talking! And the transcript should appear. For example, saying “go up” would produce this:
+  
+  ![image](https://user-images.githubusercontent.com/68038316/196589950-e302367c-be40-4e8c-bc04-a4ff68e1031b.png)
+
+6.	To stop Reactalk, say ‘stop listening’:
+  
+  ![image](https://user-images.githubusercontent.com/68038316/196589969-e50b38c7-a474-4d66-b17d-1e6a3f5532c9.png)
+
+7. For more details, refer to the [User manual]() in the wikis for more details. 
+
+
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
