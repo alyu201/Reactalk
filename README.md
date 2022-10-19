@@ -143,6 +143,9 @@ $ vsce package
 5.	Reactalk is now installed as an extension locally and a new extension will appear in the sidebar of VSCode. If the displayed extension does not show up, have a look at the secondary sidebar or the toggle panel.
  
   ![image](https://user-images.githubusercontent.com/68038316/196588780-c5cd2ae5-008f-4429-996d-90d1051bd0d7.png)
+  
+6. To use Reactalk, refer to the [How to use Reactalk](#how-to-use-reactalk) section below for more details. 
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -171,8 +174,6 @@ $ vsce package
 6.	To stop Reactalk, say ‘stop listening’:
   
   ![image](https://user-images.githubusercontent.com/68038316/196589969-e50b38c7-a474-4d66-b17d-1e6a3f5532c9.png)
-
-7. For more details, refer to the [User manual]() in the wikis for more details. 
 
 
 
